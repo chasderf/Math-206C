@@ -1,0 +1,435 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{gensymb}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\begin{document}
+
+
+\title {Nonlinear Dynamics and Chaos: part 3: Chaos: Chapter 9 Lorenze Equations} 
+
+\author{Charlie Seager}
+
+\date{4/27/2024}
+
+\maketitle
+
+\textbf {Chapter 9.0 Inroduction} \\
+
+We begin our study of chaos with the Lorenz equations \\ \tab \tab
+$\dot{x}=\sigma(y-x)$ \\ \tab \tab
+$\dot{y}=rx-y-xz$ \\ \tab \tab
+$\dot{z}=xy-bz$ \\ 
+Here $\sigma , r , b >0$ are paramters. Ed Lorenz (1963) derived this three-dimensional system from a drastically simplified model of convection rolls in the atmostphere. The same equations also arise in models of lasers and dynamos, and we'll see in section 9.1, they exactly describe the motion of a certain waterwheel (you might like to build one yourself). \\ \tab
+Lorenz discovered that this simple-looking deterministic system could have extremely erratic dynamics: over a wide range of paramters, the solutions oscillate irregularly, never exactly repeating but always remaining in a bounded region of that they settled onto a complicated set, now called the stange attractor. Unlike stable fixed points and limit cycles, the strange attractor is not a point or a curve or even a surface-its a fractal, with a fractional dimension between 2 and 3. \\ \tab
+In this chapter we'll follow the beautiful chain of reasoning that led Lorenz to his discoveries. Our goal is to get a feel for his strange attractor and the chaotic motion that occurs on it. \\ \tab
+Lorenz's paper (Lorenz 1963) is deep, precident, and surprisingly readable-look it up! It is also reprinted in Cvitanovic (1989a) and Hao (1990). For a captivating history of Lorenz's work and that of other chaotic heroes, see Gleick (1987).
+
+\textbf {Chapter 9.1 A Chaotic Waterwheel} \\
+A neat mechanical model of the Lorenz equations was invented by Willem Malkus and Lou Howard at MIT in the 1970's. The simplest veersion is a toy waterwheel with leaky paper cups suspended from its rim (Figure 9.1.1). \\
+
+\includegraphics{fig_911}
+
+Water is poured in steadily from the top. If the flow rate is too slow, the top cups never fill up enough to overcome friction, so the wheel remains motionless. For faster inflow, the top cup gets heavy enough to start the wheel turning (Figure 9.1.1a). Eventually the wheel settles into a steady rotation in one direction or the other (Figure 9.1.1b). By symmetry, rotation in either direction is equally possible; the outcome depends on the initial conditions. \\ \tab
+By increasing the flow rate still further, we can destabilize the steady rotation. Then the motion becomes chaotic: the wheel rotates one way for a few turns, then some of the cups get too full and the wheel doesn't have enough inertia to carry them over the top, so the wheel slows down and may even reverse its direction (Figure 9.1.1c). Then it spins the other way for a while. The wheel keeps changing direction erratically. Spectators have been known to place bets (small ones, of course) on which way it will be turning after a minute. \\ \tab
+FIgure 9.1.2 shows Malkus's more sophisticated set up that we use nowadays at MIT. \\
+\includegraphics{fig_912}
+
+The wheel sits on a table top. It rotates in a plane that is tilted slightly from the horizontal (unlike an ordinary waterwheel, which rotates in a vertical plane). Water is pumped up into an overhanging manifold and then sprayed out through dozens of small nozzles. The nozzles direct the water into seperate chambers around the rim of the wheel. The chambers are transparent, and the water has food colorings in it, so the disturbution of water around the rim is easy to see. The water leaks out through a small hole at the bottom of each chamber, and then colelcts underneath the wheel, where it is pumped back through the nozzles. This system provides a steady input of water. \\ \tab
+
+The parameters can be changed in two ways. A brake on the wheel can be adjusted to add more or less friction. The tilt of the wheel can be varied by turning a screw that props the wheel up; this alters the effective strength of gravity. \\ \tab
+A sensor measures the wheel's angular velocity $\omega (t)$ and sends the data to a strip chart recorder which then plots $\omega (t)$ in real time. FIgure 9.1.3 shows a record of $\omega (t)$ when the wheel is rotating chaotically. Notice once again the irregular sequence of reversals. \\
+
+\includegraphics{fig_913}
+
+We want to explain where this chaos comes from and to understand the bifurcations that cause the wheel to go from static equilibrium to steady rotation to irregular reversals. 
+
+\textbf {Notation}
+
+Here are the coordinates, variables and parameters that describe the wheel's motion (Figure 9.1.4) \\
+
+\includegraphics{fig_914}
+
+$\theta$= angle in the lab frame (not the frame attached to the wheel) \\
+$\theta=0 \leftrightarrow 12:00$ in the lab frame \\
+$\omega (t)$ = angular velocity of the wheel (increases counterclockwise, as does $\theta$) \\
+$m(\theta , t)$ = mass distribution of water around the rim of the wheel, defined \\
+such that the mass between $\theta_{1}$ and $\theta_{2}$ is $M(t)=\int_{\theta_{1}}^{\theta_{2}}m(\theta , t)d\theta$ \\
+$Q(\theta)$ = inflow (rate at which water is pumped in by the nozzles above position $\theta$) \\ 
+r=radius of the wheel \\ 
+K=leakage rate \\
+v=rotational damping rate \\
+I=moment of inertia of the wheel \\
+The unknown are $m(\theta , t)$ and $\omega (t)$. Our first task is to derive equations governing their evolution.
+
+\textbf {Conservation of Mass} \\ \tab
+To find the equation for conservation of mass, we use a standard argument. You may have encountered it if you've studied fluids, electrostatics, or chemcial engineering. Consider any sector $[\theta_{1}, \theta_{2}]$ fixed in space (Figure 9.1.5) \\
+\includegraphics{fig_915}
+
+The mass in sector is $M(t)=\int_{\theta_{1}}^{\theta_{2}} m(\theta , t) d\theta.$ After an infinitesimal time $\triangle t$, what is the change in mass $\triangle M$? There are four contributions: \\ \tab \tab
+1. The mass pumped in by the nozzles is $[\int_{\theta_{1}}^{\theta_{2}}Qd\theta]\triangle t$. \\ \tab \tab
+2. The mass that leaks out is $[\int_{\theta_{1}}^{\theta_{2}}Km d\theta]\triangle t$. Notice the factor of m in the integral: it implies that leakage occurs at a rate proportional to the mass of water in the chamber-more water implies a larger pressure head and therefor faster leakage. Although this is plausible physically, the fluid mechanics of leakage is complicated, and other rules are conveivable as well. The real justification for the rule above is that it agrees with direct measurements on the waterwheel itself, to a good approximation. (For experts on fluids: to achieve this linear relation between outflow and pressure head, Malkus attached thin tubes to the holes at the bottom of each chamber. Then the outflow is essentially Poiseuille flow in a pipe). \\ \tab \tab
+3. As the wheel rotates, it carries a new block of water into our observation sector. That block has mass $m(\theta_{1})\omega \triangle t$, because it has angular width $\omega \triangle t$ (figure 9.1.5) and $m(\theta_{1})$ is its mass per unit angle. \\ \tab \tab
+4. Similarly, the mass carried out of the sector is $m (\theta_{2})\omega \triangle t$. \\
+Hence, \\ \tab \tab
+$\triangle M = \triangle t [\int_{\theta_{1}}^{\theta_{2}}Qd\theta - \int_{\theta_{1}}^{\theta_{2}}Km d\theta] + m(\theta_{1})\omega \triangle t - m(\theta_{2})\omega \triangle t$. \tab (1) \\
+To convert (1) to a differential equation, we put the transport terms inside the integral, using $m(\theta_{1})-m(\theta_{2})=-\int_{\theta_{1}}^{\theta_{2}}\frac{\partial m}{\partial \theta}d\theta$. Then we divide by $\triangle t$ and let $\triangle t \to 0$. \\
+The result is \\ \tab \tab
+$\frac{dM}{dt}=\int_{\theta_{1}}^{\theta_{2}}(Q-Km-\omega \frac{\partial m}{\partial \theta}) d \theta$. \\
+But by definition of M, \\ \tab \tab
+$\frac{dM}{dt}=\int_{\theta_{1}}^{\theta_{2}}\frac{\partial m}{\partial t} d \theta$ \\
+Hence \\ \tab \tab
+$\int_{\theta_{1}}^{\theta_{2}}\frac{\partial m}{\partial t} d\theta = \int_{\theta_{1}}^{\theta_{2}}(Q-Km-\omega \frac{\partial m}{\partial \theta}d\theta$ \\
+Since this holds for all $\theta_{1}$ and $\theta_{2}$, we must have \\ \tab \tab
+$\frac{\partial m}{\partial t}=Q-Km-\omega \frac{\partial m}{\partial \theta}$ \tab (2) \\ \tab 
+Equation (2) is often called the continuity equation. Notice that is is a partial differencial equation, unlike all the others considered so far in this book. We'll worry about how to analyze it later; we still need an equation that tells us how $\omega(t)$ evolves. 
+
+\textbf {Torque Balance} \\ \tab
+The rotation of the wheel is governed by Newtons law F=ma, expressed as a balence between the applied torques and the rate of change of angular momentum. Let I denote the moment of intertia of the wheel. Note that in general I depends on t, because the distribution of water does. But this complication disappears if we wait long enough: as $t \to \infty$, one can show that $I(t) \to constant$ (Excercise 9.1.1). Hence after the transients decay, the equation of the motion is \\ \tab \tab
+$I\dot{\omega}$=damping torque + gravitational torque. \\ \tab \tab
+There are two sources of damping: visous damping due to the heavy oil in the brake, and a more subtle "inertial" damping caused by a spin-up effect-the water enters the wheel at zero angular velocity but is spun up to angular velocity $\omega$ before it leaks out. Both of these effects produce torques proportional to $\omega$, so we have \\ \tab \tab
+damping torque = $-v\omega$ \\
+where $v>0$. The negative sign means that the damping opposes the motion. \\ \tab
+The gravitational torque is like that of an inverted pendulum, since water is pumped in at the top of wheel (Figure 9.1.6). \\
+
+\includegraphics{fig_916} \\
+In an infinitesimal sector $d\theta$, the mass $dM=md\theta$. This mass element produces a torque \\ \tab \tab
+$d \tau = (dM)grsin \theta = mg r sin \theta d\theta$. \\
+To check that the sign is correct, observe that when $sin \theta > 0$ the torque tends to increase $\omega$, just as in an inverted pendulum. Here g is the effective gravitational constant, given by $g=g_{0} sin \alpha$ where $g_{0}$ is the usual gravitational constant and $\alpha$ si the tilt of the wheel from horizontal (Figure 9.1.7) \\
+
+\includegraphics{fig_917} 
+Integration over all mass elements yields \\ \tab \tab
+gravitational torque = $gr \int_{0}^{2\pi} m(\theta , t) sin \theta d \theta$. \\ \tab
+Putting it all together, we obtain the torque balence equation \\ \tab \tab
+$I\dot{\omega}=-v\omega + gr \int_{0}^{2\pi}m(\theta , t) sin \theta d \theta$ \tab (3)
+\\
+This is called an inegro-differential equation it involves both derivatives and integrals. 
+
+\textbf {Amplitude Equations} \\ \tab
+Equations (2) and (3) completely specify the evolution of the system. Given the current values of $m(\theta , t)$ and $\omega (t)$, (2) tells us how to update m and (3) tells us how to update $\omega$. So no further equations are needed. \\ \tab
+If (2) and (3) truly describe the waterwheel's behavior, there must be some pretty complicated motions hidden in there. How can we extract them? The equations appear much more intimidating than anything we've studied so far. \\ \tab
+A miracle occurs if we use Fourier analysis to rewrite the system. Watch! \\
+Since $m(\theta , t)$ is periodic in $\theta$, we can write it as a Fourier series \\
+$m(\theta , t)=\sum_{n=0}^{\infty}[a_{n}(t)sin n \theta + b_{n}(t)cos n \theta]$ \tab (4) \\
+By substituting this expression into (2) and (3) we'll obtain a set of amplitude equations, ordinary differential equations for the amplitudes $a_{n}, b_{n}$ of the different harmoncis or modes. But first we must also write the inflow as a Fourier series: \\ \tab \tab
+$Q(\theta)=\sum_{n=0}^{\infty}q_{n}cosn \theta$. \tab (5) \\
+
+There are no $sin n \theta$ terms in the series because water is added symmetrically at the top of the wheel: the same inflow occurs at $\theta$ and $-\theta$ (In this respect, the waterwheel is unlike an ordinary, real-world waterwheel where asymmetry is used to drive the wheel in the same direction at all times). \\ \tab
+Substituting the series for m and Q into (2), we get \\ 
+$\frac{\partial}{\partial t}[\sum_{n=0}^{\infty}a_{n}(t)sin n \theta + b_{n}(t)cosn \theta] = -\omega \frac{\partial}{\partial \theta} [\sum_{n=0}^{\infty} a_{n}(t) sin n \theta + b_{n}(t)cos n \theta] + \sum_{n=0}^{\infty} q_{n}cos n \theta - K[\sum_{n=0}^{\infty}a_{n}(t) sin n \theta + b_{n}(t) cos n \theta]$. \\
+Now carry out the differentiations on both sides, and collect terms. By orthogonality of the function $sin n \theta, cos n \theta$, we equate the coefficients of each harmonic seperately. For instance, the coefficient of $sin n \theta$ on the left-hand side is $\dot{a}_{n}$, and on the right it is $n \omega b_{n}-Ka_{n}$. Hence \\
+\tab \tab
+$\dot{a}_{n}=n \omega b_{n}-Ka_{n}$ \tab (6) \\
+Similarly, matching coefficients of $cos n \theta$ yields \\ \tab \tab
+$\dot{b}_{n}=-n\omega a_{n}-Kb_{n}+q_{n}$ \tab (7) \\
+Both (6) and (7) hold for all n=0,1,... \\ \tab
+Next we rewrite (3) in terms of Fourier series. Get ready for the miracle. When we substitute (4) into (3), only one term survives in the integral, by orthogonality: \\ \tab \tab
+$I\dot{\omega}=-v\omega + gr \int_{0}^{2\pi}[\sum_{n=0}^{\infty}a_{n}(t)sin n \theta + b_{n}(t) cos n \theta ] sin \theta d \theta \\
+\tab \tab = -v\omega + gr \int_{0}^{2\pi}a_{1}sin^{2}\theta d\theta \\ \tab \tab
+= -v\omega +\pi gra_{1}$ \tab (8) \\
+Hence, only $a_{1}$ enters the differential equation for $\dot{\omega}$. But then (6) and (7) imply that $a_{1}, b_{1}$ and $\omega$ form a closed system-these three variables are decoupled from all the other $a_{n}, b_{n}, n \neq 1$! The resulting equations are \\ \tab \tab
+$\dot{a}_{1}=\omega b_{1}-Ka_{1} \\
+\dot{b}_{1}=-\omega a_{1}-Kb_{1}+q_{1} \tab (9) \\
+\dot{\omega}=(-v \omega + \pi gra_{1})/I$. \\
+(If you're curious about the higher mdoes $a_{n}, b_{n}, n \neq 1$, see Excercise 9.1.2) \\ \tab We've simplifed our problem tremendously: the original pair of integro-partial differential equations (2), (3) has boiled down to the three dimensional system (9). It turns out that (9) is equivalent to the Lorenz equations! (See excercise 9.1.3). Before we turn to that more famous system, let's try to understand a little about (9). No one has ever fully understood it- its behavior is fantasically complex-but we can say something. 
+
+\textbf {Fixed Points} \\ \tab
+We begin by finding the fixed points of (9). For notational convenience, the usual asterisks will be omitted in the intermediate steps. \\ \tab \tab
+Setting all the derivatives equal to zero yields \\ \tab \tab
+$a_{1}=\omega b_{1}/K \tab (10) \\
+\tab \tab
+\omega a_{1}=q_{1}-Kb_{1} \tab (11) \\
+a_{1}=-v\omega / \pi gr$ \tab (12) \\
+
+Now solve for $b_{1}$ by eliminating $a_{1}$ from (10) and (11): \\ \tab \tab
+$b_{1}=\frac{Kq_{1}}{\omega^{2}+K^{2}}.$ \tab (13) \\
+
+Equating (10) and (12) yields $\omega b_{1}/K=v\omega/\pi gr$. Hence $\omega = 0$ or \\
+\tab \tab 
+$b_{1}=Kv/\pi gr$ \tab (14) \\
+Thus, there are two kinds of fixed point to consider: \\ \tab \tab
+1. $(a_{1}*b_{1}*\omega * ) = (0, q_{1}/K, 0)$ \tab (15) \\
+corresponds to a state of no rotation: the wheel is at rest, with inflow balanced by leakage. We're not saying that his state is stable, just that it exists; stability calculuations will come later. \\ \tab \tab
+2. If $\omega \neq 0$, then (13) and (14) imply $b_{1}=Kq_{1}/(\omega^{2}+K^{2})=Kv/\pi gr$. \\ \tab \tab Since $k \neq 0$, we get $q_{1}/(\omega^{2}+K^{2})=v/\pi gr$. Hence \\ \tab \tab
+$(\omega *)^{2}=\frac{\pi gr q_{1}}{v}-K^{2}$ \tab (16) \\
+If the right-hand side of (16) is positive, there are two solutions, $\pm \omega *$, corresponding to steady rotation in either direction. These solutions exist if and only if \\ \tab \tab
+$\frac{\pi gr q_{1}}{K^{2} v}> 1$ \tab (17) \\
+\tab
+The dimensionaless group in (17) is called the Rayleigh number. It measures how hard we're driving the system, relative to the dissipation. More precisely, the ration in (17) expresses a competition between g and $q_{1}$ (gravity and inflow, which tend to spin the wheel). So it makes sense that steady rotation is possible only if the Rayleigh number is large enough. \\ \tab The Rayleigh number appears in other parts of fluid mechanics, notably convection, in which a layer of fluid is heated from below. There it is proportional to the difference in temperature from bottom to top? For small temperature gradients heat is conducted vertically but the fluid remains motionless. When the Rayleigh number increases past a critical value, an instability occurs-the hot fluid is less dense and begins to rise, while the cold fluid on top begins to sink. This sets up a pattern of convection rolls, completely analogous to the steady rotation of our waterwheel. With further increases of the Rayleigh number, the tolls becomes wavy and eventually chaotic. \\ \tab
+The analogy to the waterwheel breaks down at still higher Rayleigh numbers when turbulence develops and the convective motion becomes complex in space as well as time (Drazin and Reid 1981, Berge et al. 1984, Manneville 1990). In contrast, the waterwheel settles into a pendulum like pattern of reversals, turning once to the left, then back to the right, and so on indefinitely (See example 9.5.2).
+
+\textbf {Chapter 9.2 Simple Properties of the Lorenz Equations} \\
+In this section we'll follow in Lorenz's footsteps. He took the analysis as far as possible using standard techniques, but at a certain stage he found himself confronted with what seemed like a paradox. One by one he had eliminated all the known possibilities for the long-term behavior of his system: he showed that in a certain range of parameters, there could be no stable fixed points and no stable limit cycles, yet he also proved that all trajectories remain confined to a bounded region and are eventually attracted to a set of zero volume. What could that set be? And how do the trajectories move on it? As we'll see in the next section, that set is the strange attractor, and the motion on it is chaotic. \\ \tab
+But first we want to see how Lorenz ruled out the more traditional possibilities. As Sherlock Holmes said in The Sign of Four, "When you have eliminated the impossible, whatever remains, however improbable, must be the truth". \\ \tab The Lorenz equations are \\ \tab \tab
+$\dot{x}=\sigma(y-x) \\ \tab \tab
+\dot{y}=rx-y-xz \\ \tab \tab
+\dot{z}=xy-bz$ \tab (1) \\
+
+Here $\sigma , r, b>0$ are parameters, $\sigma$ is the Prandtl number, r is the Rayleigh number, and b has no name. (In the convection problem it is related to the aspect ratio of the rolls). 
+
+\textbf {Nonlinearity} \\ \tab
+The system (1) has only two nonlinearities, the quadratic terms xy and xz. This should remind you of the waterwheel equations (9.1.9) which had two nonlinearities, $\omega a_{1}$ and $\omega b_{1}$. See Excercise 9.1.3 for the change of variables that transforms the waterwheen equations into the Lorenz equations.
+
+\textbf {Symmetry} \\ \tab
+There is an important symmetry in the Lorenz equations. If we replace $(x,y) \to (-x, -y)$ in (1), the equations stay the same. Hence if $(x(t), y(t), z(t))$ is a solution, so is $(-x(t), -y(t), -z(t))$. In other words, all solutions are either symmetric themselves, or have a symmetric partner. 
+
+\textbf {Volume Contraction} \\ \tab
+The Lorenz system is dissipative: volumes in phase space contract under the flow. To see this, we must first ask: how do volumes evolve? \\ \tab
+Let's answer the question in general, for any three-dimensional system $\dot{x}=f(x)$. Pick an arbitrary closed surface S(t) of volume V(t) in phase space. Think of the points on S as initial conditions for trajectories, and let them evolve for an infinitesimal time dt: Then S evolves into a new surface S(t+dt); what is its volume V(t+dt)? \\ \tab
+Figure 9.2.1 shows a side view of the volume. \\
+
+\includegraphics{fig_921}
+Let n denote the outward normal on S. Since f is the instantaneous velocity of the points, $f \cdot n$ is the outward normal component of velocity. Therefore in time dt a patch of area dA sweeps out a volume $(f \cdot n dt)dA$, as shown in Figure 9.2.2 \\
+
+\includegraphics{fig_922}
+
+Hence \\ \tab \tab
+$V(t+dt)=V(t)$ + (Volume swept out by tiny patches of surface, integrated over all patches) \\
+so we obtain \\ \tab \tab
+$V(t+dt)=V(t)+\int_{S}(f \cdot n dt)dA$ \\
+Hence \\ \tab \tab
+$\dot{V}=\frac{V(t+dt)-V(t)}{dt}=\int_{S} f \cdot n dA$ \tab (2) \\
+
+For the Lorenz system, \\ \tab \tab
+$\nabla \cdot f = \frac{\partial}{\partial x}[\sigma(y-x)]+\frac{\partial}{\partial y}[rx-y-xz]+\frac{\partial}{\partial z}[xy-bz]= -\sigma - 1 - b < 0$. \\
+Since the divergence is constant, (2) reduces to $\dot{V}=-(\sigma + 1 + b)V$, which has solution $V(t)=V(0)e^{-(\sigma + 1 + b) t}$. Thus volumes in phase space shrink exponentially fast. \\ \tab
+Hence, if we start with a enormous solid blob of initial conditions, it eventually shrinks to a limiting set of zero volume, like a balloon with the air being sucked out of it. All trajectories starting in the blob end up somewhere in this limiting set: later we'll see it consists of fixed points, limit cycles, or for some parameter values, a strange attractor. \\ \tab
+Volume contraction imposes strong constraints on the possible solutions of the Lorenz equations, as illustrated by the next two example.
+
+\textbf {Fixed Points} \\ \tab
+Like the waterwheel, the Lorenz system (1) has two types of fixed points. The origin (x*,y*,z*)=(0,0,0) is a fixed point for all values of the parameters. It is like the motionless state of the waterwheel. For $r>1$, there is also a symmetric pair of fixed points $x*=y*=\pm \sqrt{b(r-1)}, z*=r-1$. Lorenz called them $C^{+}$ and $C^{-}$. They represent left-or right turning convection rolls (analogous to the steady rotations of the waterwheel). As $r \to 1^{+}$, $C^{+}$ and $C^{-}$ coalesce with the origin in a pitchfork bifurcation. 
+
+\textbf {Linear Stability of the Origin} \\ \tab
+The linearization at the origin is $\dot{x}=\sigma(y-x), \dot{y}=rx-y, \dot{z}=-bz$, obtained by omitting the xy and xz nonlinearities in (1). The equation for z is decoupled and shows that $z(t) \to 0$ exponentially fast. The other two directions are governed by the system \\ \tab \tab
+${ \begin{pmatrix}
+\dot{x}\\
+\dot{y}
+\end{pmatrix}
+=
+\begin{pmatrix}
+-\sigma & \sigma \\
+r & -1
+\end{pmatrix}
+\begin{pmatrix}
+x \\
+y
+\end{pmatrix}
+}$
+with trace $\tau = -\sigma - 1 <0$ and determinant $\triangle = \sigma (1-r).$ If $r>1$, the origin is a saddle point because $\triangle < 0$. Note that this is a new type of saddle for us, since the full system is three-dimensional. Including the z-direction, the saddle has one outgoing and two incoming directions. If $r<1$, all directions are incoming and the origin is a sink. Specifically, since $\tau^{2}-4\triangle = (\sigma +1)^{2}-4\sigma (1-r)=(\sigma - 1)^{2}+4\sigma r > 0$, the origin is a stable node for $r<1$.
+
+\textbf {Global Stability of the Origin} \\ \tab
+Actually, for $r<1$, we can show that every trajectory approaches the origin as $t \to \infty$; the origin is globally stable. Hence there can be no limit cycles or chaos for $r<1$. \\ \tab
+The proof involves the construction of a Liapunov function, a smooth, positive definite function that decreases along trajectories. As discussed in Section 7.2 a Liapunov function is a generalization of an energy function for a classical mechanical system-in the presence of friction or other dissipation, the energy decreases monotonically. There is no systematic way to concoct Liapunov functions, but often it is wise to try expressions involving sums of squares. \\ \tab
+Here, consider $V(x,y,z)= \frac{1}{\sigma}x^{2}+y^{2}+z^{2}$. The surfaces of Constant V are concentric ellipsoids about the origin (Figure 9.2.3). \\
+\includegraphics{fig_923}
+
+The idea is to show that if $r<1$ and $(x,y,z)\neq (0,0,0)$, then $\dot{V}<0$ along the trajectories. This would imply that the trajectory keeps moving to lower V, and hence penetrates smaller and smaller ellipsoids as $t \to \infty$. But V is smaller by 0, so $V(x(t)) \to 0$ and hence $x(t) \to 0$, as desired. \\ \tab
+Now calculate: \\ \tab \tab
+$\frac{1}{2}\dot{V}=\frac{1}{\sigma}{x}\dot{x}+y \dot{y}+z \dot{z} \\ \tab \tab
+=(yx-x^{2})+(ryx-y^{2}-xzy)+(zxy-bz^{2}) \\
+\tab \tab
+=(r+1)xy-x^{2}-y^{2}-bz^{2}$. \\
+Completing the square in the first two terms gives \\ \tab \tab
+$\frac{1}{2}\dot{V}=-[x-\frac{r+1}{2}y]^{2}-[1-(\frac{r+1}{2})^{2}]y^{2}-bz^{2}$. \\
+We claim that the right-hand side is strictly negative if $r<1$ and $(x,y,z)\neq (0,0,0)$. It is certainly not positive, since it is a negative sum of squares. But could $\dot{V}=0$? That would require each of the terms on the right to vanish seperately. Hence y=0, z=0, from the second two terms on the right-hand side. (Because of the assumption $r<1$ the coefficient of $y^{2}$ is nonzero). Thus the first term reduces to $-x^{2}$, which vanishes only if x=0. \\ \tab 
+The upshot is that $\dot{V}=0$ implies (x,y,z)=(0,0,0). Otherwise $\dot{V}<0$. Hence the claim is established, and therefore the origin is globally stable for $r<1$. 
+
+\textbf {Stability of $C^{+}$ and $C^{-}$} \\ \tab
+Now suppose $r>1$, so that $C^{+}$ and $C^{-}$ exist. The calculation of their stability is left as Excercise 9.2.1. It turns out that they are linearly stable for \\ \tab \tab
+$1<r<r_{H}=\frac{\sigma (\sigma + b + 3)}{\sigma - b -1}$ \\
+(assuming also that $\sigma - b - 1 >0$). We use a subscript H because $C^{+}$ and $C^{-}$ lose stability in a Hopf bifurcation at $r=r_{H}$. \\ \tab
+What happens immediately after the bifurcation, for r slightly greater than $r_{H}$? You might suppose that $C^{+}$ and $C^{-}$ would each be surrounded by a small stable limit cycle. That would occur if the Hopf bifurcation were supercritical. But actually it's subcritical-the limit cycles are unstable and exist only for $r<r_{H}$. This requires a difficult calculation; see Marsden and McCracken (1976) or Drazin (1992, Q8.2 on p.277). \\ \tab
+Here's the intuitive picture. For $r<r_{H}$ the phase portrait near $C^{+}$ is shown schematically in Figure 9.2.4 \\ 
+
+\includegraphics{fig_924}
+
+The fixed point is stable. It is encircled by a saddle cycle, a new type of unstable limit cycle that is possible only in phase spaces of three or more dimensions. The cycle has a two-dimensional unstable manifold (the sheet in Figure 9.2.4), and a two-dimensional stable manifold (not shown). As $r \to r_{H}$ from below, the cycle shrinks down around the fixed point. At the Hopf bifurcation, the fixed point absorbs the saddle cycle and changes into a saddle point. For $r>r_{H}$ there are no attractors in the neighborhood. \\ \tab
+So for $r>r_{H}$ trajectories must fly away to a distant attractor. But what can it be? A partial bifurcation diagram for the system, based on the results so far, shows no hint of a stable objects for $r>r_{H}$ (Figure 9.2.5) \\
+
+\includegraphics{fig_925} \\
+Could it be that all trajectories are repelled out to infinity? No: we can prove that all trajectories eventually enter and remain in a certain large ellipsoid (Excercise 9.2.2). Could there be some stable limit cycles that we're unaware of? Possibly, but Lorenz gave a persuasive argument that for r slightly greatly than $r_{H}$, any limit cycles would have to be unstable (see Section 9.4). \\ \tab
+So the trajectories must have a bizarre kind of long-time behavior. Like balls in a pinball machine, they are repelled from one unstable object after another. At the same time, they are confined to a bounded set of zero volume, yet they manage to move on this set forever without intersecting themselves or others. \\ \tab
+In the next section we'll see how the trajectories get out of this conundrum. 
+
+\textbf {Chapter 9.3 Chaos on a strange Attractor} \\
+Lorenz used numerical integration to see what the trajectories would do in the long run. He studied the particular case $\sigma = 10, b = \frac{8}{3}, r=28$. This value of r is just past the Hopf bifurcation value $r_{H}=\sigma (\sigma + b + 3)/(\sigma - b - 1) \approx 24.72 $, so he knew that something strange had to occur. Of course, strange things could occur for another reason-the electromechanical computers of those days were unreliable and difficult to use, so Lorenz had to interpret his numerical results with caution. \\ \tab
+He began integrating from the initial condition (0,1,0), close to the saddle point at the origin. Figure 9.3.1 plots y(t) for the resulting solution. \\
+
+\includegraphics{fig_931}
+
+After an initial transient, the solution settles into an irregular oscillation that persists as $t \to \infty$, but never repeats exactly. The motion is aperiodic. \\ \tab
+Lorenz discovered that a wonderful structure emerges if the solution is visualized as a trajectory in phase space. For instance, when x(t) is plotted against z(t), a butterfly pattern appears (Figure 9.3.2). \\
+
+\includegraphics{fig_932}
+
+The trajectory appears to cross itself repeatedly, but that's just an artifact of projecting the three-dimensional trajectory onto a two-dimensional plane. In three dimensions no self intersections occur. \\ \tab
+Let's try to understand Figure 9.3.2 in detail. The trajectory starts near the origin, then swings to the right, and then dives into the center of a spiral on the left. After a very slow spiral outward, the trajectory shoots back over to the right side, spirals around a few times, shoots over to the left, spirals around, and so on indefinitely. The number of circuits made on either side varies unpredictably from one cycle to the next. In fact, the sequence of the number of circuits has many of the characteristic of a random sequence. Physically, the switches between left and right correspond to the irregular reversals of the waterwheel that we observed in Seciton 9.1. \\ \tab
+When the trajectory is viewed in all three dimensions, rather than in a two-dimensional projection, it appears to settle onto a exquisitely thin set that looks like a pair of butterfly wings. Figure 9.3.3 shows a schematic of this strange attractor (a term coined by Ruelle and Takens (1971)). This limiting set is the attracting set of zero volume whose existence was deduced in Section 9.2 \\
+
+\includegraphics{fig_933} \\ \tab
+What is the geometrical structure of the strange attractor? Figure 9.3.3 suggests that it is a pair of surfaces that merge into one in the lower portion of Figure 9.3.3. But how can this be, when the uniqueness theorem (Section 6.2) tells us the trajectories cant cross or merge? Lorenz (1963) gives a lovely explanation - the two surfaces only appear to merge. The illusion is caused by the strong volume contraction of the flow, and insufficient numerical resolution. But watch where that idea leads him: \\ \tab
+\textit{It would seem, then, that the two surfaces merely appear to merge, and remain distinct surfaces: Following these surfaces along a path parallel to a trajectory and circling $C^{+}$ and $C^{-}$, we see that each surface is really a pair of surfaces, so that, where they appear to merge, there are really four surfaces. Continuing this process for another circuit, we see that there are really eight surfaces, etc. and we finally conclude that there is an infinite complex of surfaces, each extremely close to one or the other of two mergin surfaces}. \\ \tab
+Today this "infinite complex of surfaces" would be called a fractal. It is a set of points with zero volume but infinite surface area. In fact, numerical experiments suggest that it has a dimension of about 2.05! (See Example 11.5.1) The amazing geometric properties of fractals and strange attractors will be discussed in detail in Chapters 11 and 12. But first we want to examine chaos a bit more closely. 
+
+\textbf {Exponential Divergence of Nearby Trajectories} \\ \tab
+The motion on the attractor exhibits sensitive dependence on initial conditions. This means that two trajectories starting very close together will rapidly diverge from each other, and thereafter have totally different futures. Color Plate 2 vividly illustrates this divergence by plotting the evolution of a small red blob of 10,000 nearby initial conditions. The blob eventually spreads over the whole attractor. Hence nearby trajectories can end up anywhere on the attractor! The practical implication is that long-term predication becomes impossible in a system like this, where small uncertainties are amplified enormously fast. \\ \tab
+Let's make these ideas more precise. Suppose that we let transients decay, so that a trajectory is "on" the attractor. Suppose x(t) is a point on the attractor at time t, and consider a nearby point, say $x(t)+\delta(t)$, where $\delta$ is a tiny seperation vector of initial length $||\delta_{0}||=10^{-15}$, say (Figure 9.3.4). \\
+
+\includegraphics{fig_934}
+
+Now watch how $\delta (t)$ grows. In numerical studies of the Lorenz attractor, one finds that \\ \tab \tab
+$||\delta(t)|| - ||\delta_{0}||e^{\lambda t}$. \\
+where $\lambda = 0.9$. Hence neighboring trajectories seperate exponentially fast. Equivalently, if we plot $ln ||\delta (t)||$ versus t, we find a curve that is close to a straight line with a positive slope of $\lambda$ (Figure 9.3.5) \\
+
+\includegraphics{fig_935} 
+We need to add some qualifications: \\ \tab \tab
+
+1. The curve is never exactly straight. It has wiggles because the strength of the exponential divergence varies somewhat along the attractor. \\ \tab \tab
+The exponential divergence must stop when the seperation is comparable to the "diameter" of the attractor-the trajectories obviously can't get any farther apart than that. This explains the leveling off or saturation of the curve in Figure 9.3.5. \\ \tab \tab
+3. The number $\lambda$ is often called the liapunov exponent, although this is a sloppy use of the term for two reasons: \\ \tab
+First, there are actually n different Liapunov exponents for an n-dimensional system, defined as follows. Consider the evolution of an infinitesimal sphere of pertubated initial conditions. During its evolution, the sphere will become distorted into an infinitesimal ellipsoid. Let $\delta_{k}(t), k=1,...,n$ denote the length of the kth principal axis of the ellipsoid. Then $\delta_{k}(t) \tilde \delta_{k}(0)e^{\lambda_{k}t}$, where the $\lambda_{k}$ are the Liapunov exponents. For large t, the diameter of the ellipsoid is controlled by the most positive $\lambda_{k}$. Thus our $\lambda$ is actually the largest Liapunov exponent. \\ \tab
+Should $\lambda$ depends (slightly) on which trajectory we study. We should average over many different different points on the same trajectory to get the true value of $\lambda$. \\ \tab
+When a system has a positive Liapunov exponent, there is a time horizon beyond which prediction breaks down, as shown schematically in Figure 9.3.6 (See Lighthill 1986 for a nice discussion.) Suppose we measure the initial conditions of an experimental system very accurately. Of course, no measurement is perfect-there is always some error $||\delta_{0}||$ between our estimate and the true initial state. \\
+
+\includegraphics{fig_936}
+
+After a time t, the discrepancy grows to $||\delta (t) || \tilde ||\delta_{0}||e^{\lambda t}$. Let a be a measure of our tolerance, i.e., if a prediction is within a of the true state, we consider it acceptable. Then our prediction becomes intolerable when $||\delta(t)|| \geq a$, and this occurs after a time \\ \tab \tab
+${ t_{horizon}\tilde O
+\begin{pmatrix}
+\frac{1}{\lambda}ln\frac{a}{||\delta_{0}||}
+\end{pmatrix}
+}$ \\ \tab
+The logarithmic dependence on $||\delta_{0}||$ is what hurts us. No matter how hard we work to reduce the initial measurement error, we can't predict longer than a few multiples of $1/\lambda$. The next example is intended to give you a quantitative feel for this effect.
+
+\textbf {Defining Chaos} \\ \tab
+No definition of the term chaos is universally accepted yet, but almost everyone would agree on the three ingredients used in the following working definition: \\ \tab \tab
+Chaos is aperiodic long-term behavior in a deterministic system that exhibits sensitive dependence on initial conditions. \\ \tab \tab
+1. "Aperiodic long-term behavior" means that there are trajectorieswhich do not settle down to fixed points, periodic orbits, or quasiperiodic orbits as $t \to \infty$. For practical reasons, we should require that such trajectories are not too rare. For instance, we should require that there be an open set of initial conditions leading to aperiodic trajectories, or perhaps that such trajectories should occur with nonzero probability, given a random initial condition. \\ \tab \tab
+2. "Deterministic" means that the system has no random or noisy inputs or parameters. The irregular behavior arises from the system's nonlinearity, rather than from noisy driving forces. \\ \tab \tab
+3. "Sensitive dependence on initial conditions" means that nearby trajectories seperate exponentially fast, i.e., the system has a positive Liapunov exponent.
+
+\textbf {Defining Attractor and Strange Attractor} \\ \tab
+The term attractor is also difficult to define in a rigorous way. We want a definition that is broad enough to include all the natural candidates, but restrictive enough to exclude the imposters. There is still disagreement about what the exact definition should be. See Guckenheimer and Holmes (1983, p.256), Eckmann and Ruelle (1985), and Milnor (1985) for discussions of the subtleties involved. \\ \tab
+Loosely speaking, an attractor is a set to which all neighboring trajectories converge. Stable fixed points and stable limit cycles are examples. More precisely, we define an attractor to be a closed set A with the following properties: \\ \tab \tab
+1. A is an invariant set: any trajectory x(t) then starts in A stays in A for all time. \\ \tab \tab
+2. A attracts an open set of iniital conditions: there is an open set U containing A such that if $x(0) \in U$, then the distance from x(t) to A tends to zero as $t \to \infty$. This means that A attracts all trajectories that start sufficiently close to it. The largest such U is called the basin of attraction of A. \\ \tab \tab
+3. A is minimal: there is no proper subset of A that satisfies conditions 1 and 2. 
+
+\textbf {Chapter 9.4 Lorenz Map} \\ 
+Lorenz (1963) found a beautiful way to analyze the dynamics on his strange attractor. He directs our attention to a particular view of the attractor (Figure 9.4.1) \\
+
+\includegraphics{fig_941} \\
+and then he writes 
+\\ the trajectory apparently leaves one spiral after exceeding some critical distance from the center. Moreover, the even to which this damage is exceeded appears to determine the point at which the next spiral is entered; this in turn seems to determine the number of circuits to be executed before changing spirals again. It therefore seems that some single feature of a given circuit should predict the same feature of the following circuit \\
+The "single feature" that he focuses on is $z_{\mathcal{n}}$, the nth local maximum of z(t) (Figure 9.4.2) \\
+
+\includegraphics{fig_942}
+
+Lorenz's idea is that $z_{\mathcal{n}+1}$. To check this, he numerically integrated the equations for a long time, then measured the local maxima of z(t), and finally plotted $z_{\mathcal{n}+1}$ vs $z_{\mathcal{n}}$. As shown in Figure 9.4.3, the data from the chaotic time series appear to fall neatly on a curve-there is almost no "thickness" to the graph! \\
+
+\includegraphics{fig_943}
+\tab By this ingenious trick, Lorenz was able to extract order from chaos. The function $z_{\mathcal{n}+1}=f(z_{\mathcal{n}})$ shown in FIgure 9.4.3 is now called the Lorenz map. It tells us a lot about the dynamics on the attractor: given $z_{0}$, we can predict $z_{1}$ by $z_{1}=f(z_{0})$, and then use that information to predict $z_{2}=f(z_{1})$, and so on, bootstraping our way forward in time by iteration. The analysis of this iterated map is going to lead us to a stricking conclusion, but first we should make a few clarifications. \\ \tab
+
+First, the graph in Figure 9.4.3 is not actually a curve. It does have some thickness. So strictly speaking, f(z) is not a well-defined funciton, because there can be more than one output $z_{\mathcal{n}+1}$ for a given input $z_{\mathcal{n}}$. On the other hand, the thickness is so small, and there is so much to be gained by treating the graph as a curve, that we will simply make this approximation, keeping in mind that the subsequent analysis is plausible but not rigorous. \\ \tab
+
+Second, the Lorenz map may remind you of a Poincare map (Section 8.7). In both cases we're trying to simplify the analysis of a differential equation by reducing it to an iterated map of some kind. But there's an important distinction: To construct a Poincare map for a three-dimensional flow, we compute a trajectory's successive intersections with a two-dimensional surface. The Poincare map takes a point on that surface, specified by two coordinates, and then tells us how those two coordinates change after the first return to the surface. The Lorenz map is different because it characterizes the trajectory is very "flat", i.e., close to two-dimensional, as the Lorenz attractor is. 
+
+\textbf {Ruling out Stable Limit Cycles} \\ \tab
+How do we know that the Lorenz attractor is not just a stable limit cycle in disguise? Playing devil's advocate, a skeptic might say, "Sure the trajectories don't ever seem to repeat, but maybe you haven't integrated long enough. Eventually the trajectories will settle down into a periodic behavior-it just happens that the period is incredibly long, much longer than you've tried on your computer. Prove me wrong". \\ \tab
+So far, no one has been able to refute this argument in a rigorous sense. But by using his map, Lorenz was able to give plausible counteragument that stable limit cycles do not, in fact, occur for the parameter values he studied. \\ \tab
+His argument goes like this: The key observation is that the graph in Figure 9.4.3 satisfies \\ \tab \tab
+$|f^{'}(z)|>1$ \tab (1) \\
+
+everywhere. This property ultimately implies that if any limit cycles exist, they are necessarily unstable. \\ \tab
+To see why, we start by analyzing the fixed points of the map f. These are points z* such that f(z*)=z*, in which case $z_{\mathcal{n}}=z_{\mathcal{n}+1}=z_{\mathcal{n}+2}=\hdots$ Figure 9.4.3 shows that there is one fixed point, where the $45^{\circ}$ diagonal intersects the graph. It represents a closed orbit that looks like that shown in FIgure 9.4.4 \\
+
+\includegraphics{fig_944} 
+
+To show that this closed orbit is unstable, consider a slightly pertubated trajectory that has $z_{\mathcal{n}}=z*+\mathscr{n}_{\mathcal{n}}$ where $\mathscr{n}_{\mathcal{n}}$ is small. After linearization as usual, we find $\mathscr{n}_{\mathcal{n}+1} \approx f^{'}(z*)\mathscr{n}_{\mathcal{n}}$. Since $|f^{'}(z*)|>1$ by the key property (1) we get \\ \tab \tab
+$|\mathscr{n}_{\mathcal{n}+1}|>|\mathscr{n}_{\mathcal{n}}$ \\
+Hence the deviation $\mathscr{n}_{\mathcal{n}}$ grows with each iteration, and so the original closed orbit is unstable. \\ \tab
+Now we generalize the argument slightly to show that all closed orbits are unstable.
+
+\textbf {Chapter 9.5 Exploring Parameter Space}
+
+So far, we have concentrated on the particular parameter values$\sigma = 10$, $b=\frac{8}{3}$, r=28, as in Lorenz (1963). What happens if we change the parameters? It's like a walk through the jungle-one can find exotic limit cycles tied in knots, pairs of limit cycles linked through each other, intermittent chaos, noisy periodicity, as well as strange attractors (Sparrow 1982, Jackson 1990). You should do some exploring on your own, perhaps starting with some of the excercises. \\ \tab
+
+There is a vast three-dimensional parameter space to be explored, and much remains to be discovered. To simplify matters, many investigators have kept $\sigma = 10$ and $b=\frac{8}{3}$ while varying r. In this section we give a glimpse of some of the phenomina observed in numerical experiments. See Sparrow (1982) for the definitive treatment. \\ \tab
+
+The behavior for small values of r is summarized in Figure 9.5.1. \\
+
+\includegraphics{fig_951}
+
+Much of this picture is familiar. The origin is globally stable for $r<1$. At r=1 the origin loses stability by a supercritical pitchfork bifurcation, and a symmetric pair of attracting fixed points is born (in our schematic, only one of the pair is shown). At $r_{H}=24.74$ the fixed points lose stability by absorbing an unstable limit cycle in a supercritical Hopf Bifurcation. \\ \tab
+
+Now for the new results. As we decrease r from $r_{H}$, the unstable limit cycles expand and pass precariously close to the saddle point at the origin. At $r \approx 13.926$ the cycles touch the saddle point and become homoclininc orbits: hence we have a homoclinic bifurcation. (See Section 8.4 for the much simpler homoclinic bifurcations that occur in two-dimensional systems). Below $r \approx 13.926$ there are no limit cycles. Viewed in the other direction, we could say that a pair of unstable limit cycles are created as r increases through r=13.926. \\ \tab
+
+This homoclinic bifurcation has many ramificcations for the dynamics, but its analysis is too advanced for us-see Sparrow's (1982) discussion of "homoclinic explosions". The main conclusion is that an amazingly complicated invariant set is born at $r = 13.926$, along with the unstable limit cycles. This set is a thicket of infinitely many saddle-cycles and aperiodic orbits. It is not an attractor and is not observable directly, but it generates sensitive dependence on initial conditions on its neighborhood. Trajectories can get hung up near this set, somewhat like wandering in a maze. Then they rattle around chaotically for a while, but eventually escape and settle down to $C^{+}$ or $C^{-}$. The time spent wandering near the set gets longer and longer as r increases. Finally at r=24.06 the time spent wandering becomes infinite and the set becomes a strange attractor (Yorke and Yorke 1979) 
+
+\textbf {Chapter 9.6 Using Chaos to Send Secret Messages} \\
+One of the most exciting recent developments in nonlinear dynamics is the realization that chaos can be useful. Normally one thinks of chaos as fascinating curiosity at best, and a nuisance at worst, something to be avoided or engineered away. But since about 1990, people have found ways to exploit chaos to do some marvelous and practical things. For an introduction to this new subject, see Vohra et all (1992). \\ \tab
+
+One application involves "private communications." Suppose you want to send a secret message to a friend or business partner. Naturally you should use a code, so that even if an enemy is eavesdropping, he will have trouble making sense of the message. This is an old problem-people have been making (and breaking) codes for as long as there have been secrets worth keeping. \\ \tab
+
+Kevin Cuomo and Alan Oppenheim (1992, 1993) have implemeted a new approach to this problem, building on Pecora and Carall's (1990) discovery of synchronized chaos. Here's the strategy: When you transmit the message to your friend, you also "mask" it with much louder chaos. An outside listener only hears the chaos, which sounds like meaningless noise. But now suppose that your friend has a magic reciever that perfectly reproduces the chaos-then he can subtract off the chaotic mask and listen to the message! 
+
+\textbf {Cuomo's Demonstration} \\ \tab
+Kevin Cuomo was a student in my course on nonlinear dynamics, and at the end of the semester he treated our class to a live demonstration of his approach. First he showed us how to make the chaotic mask, using an electronic implementation of the Lorenz equations (Figure 9.6.1). The circuit involves resistors, capicitors, operational amplifiers, and analog multiplier chips. \\
+
+\includegraphics{fig_961}
+
+The voltages u, v, w at three different points in the circuit are proportional to Lorenz's x,y,z. Thus the circuit acts like an analog computer for the Lorenz equations. Oscilloscope traces of u(t) vs w(t), for example, confirmed that the circuit was following the familiar Lorenz attractor. Then, by hooking up the circuit to a loudspeaker, Cuomo enabled us to hear the chaos-it sounds like static on the radio. \\ \tab
+
+The hard part is to make a reciever that can synchronize perfectly to the chaotic transmitter. In Cuomo's set up, the reciever is an identical Lorenz circuit, driven in a certain clever way by the transmitter. We'll get into the details later, but for now let's content ourselves with the experimental fact that synchronized chaos does occur. Figure 9.6.2 plots the reciever variables $u_{r}(t)$ and $v_{r}(t)$ against their transmitter counterparts u(t) and v(t). \\
+
+\includegraphics{fig_962}
+
+The $45^{\circ}$ trace on the oscilloscope indicates that the synchronization is nearly perfect, despite the fact that both circuits are running chaotically. The synchronization is also quite stable: the data in Figure 9.6.2 reflec a time span of several minutes whereas without the drive the circuits would decorrelate in about 1 millisecond. \\ \tab
+Cuomo brought the house down when he showed us how to use the circuits to mask a message, which he chose to be a recording of the hit song "Emotions" by Mariah Carey. (One student, apparently with different taste in music, asked "Is that the signal or the noise?") After playing the original version of the song, Cuomo played the masked version. Listening to the hiss, one had absolutely no sense that there was a song buried underneath. Yet when this masked message was sent to the reciever, its output synchronized almost perfectly to the original chaos, and after instant electronic subtraction, we heard Mariah Carey again! The song sounded fuzzy, but easily understandable. \\ \tab
+Figures 9.6.3 and 9.6.4 illustrate the system's performance more quantitatively. Figure 9.6.3a is a segment of speech from the sentence "He has the bluest eyes" obtained by sampling the speech waveform at a 48 kHz rate and with 16-bit resolution. This signal was then masked by much louder chaos. The power spectra in Figure 9.6.4 show that the chaos is about 20 decibels louder than the message with coverage over its whole frequency range. Finally, the unmasked message at the reciever is shown in Figure 9.6.3b. The original speech is recovered with only a tiny amount of distortion (most visible as the increased noise on the flat parts of the record). \\
+
+\includegraphics{fig_963}
+
+\includegraphics{fig_964}
+
+\textbf {Proof of Synchronization} \\ \tab
+
+The signal masking method discussed above was made possible by the conceptual breakthrough of Pecora and Caroll (1990). Before their work, many people would have doubted that two chaotic system could be made to synchronize. After all, chaotic systems are sensitive are sensitive to slight changes in initial condition, so one might expect any errors between the transmitter and reciever to grow exponentially. But Pecora and Caroll (1990) found a way around these concerns. Cuomo and Oppenheim (1992, 1993) have simplified and clarified the argument; we discuss their approach now. \\ The reciever circuit is shown by Figure 9.6.5 \\
+
+\includegraphics{fig_965} 
+
+It is identical to the transmitter, except that the drive u(t) replaces the reciever signal $u_{r}(t)$ at a crucial place in the circuit (compare Figure 9.6.1). To see what effect this has on the dynamics, we write down the governing equations for both the tranmitter and the reciever. Using Kirchoff's laws and appropiate nondimensionalizations (Cuomo and Oppenheim 1992), we get \\ \tab \tab
+
+$\dot{u}=\sigma (v-u) \\
+\dot{v}=ru-v-20uw \tab (1) \\
+\dot{w}=5uv-bw$ \\
+
+as the dynamics of the transmitter. These are just the Lorenz equations, written in terms of scaled variables \\ \tab \tab
+$u = \frac{1}{10}x, \tab v=\frac{1}{10}y, \tab w=\frac{1}{20}z$ . \\
+(This scaling is irrelevant mathematically, but it keeps the variable in a more favorable range for electronic implementation, if one unit is supposed to correspond to one volt. Otherwise the wide dynamic range of the solutions exceeds typical power supply limits.) \\ \tab
+The reciever variables evolve according to \\ \tab \tab
+$\dot{u}_{r}=\sigma(v_{r}-u_{r}) \\
+\dot{v}_{r}=ru(t)-v_{r}-20u(t)w, \\
+\dot{w}_{r}=5u(t)v_{r}-bw_{r}$ \tab (2) \\
+where we have written u(t) to emphasize that the reciever is driven by the chaotic signal u(t) coming from the transmitter. The astonishing result is that the reciever asympotitcally approaches perfect synchrony with the transmitter, starting from any initial conditions! To be precise, let \\ \tab \tab
+d=(u,v,w)=state of the transmitter or "driver" \\ \tab \tab
+r=($u_{r},v_{r},w_{r}$)=state of the reciever \\ \tab \tab
+e=d-r=error signal \\ 
+
+This claim is that $e(t) \to 0$ as $t \to \infty$, for all initial conditions. \\ \tab
+Why is this astonishing? Because at each instant the reciever has only partial information about the state of the transmitter-it is driven solely by u(t), yet somehow it manages to reconstruct the other two transmitter variables v(t) and w(t) as well. \\ \tab
+The proof is given in the following example.
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

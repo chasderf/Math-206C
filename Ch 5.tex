@@ -1,0 +1,326 @@
+\documentclass{article}
+\usepackage{amsmath}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\begin{document}
+
+
+\title {Calculus of Variations Ch 5: The Second Variation, Sufficient Conditions for a Weak Extremum}
+
+\author{Charlie Seager}
+
+\maketitle
+
+\textbf {Ch 5: THE SECOND VARIATION. SUFFICIENT CONDITIONS FOR A WEAK EXTREMUM} Page 97. 24: Quadratic Functionals. The Second Variation of a Functional, 97. 25: The Formula for the Second Variation. Legendre's Condition, 101. 26: Analysis of the Quadratic Functional s: page 105. 27: Jacobi's Necessary Condition. More on Conjugate Points, 111. 28: Sufficient Conditions for a Weak Extremum, 115. 29: Generalization to n Unknown Functions, 117. 30: Connection Between Jacobi's Condition and the Theory of Quadratic Forms, 125.
+
+\textbf {Sec. 24 Quadratic Functionals: The Second Variation of a Functional} \\ We begin by introducing some general conscepts that will be needed later. A functional B[x,y] depending on two elements x and y, belonging to some normed linear space $\mathcal{R}$, is said to be bilinear if it is a linear functional of y for any fixed x and a linear functional of x for any fixed y (cf. p. 8). Thus,
+\begin{center}
+$B[x + y, z] = B[x, z] + B[y,z]$
+\end{center}
+\begin{center}
+$B[\alpha x, y] = \alpha B[x,y]$
+\end{center}
+and
+\begin{center}
+$B[x, y + z] = B[x,y] + B[x,z],$
+\end{center}
+\begin{center}
+$B[x, \alpha y] = \alpha B[x,y]$
+\end{center}
+for any $x, y, z \in \mathcal{R}$ and any real number $\alpha$. \\
+If we set y = x in a bilinear functional, we obtain an expression called a quadratic functional. A quadratic functional A[x] = B[x,x] is said to be positive definite if $A[x] > 0$ for every nonzero element x.\\ A bilinear functional defined on a finite-dimensional space is called a bilinear form. Every bilinear form B[x,y] can be represented as
+\begin{center}
+$B[x,y] = \sum_{i, k = 1}^n b_{ik} \xi_i \mathcal{n}_k$
+\end{center}
+where $\xi_1 ,..., \xi_n$ and $\mathcal{n}_1 ,..., \mathcal{n}_n$ are the comonents of the "vectors" x and y relative to some basis. If we set y = x in this expression, we obtain a quadratic form
+\begin{center}
+$A[x] = B[x,y] = \sum_{i, k=1}^n b_{ik} \xi_i \xi_k$
+\end{center}
+
+We say that a functional is called the first variation or first differential of whatever object it is. Vice versa with the second variation or second differential.
+
+\textbf {Theorem 1} A necessary condition for the function J[y] to have a minimum for $y = \hat{y}$ is that 
+\begin{center}
+$\delta^2 J[y] \geq 0$
+\end{center}
+for $y = \hat{y}$ and all admissible h. For a maximum, the sign $\geq$ in (1) is replaced by $\leq$
+
+\textbf {Theorem 2} A sufficient condition for a functional J[y] to have a minimum for $y = \hat{y}$ given that the first variation $\delta J[h]$ vanishes for $y = \hat{y}$ is that its second variartion $\delta^2 J[h]$ be strongly positive for $y = \hat{y}$
+
+\textbf {Section 25 The formula for the second variation: Legendre's condition}
+Let F(x,y,z) be a function with continous partial derivatives up to order three with respect to all its arguments (henceforth, similar smoothness requirements will be assumed to hold whenever needed). We now find an expression for the second variation in the case of the simplest variational problem, i.e. for functional of the form
+\begin{center}
+$J[y] = \int_a^b F(x,y,y') dx$
+\end{center}
+defined for curves y = y(x) with fixed end points
+\begin{center}
+y(a) = A \tab y(b) = B
+\end{center}
+
+\textbf {Lemma} A necessary condition for the quadratic functional
+\begin{center}
+$\delta^2 J[h] = \int_a^b (Ph'^2 + Qh^2) dx$
+\end{center}
+defined for all functions $h(x) \in \mathcal{D}_1(a,b)$ such that $h(a) = h(b) = 0$ to be nonnegative is that
+\begin{center}
+$P(x) \geq 0 \tab (a \leq x \leq b)$
+\end{center}
+
+\textbf {Theorem (Legendre)} A necessary condition for the functional 
+\begin{center}
+$J[y] = \int_a^b F(x, y, y') dx \tab y(a) = A \tab y(b) = B$
+\end{center}
+to have a minimum for the curve y = y(x) is that the inequality 
+\begin{center}
+$F_{y'y'} \geq 0$
+\end{center}
+(Legendre's condition) be satisfied at every point of the curve.
+
+\textbf {Section 26: Analysis of the Quadratic Functional $\int_a^b (Ph'^2 + Qh^2) dx$}
+
+\textbf {Definition} The point $\tilde{a} (\neq a)$ is said to be conjugate to the point a if the equation (26) has a solution which vansihes for x = a and $x = \tilde{a}$ but is not identically zero.
+
+\textbf {Theorem 1} If 
+\begin{center}
+$P(x) > 0 \tab (a \leq x \leq b)$,
+\end{center}
+and if the interval [a,b] contains no points conkugate to a, then the quadratic functional
+\begin{center}
+$\int_a^b (Ph'^2 + Qh^2)dx$
+\end{center}
+is positive definite for all h(x) such taht h(a) = h(b) = 0. \\
+
+ Equation (29) is a Riccati equation which can be reduced to a linear differnetial equation of the second order by making a change of variables.
+
+\textbf {Lemma} If the function h = h(x) satisfies the equation
+\begin{center}
+$- \frac{d}{dx} (Ph') + Qh = 0$
+\end{center}
+and the boundary conditions
+\begin{center}
+$h(a) = h(b) = 0$
+\end{center}
+then 
+\begin{center}
+$\int_a^b (Ph'^2 + Qh^2) dx = 0$
+\end{center}
+
+\textbf {Theorem 2} If the quadratic functional
+\begin{center}
+$\int_a^b (Ph'^2 + Qh^2) dx$
+\end{center}
+where
+\begin{center}
+$P(x) > 0 \tab (a \leq x \leq b)$
+\end{center}
+is positive definite for all h(x) such that h(a) = h(b) = 0, then the interval [a,b] contains no points conjugate to a.
+
+\textbf {Theorem 2'} If the quadratic functional
+\begin{center}
+$\int_a^b (Ph'^2 + Qh^2) dx$
+\end{center}
+where
+\begin{center}
+$P(x) > 0 \tab (a \leq x \leq b)$
+\end{center}
+is nonnegative for all h(x) such that h(a) = h(b) = 0, then the interval [a,b] contains no interior points conjugate to a.
+
+\textbf {Theorem 3} The quadratic functional
+\begin{center}
+$\int_a^b (Ph'^2 + Qh^2) dx$
+\end{center}
+where 
+\begin{center}
+$P(x) > 0 \tab (a \leq x \leq b)$
+\end{center}
+is positive definite for all h(x) such taht h(a) = h(b) = 0 if and only if the interval [a,b] contains no points conjugate to a.
+
+\textbf {Section 27 Jacobi's Necessary Condition: More on Conjugate Points}
+
+\textbf {Definition 1} The Euler Equation
+\begin{center}
+$-\frac{d}{dx} (Ph') + Qh = 0$
+\end{center}
+of the quadratic functional (40) is called the Jacobi equation of the original functional (39)
+
+\textbf {Definiton 2} The point $\tilde{a}$ is said to be conjugate to the poitn a with respect to the functional (39) if it is conjugate to a with respect to the quadratic functional (40) which is the second variation of (39), i.e. if it is conjugate to a in the sense of the defintion on p.106. 
+
+\textbf {Theorem} (Jacobi's necessary condition) If the extremal y = y(x) corresponds to a minimum of the junctional 
+\begin{center}
+$\int_a^b F(x, y, y') dx$
+\end{center}
+and if
+\begin{center}
+$F_{y'y'} > 0$
+\end{center}
+along this extremal, then the open interval (a,b) contains no points conjugate to a.
+
+\textbf {Definition 3} Given an extremal y = y(x), the point $\tilde{M} = (\tilde{a}, y(\tilde{a}))$ is said to be conjugate to the point $M = (a, y(a))$ if at $\tilde{M}$ the difference y*(x) - y(x) where y = y*(x) is any neighboring extremal drawn from the same initial point M, is an infinitesimal of order higher than 1 relative to $||y*(x) - y(x)||$
+
+\textbf {Definition 4} Given an extremal y = y(x), the point $\tilde{M} (\tilde{a}, y(\tilde{a}))$ is said to be conjugate to the point M = (a, y(a)) if $\tilde{M}$ is the limit as $||y*(x) - y(x)|| \to 0$ of the points of intersection of y = y(x) and the neighboring extremals y = y*(x) drawn from the same intial point M.
+
+\textbf {Section 28 Sufficient Conditions for a Weak Extremum}
+
+\textbf {Theorem} Suppose that for some admissible curve y = y(x), the functional (44) satisfies the following conditions \\
+1. The curve y = y(x) is an extremal, i.e. satisfies Euler's equation
+\begin{center}
+$F_y - \frac{d}{dx} F_{y'} = 0$
+\end{center}
+2. Along the curve y = y(x)
+\begin{center}
+ $P(x) = \frac{1}{2} F_{y'y'} [x, y(x), y'(x)] > 0$
+\end{center}
+(the strengthened Legendre condition)
+3. The interval [a,b] contains no points conjugate to the point a (the strengthened Jacobi condition)
+Then the functional (44) has a weak minimum for y = y(x)
+
+\textbf {Section 29 Generalization to n Unknown Functions}
+
+\textbf {Section 29.1 The Second Variation, The Legendre Condition} If the increment $\Delta J[h]$ of the functional (50), corresponding to the change from y to y + h, can be written in the form
+\begin{center}
+$\Delta J[h] = \varphi_1[h] + \varphi_2[h] + \epsilon||h||^2$
+\end{center}
+where $\varphi_1[h]$ is a linear functional $\varphi_2[h]$ is a quadratic functional and $\epsilon \to 0$ as $||h|| \to 0$, then $\varphi_2[h]$ is called the second variation of the original functional (50).
+
+\textbf {Theorem 1} A necessary condition for the quadratic functional (54) to be nonnegative for all h(x) such that h(a) = h(b) = 0 is that the matrix P be nonnegative definite.
+
+\textbf {Definition 1} Let
+\begin{center}
+$h^{(1)} = (h_{11}, h_{12}, ..., h_{1n})$
+\end{center}
+\begin{center}
+$h^{(2)} = (h_{21}, h_{22}, ..., h_{2n})$
+\end{center}
+\begin{center}
+$\cdot \tab \cdot \cdot \dots \tab \cdot$
+\end{center}
+be a set of n solutions of the system (55) where the ith solution satisfies the initial conditions
+\begin{center}
+$h_{ik}(a) = 0 \tab (k=1,...,n)$
+\end{center}
+and 
+\begin{center}
+$h'_{ii}(a) = 1, \tab h'_{ik}(a) = 0 \tab (k \neq i)$
+\end{center}
+Then the point $\tilde{a} (\neq a)$ is said to be conjugate to the point a if the determinant 
+\begin{center}
+$\begin{vmatrix}
+h_{11}(x) &  h_{12}(x) & \dots & h_{1n}(x) \\
+h_{21}(x) & h_{22}(x) & \dots & h_{2n}(x) \\
+\cdot &\cdot & \dots & \cdot \\
+h_{n1}(x) & h_{n2}(x) & \dots & h_{nn}(x)
+\end{vmatrix}
+$
+\end{center}
+vanishes for x = $\tilde{a}$
+
+\textbf {Theorem 2} if P is a positive definite symmetric matrix and if the interval [a,b] contains no points conjugate to a, then the quadratic functional (54) is positive definite for all h(x) such that h(a) = h(b) = 0.
+
+\textbf {Lemma} If 
+\begin{center}
+$h(x) = (h_1(x),..., h_n(x))$
+\end{center}
+satisfies the system (55) and the boundary conditions
+\begin{center}
+h(a) = h(b) = 0
+\end{center}
+then 
+\begin{center}
+$\int_a^b [(Ph', h') + (Qh, h)] dx = 0$
+\end{center}
+
+\textbf {Theorem 3} If the quadratic functional
+\begin{center}
+$\int_a^b [(Ph', h') + (Qh, h)] dx$
+\end{center}
+where P is a positive definite symmetric matrix, is positive definite for all h(x) such that h(a) = h(b) = 0, then the interval [a,b] contains no points conjugate to a.
+
+\textbf {Theorem 3'}If the quadratic functional
+\begin{center}
+$\int_a^b [(Ph', h') + (Qh, h)] dx$
+\end{center}
+where P is a positive definite symmetric matrix, is nonnegative for all h(x) such that h(a) = h(b) = 0, then the interval [a,b] contains no interior points conjugate to a.
+
+\textbf {Theorem 4}If the quadratic functional
+\begin{center}
+$\int_a^b [(Ph', h') + (Qh, h)] dx$
+\end{center}
+where P is a positive definite symmetric matrix, is positive definite for all h(x) such that h(a) = h(b) = 0 if and only if the interval [a,b] contains no point conjugate to a.
+
+\textbf {Definition 2} The system of Euler equations
+\begin{center}
+$-\frac{d}{dx} \sum_{i = 1}^n P_{ik}h'_i + \sum_{i=1}^n Q_{ik} h_i = 0 \tab (k = 1,...,n)$
+\end{center}
+or more concisely
+\begin{center}
+$-\frac{d}{dx} (Ph') + Qh = 0$
+\end{center}
+of the quadratic functional (71) is called the Jacobi system of the original functional (70).
+
+\textbf {Definition 3} The point $\tilde{a}$ is said to be conjugate to the point a with respect to the functional (70) if it is conjugate to a with respect to the quadratic functional (71) which is the second variation of the functional (70), i.e. if it is conjugate to a in the sense of Defintion 1, p. 119.
+
+\textbf {Theorem 5 (Jacobi's Necessary condition)} if the extremal 
+\begin{center}
+$y_1 = y_1 (x) ,..., y_n = y_n(x)$
+\end{center}
+corresponds to a minimum of the functional (70) and if the matrix
+\begin{center}
+$F_{y'y'}[x, y(x), y'(x)]$
+\end{center}
+is positive definite along this extremal, then the open interval (a,b) contains no points conjugate to a.
+
+\textbf {Defintion 4} Suppose n neighboring extremals
+\begin{center}
+$y_1 = y_{i1}(x) ,..., y_n = y_{in}(x) \tab (i = 1,...,n)$
+\end{center}
+start from the same n-dimensional point, with directions which are clsoe together but linearly independent. Then the point $\tilde{a}$ is said to be conjugate to the point a if the value of the determinant 
+\begin{center}
+$\begin{vmatrix}
+y_{11}(x) &  y_{12}(x) & \dots & y_{1n}(x) \\
+y_{21}(x) & y_{22}(x) & \dots & y_{2n}(x) \\
+\cdot &\cdot & \dots & \cdot \\
+y_{n1}(x) & y_{n2}(x) & \dots & y_{nn}(x)
+\end{vmatrix}
+$
+\end{center}
+for $x = \tilde{a}$ is an infinitesimal whose order is higher than that of its values for $a < x < \tilde{a}$
+
+\textbf {Definition 5} Given an extremal $\gamma$ with equations
+\begin{center}
+$y_1 = y_1(x) ,..., y_n = y_n(x)$
+\end{center}
+the point
+\begin{center}
+$\tilde{M} = (\tilde{a}, y_1(\tilde{a}) ,...,y_n(\tilde{a}))$
+\end{center}
+is said to conjugate to the point
+\begin{center}
+$M = (a, y_1(a),..., y_n(a))$
+\end{center}
+if $\gamma$ has a sequence of neighboring extremals drawn from the same initial point M, such that each neighboring extremal intersects $\gamma$ and the points of intersection have $\tilde{M}$ as their limit.
+
+\textbf {Theorem 6} Suppose that for some admissible curve $\gamma$ with equations
+\begin{center}
+$y_1 = y_1(x_, ..., y_n = y_n(x)$
+\end{center}
+the functional (70) satisfies the following conditions: \\
+1. The curve $\gamma$ is an extremal, i.e. satisfies the system of Euler equations
+\begin{center}
+$F_{yi} - \frac{d}{dx} F_{yi} = 0 \tab (i = 1,...,n)$
+\end{center}
+2. Along $\gamma$ the matrix
+\begin{center}
+$P(x) = \frac{1}{2} F_{y'y'} [x, y(x), y'(x)]$
+\end{center}
+is positive definite; \\
+3. The interval [a,b] contains no points conjugate to the point a. Then the functional (70) has a weak minimum for the curve $\gamma$
+
+\textbf {Section 30 Connection between Jacobi's Condition and the theory of Quadratic Forms}
+
+
+
+
+
+
+
+
+\end{document}

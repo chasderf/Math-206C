@@ -1,0 +1,416 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\begin{document}
+
+
+\title {Nonlinear Dynamics and Chaos: part 2: Two-Dimensional Flows: Ch 6: Phase Plane}
+
+\author{Charlie Seager}
+
+\date{4/19/2024}
+
+\maketitle
+
+\textbf {Chapter 6.0 Inroduction}
+
+This chapter begins our study of two-dimensional nonlinear systems. First we consider some of their general properties. Then we classify the kinds of fixed points that can arise, building on our knowledge of lienar systems (Chapter 5). The theory is further developed through a series of examples from biology (competition between two species) and physics (conservative systems, reversible systems, and the pendulum). The chapter concludes with a discussion of index theory, a topological method that provides global information about the phase portrait. \\ \tab
+This chapter is mainly about fixed points. The next two chapters will discuss closed orbits and bifurcations in two-dimensional systems.
+
+\textbf {Chapter 6.1 Phase Portraits}
+The general form of a vector field on the phase is
+\begin{center}
+$\dot{x}_{1}=f_{1}(x_{1},x_{2}) \tab \dot{x}_{2}=f_{2}(x_{1}, x_{2})$
+\end{center}
+where $f_{1}$ and $f_{2}$ are given functions. This system can be written more compactly in vector notation as
+\begin{center}
+$\dot{x}=f(x)$
+\end{center}
+
+where $x=(x_{1},x_{2})$ and $f(x)=(f_{1}(x), f_{2}(x))$. Here x represents a point in the phase plane, and $\dot{x}$ is the velocity vector at that point. By flowing along the vector field, a phase point traces out a solution x(t), corresponding to a trajectory winding through the phase plane (Figure 6.1.1).\\
+
+\includegraphics{fig_611} 
+
+Furthermore, the entire phase plane is filled with trajectories, since each point can play the role of an initial condition. \\ \tab
+
+For nonlinear systems, there's typically no hope of finding the trajectories analytically. Even when explicit formulas are available, they are often too complicated to provide much insight. Instead we will try to determine the qualitative behavior of the solutions. Our goal is to find the system's phase portrait directly from the properties of f(x). An enormous variety of phase portraits is possible; one example is shown in figure 6.1.2
+ \\
+\includegraphics{fig_612}
+
+Some of the most salient features of any phase portrait are: \\
+\tab 1. The fixed points, like A, B and C in Figure 6.1.2. Fixed points satisfy $f(x^{*})=0$, and correspond to steady states or equilibria of the system. \\ \tab
+
+2. The closed orbits, like D in Figure 6.1.2. These correspond to periodic solutions, i.e. solutions for which x(t+T)=x(t) for all t, for some $T>0$. \\ \tab
+3. The arrangement of trajectories near the fixed points and closed orbits. For example, the flow pattern near A and C is similar, and different from that near B. \\ \tab
+4. The stability or instability of the fixed points and closed orbits. Here, the fixed points A, B and C are unstable, because nearby trajectories tend to move away from them, whereas the closed orbit D is stable. 
+
+\textbf {Numerical Computation of Phase Portraits}
+
+Sometimes we are also interested in quantitative aspects of the phase portrait. Fortunately, numerical integration of $\dot{x}=f(x)$ is not much harder than that of $\dot{x}=f(x)$. The numerical methods of Section 2.8 still work, as long as we replace the numbers x and f(x) by the vectors x and f(x). We will always use the Runge-Kutta method, which in vector form is
+\begin{center}
+$x_{n+1}=x_{n}+\frac{1}{6}(k_{1}+2k_{2}+2k_{3}+k_{4})$
+\end{center}
+
+where
+\\ \tab
+$k_{1}=f(x_{n})\triangle t$ \\ \tab
+$k_{2}=f(x_{n}+\frac{1}{2}k_{1}) \triangle t$ \\ \tab
+$k_{3}=f(x_{n}+\frac{1}{2}k_{2})\triangle t$ \\ \tab
+$k_{4}=f(x_{n}+k_{3})\triangle t$ \\
+A stepsize $\triangle t = 0.1$ usually provides sufficient accuracy for our purposes. \\ \tab
+When plotting the phase portrait, it often helps to see a grid of representative vectors in the vector field. Unfortunately, the arrowheads and different lengths of the vectors tend to clutter such pictures. A plot of the direction field is clearer: short line segments are used to indicate the lcoal direction of flow
+
+\textbf {Chapter 6.2 Existence, Uniqueness and Topological Consequences} \\ \tab
+We have been a bit optimistic so far-at this stage, we have no guarantee that the general nonlinear system $\dot{x}=f(x)$ even has solutions! Fortunately the existence and uniqueness theorem given in section 2.5 can be generalize to two dimensional systems. We state the result for n-dimensional systems, since no extra effort is involved:
+
+\textbf{Existence and Uniqueness Theorem}: Consider the initial value problem $\dot{x}=f(x), x(0)=x_{0}$. Suppose that f is continuous and that all its partial derivatives $\partial f_{i}/\partial x_{j}, i, j=1,...,n$ are continuous for x in some open connected set $D \subset R^{n}$. Then for $x_{0} \in D$, the initial value problem has a solution x(t) on some time interval $(-\tau , \tau)$ about t=0 and the solution is unique. \\ \tab
+
+In other words, existence and uniqueness of solutions are guaranteed if f is continuously differentiable. The proof of the theorem is similar to that for the case n=1, and can be found in most texts on differential equations. Stronger versions of the theorem are available, but this one suffices for most applications. \\ \tab
+
+From now on, we'll assume that all our vector fields are smooth enough to ensure the existence and uniqueness of solutions, starting from any point in phase space. \\ \tab
+
+The existence and uniqueness theorem has an important corollary: different trajectories never intersect. If two trajectories did intersect, then there would be two solutions starting from the same point (the crossing point), and this would violate the uniqueness part of the theorem. In more intuitive language, a trajectory can't move in two directions at once. \\ \tab
+
+Because trajectories cant intersect, phase portraits always have a well-groomed look to them. Otherwise they might degenerate into a snarl of criss-crossed curves (Figure 6.2.1) The existence and uniqueness theorem prevents this from happening.
+\\
+\includegraphics{fig_621}
+
+In two-dimensional phase spaces (as opposed to higher-dimensional phase spaces), these results have especially strong topological consequences. For example, suppose there is a closed orbit C in the phase plane. Then any trajectory starting inside C is trapped in there forever (Figure 6.2.2)
+
+\includegraphics{fig_622}
+
+What is the fate of such a bounded trajectory? If there are fixed points inside C, then of course the trajectory might eventually approach one of them. But what if there aren't any fixed points? Your intuition may tell you that the trajectory can't meander around forever-if so, you're right. For vector fields on the plane, the Poincare-Bendixson theorem states that if a trajectory is confined to a closed, bounded region and there are no fixed points in the region, then the trajectory must eventually approach a closed orbit. We'll discuss this important theorem in Section 7.3. \\ \tab 
+But that part of our story comes later. First we must become better aqainted with fixed points.
+
+\textbf {Chapter 6.3 Fixed points and Linearization} \\ \tab
+In this section we extend the linearization technique developed earlier for one dimensional systems (Section 2.4). The hope is that we can approximate the phase portrait near a fixed point by that of a corresponding linear system. 
+\textbf {Linearized System}
+
+Consider the system
+\\ \tab $\dot{x}=f(x,y)$ 
+\\ \tab $\dot{y}=g(x,y)$
+\\ and suppose that $(x^{*}, y^{*})$ is a fixed point, i.e. \\ \tab
+$f(x^{*},y^{*})=0, \tab g(x^{*},y^{*})=0$ \\
+
+Let 
+\\ \tab u=x-x* \tab v=y-y*
+
+denote the components of a small disturbance from the fixed point. To see whether the disturbance grows or decays, we need to derive differential equations for u and v. Let's do the u-equation first
+\\ \tab $\dot{u}=\dot{x}$ \tab \tab \tab (since x* is a constant \\
+\tab = f(x*+u, y*+v) \tab \tab \tab (by substitution) \\ \tab = $f(x*,y*)+u\frac{\partial f}{\partial x} + v\frac{\partial f}{\partial x} + O(u^{2}, v^{2}, uv)$  (Taylor series expansion) \\ \tab 
+= $u\frac{\partial f}{\partial x} + v \frac{\partial f}{\partial y} + O(u^{2}, v^{2}, uv)$ \tab (since f(x*, y*)=0). \\
+
+To simplify the notation, we have written $\partial f/ \partial x$ and $\partial f / \partial y$ but please remember that these partial derivatives are to be evaluated at the fixed point (x*, y*): thus they are numbers, not functions. Also, the shorthand notation $O(u^{2}, v^{2}, uv)$ denotes quadratic terms in u and v. Since u and v are small, these quadratic terms are extremely small. \\ \tab Similarly we find
+\\ \tab $\dot{v}=u\frac{\partial g}{\partial x}+v\frac{\partial g}{\partial y} + O(u^{2}, v^{2}, uv).$  \\
+
+Hence the disturbance (u,v) evolves according to
+\\ \tab ${
+\begin{pmatrix}
+\dot{u} \\
+\dot{v}
+\end{pmatrix}
+= 
+\begin{pmatrix}
+\frac{\partial f}{\partial x} & \frac{\partial f}{\partial y} \\ \\
+\frac{\partial g}{\partial x} & \frac{\partial g}{\partial y}
+\end{pmatrix}
+\begin{pmatrix}
+u \\
+v
+\end{pmatrix}
+}$
++quadratic terms. \\ \tab (1)
+The matrix
+$ {
+A = 
+\begin{pmatrix}
+\frac{\partial f}{\partial x} && \frac{\partial f}{\partial y} \\ \\ 
+\frac{\partial g}{\partial x} && \frac{\partial g}{\partial y}
+\end{pmatrix}_{(x*,y*)}}$
+\\
+is called the Jacobian matrix at the fixed point (x*,y*). It is the multivariable analog of the derivative $f^{'}(x*)$ seen in Section 2.4. \\ \tab
+Now since the quadratic terms in (1) are tiny, it's tempting to neglect them together. If we do that, we obtain the linearized system \\
+$ \begin{pmatrix}
+\dot{u} \\
+\dot{v}
+\end{pmatrix} 
+= 
+\begin{pmatrix}
+\frac{\partial f}{\partial x} && \frac{\partial f}{\partial y} \\ \\
+\frac{\partial g}{\partial x} && \frac{\partial g}{\partial y}
+\end{pmatrix}$
+$
+\begin{pmatrix}
+u \\ v
+\end{pmatrix}
+$ \tab (2) \\
+whose dynamics can be analyzed by the methods of Section 5.2.
+
+\textbf {The Effect of Small Nonlinear Terms} \\ \tab
+
+Is it really safe to neglect the quadratic terms in (1)? In other words, does the lienarized system give a qualitatively correct picture of the phase portrait near (x*, y*)? The answer is yes, as long as the fixed point for the linearized system is not one of the borderline cases discussed in Section 5.2. In other words, if the linearized system predicts a saddle, node, or a spiral, then the fixed point really is a saddle, node, or spiral for the original nonlinear system. See Andronov et al. (1973) for a proof of this result, and Example 6.3.1 for a concrete illustration. \\
+\tab The borderline cases (centers, degenerate nodes, stars, or non-isolated fixed points) are much more delicate. They can be altered by small nonlinear terms, as we'll see in Example 6.3.2 and in Excercise 6.3.11. \\ \tab
+
+\textbf {Hyperbolic Fixed Points, Topological Equivalence, and Structural Stability} \\ \tab
+If Re$(\lambda) \neq 0$ for both eigenvalues, the fixed point is often called hyperbolic. (This is an unfortunate name-it sounds like it should mean "saddle point"-but it has become standard). Hyperbolic fixed points are sturdy; their stability type is unaffected by small nonlinear terms. Nonhyperbolic fixed points are the fragile ones. \\ \tab
+We've already seen a simple instance of hyperbolicity in the context of vector fields on the line. In section 2.4 we saw that the stability of a fixed point was accurately predicted by the linearization, as long as $f^{'}(x*)\neq 0$. This condition is the exact analog of Re($\lambda) \neq 0$. \\ \tab
+These ideas also generalize neatly to higher-order systems. A fixed point of an nth-order system is hyperbolic if all the eigenvalues of the linearization lie off the imaginary axis, i.e. Re($\lambda_{i})\neq 0$ for i=1,...,n. The important Hartman- is "topologically equivalent" to the local phase portrait near a hyperbolic fixed point the stability type of the fixed point is faithfully captured by the linearization. Here topologically equivalent means that there is a homeomorphism (a continuous deformation with a continuous inverse) that maps one local phase portrait onto the other, such that trajectories map onto trajectories and the sense of time (the direction of the arrows) is preserved. \\ \tab
+Intuitively, two phase portraits are topologically equivalent if one is a distorted version of the other. Bending and warping are allowed, but not ripping, so closed orbits must remain closed, trajectories connecting saddle points must not be broken, etc. \\ \tab
+Hyperbolic fixed points also illustrate the important general notion of structural stability. A phase portrait is structurally stable if its topology cannot be changed by an arbitrarily small pertubation to the vector field. For instance, the phase portrait of a saddle-point is structurally stable, but that of a center is not: an arbitrarily small amount of damping converts the center to a spiral. \\ \tab
+
+\textbf {Chapter 6.4 Rabbits versus Sheep} \\ \tab
+In the next few sections we'll consider some simple examples of phase plane analysis. We begin with the classic Lotka-Volterra model of competition between two species, here imagined to the rabbits and sheep. Suppose that both species are competing for the same food supply (grass) and the amount available is limited. Furthermore, ignore all other complications, like predators, seasonal effects, and some sources of food. Then there are two main effects we should consider: \\ \tab
+1. Each species would grow to its carrying capacity in the absence of the other. This can be modeled by assuming logistic growth for each species (recall Section 2.3). Rabbits have a legenedary ability to reproduce, so perhaps we should assign them a higher intrinsic growth rate. \\ \tab
+2. When rabbits and sheep encounter each other, trouble starts. Sometimes the rabbit gets to eat, but more usually the sheep nudges the rabbit aside and starts nibbling (on the grass, that is). We'll assume that these conflicts occur at a rate proportional to the size of each population. (If there were twice as many sheep, the odds of a rabbit encountering a sheep would be twice as great.) Furthermore, we assume that the conflicts reduce the growth rate for each species, but the effect is more severe for the rabbits. \\ \tab
+A specific model that incorporates these assumptions is 
+\\ \tab $\dot{x}=x(3-x-2y) \\
+\tab \dot{y}=y(2-x-y)$ \\
+
+where \\ \tab
+x(t) = population of rabbits \\ 
+\tab y(t) = population of sheep \\
+and $x,y \geq 0$. The coefficient have been chosen to reflect this scenario, but are otherwise arbitrary. In the exercises, you'll be asked to study what happens if the coefficients are changed. \\
+\tab To find the fixed points for the system, we solve $\dot{x}=0$ and $\dot{y}=0$ simultaneously. Four fixed points are obtained (0,0), (0,2), (3,0) and (1,1). To classify them, we compute the Jacobian:
+\\ ${A=
+\begin{pmatrix}
+\frac{\partial \dot{x}}{\partial x} && \frac{\partial \dot{x}}{\partial y} \\
+\frac{\partial \dot{y}}{\partial x} && \frac{\partial \dot{y}}{\partial y}
+\end{pmatrix}
+=
+\begin{pmatrix}
+3-2x-2y && -2x \\
+-y && 2-x-2y
+\end{pmatrix}
+}$ \\
+Now consider the four fixed points in turn: \\ \tab
+(0,0): Then ${A = \begin{pmatrix} 3 && 0 \\ 0 && 2 \end{pmatrix}}$ \\
+
+The eigenvalues are $\lambda = 3,2$ so (0,0) is an unstable node. Trajectories leave the origin parallel to the eigenvector for $\lambda = 2$, i.e. tangential to v=(0,1), which spans the y-axis. (Recall the general rule: at a node, trajectories are tangential to the show eigendirection, which is the eigendirection with the smallest $|\lambda|$.) Thus, the phase portrait near (0,0) looks like Figure 6.4.1. 
+\\
+\includegraphics{fig_641}
+\\ \tab
+(0,2): Then $A = \begin{pmatrix} -1 && 0 \\ -2 && -2 \end{pmatrix}$ \\ 
+This matrix has eigenvalues $\lambda = -1, -2$ as can be seen from inspeciton since the matrix is triangular. Hence the fixed point is a stable node. Trajceories approach along the eigendirection associated with $\lambda = -1$; you can check that this direction is spanned by v=(1,-2). Figure 6.4.2 shows the phase potrait near the fixed point (0,2) \\
+\includegraphics{fig_642}
+ \\
+(3,2): Then $A=\begin{pmatrix} -3 && -6 \\ 0 && -1 \end{pmatrix}$ and $\lambda = -3, -1$. \\ \tab
+This is also a stable node. The trajectories approach along the slow eigendirection spanned by v=(3,-1), as shown in Figure 6.4.3 \\
+\includegraphics{fig_643} \\
+(1,1): Then $A=\begin{pmatrix} -1 && -2 \\ -1 && -1 \end{pmatrix}$ which has $\tau = -2, \triangle = -1$ and $\lambda = -1 \pm \sqrt{2}$. \\
+Hence this is a saddle point. As you can check, the phase potrait near (1,1) is as shown in Figure 6.4.4
+\\
+\includegraphics{fig_644} \\
+Combining Figures 6.4.1-6.4.4 we get Figure 6.4.5 which already conveys a good sense of the entire phase portrait. Furthermore, notice that the x and y axes contain straight line trajectories, since $\dot{x}=0$ when x=0 and $\dot{y}=0$ when y=0 \\
+\includegraphics{fig_645} \\
+\tab Now we use common sense to fill in the rest of the phase portrait (Figure 6.4.6). For example, some of the trajectories starting near the origin must go to the stable node on the x-axis, while others must go to the stable node on the y-axis. In between, there must be a special trajectory that can't decide which way to turn, and so it divides into the saddle point. This trajectory is part of the stable manifold of the saddle, drawn with a heavy line in Figure 6.4.6 \\
+
+\includegraphics{fig_646} \\
+The other branch of the stable manifold consists of a trajectory coming in "from infinity". A computer generated phase portrait (Figure 6.4.7) confirms our sketch. The phase portrait has interesting biological interpretation. It shows that one species generally drives the other to extinction. Trajectories tarting below the stable manifold leads to eventual extinction of the sheep, while those starting above lead to eventual extinction of the rabbits. This dichotomy occurs in other models of competition and has fed biologists to formulate the principle of competitive exclusion, which states that two species competing for the same limited resource typically cannot coexist. \\ \includegraphics{fig_647} \\ See Pianka (1981) for a biological discussion, and Pielou (1969), Edelstein-Keshet (1988), or Murray (1989) for additional references and analysis. \\ \tab
+Our example also illustrates some general mathematical concepts. Given an attracting fixed point x*, we define its basin of attraction to be the set of initial conditions $x_{0}$ such that $x(t) \to x*$ as $t \to \infty$. For instance, the basin of attraction for the node at (3,0) consists of all the points lying below the stable manifold of the saddle. This basin is shown as the shadded region in Figure 6.4.8.
+\\ \includegraphics{fig_648}
+\\ Because the stable manifold seperates the basins for the two nodes, it is called the basin boundary. For the same reason, the two trajectories that comprise the stable manifold are traditionally called separatrices. Basins and their boundaries are important because they partition the phase space into regions of different long-term behavior. 
+
+\textbf {Chapter 6.5 Conservative Systems}
+\\ Newton's law F=ma is the source of many important second-order systems. For example, consider a particle of mass m moving along the x-axis, subject to  a nonlinear force F(x). Then the equation of motion is
+\begin{center}
+$m\ddot{x}=F(x)$
+\end{center}
+Notice that we are assuming that F is independent of both $\dot{x}$ and t; hence there is no damping or friction of any kind, and there is no time-dependent driving force. \\ \tab
+Under these assumptions, we can show that energy is conserved, as follows. Let V(x) denote the potential energy, defined by $F(x)=-dV/dx$. Then 
+\begin{center}
+$m\ddot{x}+\frac{dV}{dx}=0$
+\end{center}
+
+Now comes a trick worth remembering: multiply both sides by $\dot{x}$ and notice that the left-hand side becomes an exact time-derivative! 
+\begin{center}
+$m\dot{x}\ddot{x}+\frac{dV}{dx}\dot{x}=0 \Rightarrow \frac{d}{dt}[\frac{1}{2}m\dot{x}^{2}+V(x)]=0$
+\end{center}
+
+where we've used the chain rule
+\begin{center}
+$\frac{d}{dt}V(x(t))=\frac{dV}{dx}\frac{dx}{dt}$
+\end{center}
+in reverse. Hence, for a given solution x(t), the total energy
+\begin{center}
+$E=\frac{1}{2}m\dot{x}^{2}+V(x)$
+\end{center}
+is constant as a function of time. The energy is often called a conserved quantity, a constant of motion, or first integral. Systems for which a conserved quantity exists are called conservative systems. \\ \tab
+Let's be a bit more general and precise. Given a system $\dot{x}=f(x)$, a conserved quantity is a real-values continuous function E(x) that is constant on trajectories, i.e. dE/dt=0. To avoid trivial examples, we also require that E(x) would qualify as a conserved quantity for every system, and so every system would be conservative! Our caveat rules out this silliness. 
+\textbf {Nonlinear Centers} \\ \tab
+Centers are ordinarily very delicate but, as the examples above suggest (6.5.1-6.5.3), they are much more robust when the system is conservative. We now present a theorem about nonlinear centers in second-order conservative systems. \\ \tab
+The theorem says that centers occur at the local minima of the energy function. This is physically plausible-one expects neutrally stable equilibria and small oscillations to occur at the bottom of any potential well, no matter what its shape. 
+\textbf {Theorem 6.5.1} (Nonlinear centers for conservative systems) Consider the system $\dot{x}=f(x)$, where $x=(x,y)\in R^{2}$ and f is continuously differentiable. Suppose there exists a conserved quantity E(x) and suppose that $x*$ is an isolated fixed point (i.e. there are no other fixed points in a small neighborhood surrounding x*). If x* is a local minimum of E, then all trajectories sufficiently close to x* are closed. 
+\textbf {Ideas behind the proofs}: Since E is constant on trajectories, each trajectory is contained in some contour of E. Near a local maximum or minimum, the contours are closed. (We won't prove this, but Figure 6.5.3 should make it seem obvious). The only remaining question is whether the trajectory actually goes all the way around the contour or whether it stops at a fixed point on the contour. But because we're assuming that x* is an isolated fixed point, there cannot be any fixed points on contours sufficiently close to x*. Hence all trajectories in a sufficiently small neighborhood of x* are closed orbits, and therefore x* is a center. \\ \tab Two remarks about this result. 
+\\ \tab \tab 1. The theorem is valid for local maxima of E also. Just replace the function E by -E, and maxima get converted to minima; then Theorem 6.5.1 applies. 
+\\ \tab \tab We need to assume that x* is isolated. Otherwise there are counterexamples due to fixed points on the energy contour--see Exercise 6.5.12. \\ Another theorem about nonlinear centers will be presented in the next section.
+
+\textbf {Chapter 6.6 Reversible Systems} \\ \tab Many mechanical systems have time reversal symmetry. This means that their dynamics look the same whether time runs forward or backward. For example, if you were watching a movie of an undamped pendulum swinging back and forth, you wouldn't see any physical absurdities if the movie were run backward. \\ \tab
+In fact, any mechanical system of the form $m\ddot{x}=F(x)$ is symmetric under time reversal. If we make the change of variables $t \to -t$, the second derivative $\ddot{x}$ stays the same and so the equation is unchanged. Of course, the velocity $\dot{x}$ would be reversed. Lets see what this means in the phase plane. The equivalent system is \\ \tab 
+$\dot{x}=y$ \\ \tab
+$\dot{y}=\frac{1}{m}F(x)$ \\
+where y is the velocity. If we make the change of variables $t \to -t$ and $y \to -y$, both equations stay the same. Hence if (x(t), y(t)) is a solution, then so is (x(-t), -y(-t)). Therefore every trajectory has a twin: they differ only by time-reversal and a reflection in the x-axis (Figure 6.6.1) \\
+
+\includegraphics{fig_661}
+The trajectory above the x-axis looks just like the one below the x-axis, except the arrows are reversed. \\ \tab More generally, let's define a reversible system to be any second-order system that is invariant under $t \to -t$ and $y \to -y$. For example, any system of the form \\ \tab
+\tab $\dot{x}=f(x,y)$ \\ \tab \tab
+$\dot{y}=g(x,y)$ \\ 
+where f is odd in y and g is even in y (i.e., f(x,-y)=-f(x,y) and g(x,-y)=g(x,y)) is reversible. \\ \tab
+
+Reversible systems are different from conservative systems, but they have many of the same properties. For instance, the next theorem shows that centers are robust in reversible systems as well. 
+
+\textbf{Theorem 6.6.1} (Nonlinear centers for reversible systems) Suppose the origin x*=0 is a linear center for the continuously differentiable system \\ \tab \tab
+
+$\dot{x}=f(x,y)$ \\ \tab \tab
+$\dot{y}=g(x,y)$ \\
+and suppose that the system in reversible. Then sufficiently close to the origin, all trajectories are closed curves.
+
+\textbf {Ideas Behind the proof} Consider a trajectory that starts on the positive x-axis near the origin (Figure 6.6.2). Sufficiently near the origin, the flow swirls around the origin, thanks to the dominant influence of the linear center, and so the trajectory eventually intersects the negative x-axis. (This is the step where our proof lacks rigor, but the claim should seem plausible.) \\
+
+\includegraphics{fig_662} 
+Now we use reversibility. By reflecting the trajectory accross the x-axis changing the sign of t, we obtain a twin trajectory with the same endpoints but with its arrow reversed (Figure 6.6.3)
+\\
+\includegraphics{fig_663}
+
+Together the two trajectories form a closed orbit, as desired. Hence all trajectories sufficiently close to the origin are closed.
+
+\textbf {Chapter 6.7 Pendulum} \\ Do you remember the first nonlinear system you ever studied in school? It was probably the pendulum. But in elementary courses, the pendulum's essential nonlinearity is sidestepped by the small-angle approximation $sin \theta \approx \theta$. Enough of that! In this section we use phase plane methods to analyze the pendulum, even in the dreaded large-angle regime where the pendulum whirls over the top. \\ \tab
+In the absence of damping and external driving, the motion of a pendulum is governed by
+\\ \tab \tab $\frac{d^{2}\theta}{dt^{2}}+\frac{g}{L}sin\theta = 0$ \tab (1) \\
+where $\theta$ is the angle from the downward vertical, g is the acceleration due to gravity, and L is the length of the pendulum (Figure 6.7.1) \\
+\includegraphics{fig_671} 
+We nondimensionalize (1) by introducing a frequency $\omega = \sqrt{g/L}$ and a dimensionless time $\tau = \omega t$. Then the equation becomes \\ \tab \tab
+$\ddot{\theta}+sin\theta = 0$ \tab (2) \\
+where the overdot denotes differentiation with respect to $\tau$. The corresponding system in the phase plane is \\ \tab \tab
+$\dot{\theta}=v \tab (3a) \\
+\tab \tab \dot{v}=-sin\theta$ \tab (3b) \\ 
+where v is the (dimensionless) angular velocity. \\ \tab 
+The fixed points are $(\theta * , v*)=(k\pi , 0)$, where k is any integer. There's no physical difference between angles that differ by $2\pi$, so we'll concentrate on the physical points (0,0) and $(\pi , 0)$. At (0,0), the Jacobian is \\ \tab 
+$A={
+\begin{pmatrix}
+0 && 1 \\
+-1 && 0
+\end{pmatrix}
+}$ \\ 
+so the origin is a linear center. \\ \tab
+In fact, the origin is a nonlinear center, for two reaosns. First, the system (3) is reversible: the equations are invariant under the transformation $\tau \to -\tau$, $v \to -v$. Then Theorem 6.6.1 implies that the origin is a nonlinear center. \\ \tab 
+Second the system is also conservative. Multiplying (2) by $\dot{\theta}$ and integrating yields \\ \tab \tab
+$\dot{\theta}(\ddot{\theta} + sin \theta) = 0 \Rightarrow \frac{1}{2}\dot{\theta}^{2}-cos\theta =constant$
+The energy function
+\\ \tab \tab $E(\theta ,  v) = \frac{1}{2}v^{2}-cos\theta$ \tab (4) \\
+has a local minimum at (0,0) since $E=\frac{1}{2}(v^{2}+\theta^{2})-1$ for small $(\theta , v).$ Hence Theorem 6.5.1 provides a second proof that the origin is nonlinear center. (This argument also shows that the closed orbits are approximately circular with $\theta^{2}+v^{2}=2(E+1).)$
+ \\ \tab
+Now that we've beaten the origin to death, consider the fixed point at $(\pi, 0)$. The Jacobian is 
+$A = 
+\begin{pmatrix}
+0 && 1 \\ 
+1 && 0
+\end{pmatrix}
+$
+
+The characteristic equation is $\lambda^{2}-1=0$. Therefore $\lambda_{1}=-1$, $\lambda_{2}=2$; the fixed point is a saddle. The corresponding eigenvectors are $v_{1}=(1,-1)$ and $v_{2}=(1,1)$. 
+\\ \tab The phase portrait near the fixed points can be sketched from the information obtained so far (Figure 6.7.2)
+\\
+\includegraphics{fig_672}
+To fill in the pciture, we include the energy contours $E={\frac{1}{2}}{v^{2}}-cos\theta$ for different values of E. The resulting phase portrait is shown in Figure 6.7.3. The picture is periodic in the $\theta -$ direction, as we'd expect. \\
+\includegraphics{fig_673}
+ \tab Now for the physical interpretation. The center corresponds to a state of neutrally stable equilibrium, with the pendulum at rest and hanging straight down. This is the lowest possible energy state (E=-1). The small orbits surrounding the center represent small oscillations about equilibrium, traditionally called librations. As E increases, the orbits grows. The critical case is E=1, corresponding to the heteroclinic trajectories joining the saddles in Figure 6.7.3. The saddles represent an inverted pendulum as rest; hence the heteroclinic trajectories represent delicate motions in which the pendulum slows to a halt precisly as it appraoches the inverted position. For $E>1$, the pendulum whirls repeatedly over the top. Those rotations should be regarded as periodic solutions, since $\theta =-\pi$ and $\theta = \pm \pi$ are the same physical position. 
+
+\textbf {Cylindrical Phase Space} \\ \tab
+The phase portrait for the pendulum is more illuminating when wrappend onto the surface of a cylinder (Figure 6.7.4). In fact, a cylinder is the natural phase space for the pendulum, because it incorporates the fundamental geometric difference between v and $\theta$: the angular velocity v is a real number, whereas $\theta$ is an angle. 
+\\ \tab
+\includegraphics{fig_674}
+
+There are several advantages to the cylinderical representation. Now the periodic whirling motions look periodic--they are the closed orbits, that encircle the cylinder for $E>1$. Also, it becomes obvious that the saddle points in Figure 6.7.3 are all the same physical state (an intervted pendulum at rest). The heteroclinic trajectories of Figure 6.7.3 become homoclinic orbits on the cylinder. \\ \tab
+There is an obvious symmetry between the top and bottom half of Figure 6.7.4. For example, both homoclinic orbits have the same energy and shape. To highlight this symmetry, it is interesting (if a bit mind-boggling at first) to plot the energy vertically instead of the angular velocity v (Figure 6.7.5). Then the orbits on the cylinder remain at constant hieght, while the cylinder gets bent into a U-tube. The two arms of the tube are distinguished by the sense of rotation of the pendulum, either clockwise or counterclockwise. At low energies, this distinction no longer exists; the pendulum oscillates to and from. The homoclinic orbits lie at E=1, the borderline between rotations and liberations. \\ 
+\includegraphics{fig_675}
+
+At first, you might think that the trajectories are drawn incorrectly on one of the arms of the U-tube. It might seem that the arrows for clockwise and counterclockwise motions should go in opposite directions. But if you think about the coordinate system shown in Figure 6.7.6, you'll see that the picture is correct. \\ 
+\includegraphics{fig_676}
+
+The point is that the direction of increasing $\theta$ has reversed when the bottom of the cylinder is bent around to form the U-tube. (Please understand that Figure 6.7.6 shows the coordinate system, not the actual trajectories; the trajectories were shown in Figure 6.7.5).
+
+\textbf{Damping}
+\\ \tab Now let's return to the phase plane, and suppose that we add a small amount of linear damping to the pendulum. The governing equation becomes \\ \tab
+$\ddot{\theta}+b\dot{\theta}+sin\theta = 0$ \\
+where $b>0$ is the damping strength. Then centers become stable spirals while saddles remain saddles. A computer-generated phase portrait is shown in Figure 6.7.7. \\
+\includegraphics{fig_677} \\ \tab
+The picture on the U-tube is clearer. All trajectories continually lose altitude except for the fixed points (Figure 6.7.8). \\
+\includegraphics{fig_678} 
+We can see this explicitly by computing the change in energy along a trajectory
+\begin{center}
+$\frac{dE}{d\tau}=\frac{d}{d\tau}(\frac{1}{2}\dot{\theta}^{2}-cos\theta)= \dot{\theta}(\ddot{\theta}+sin\theta)=-b\dot{\theta}^{2} \leq 0$
+\end{center}
+Hence E decreases monotically along trajecories, except at fixed points where $\dot{\theta}=0$. \\ \tab
+The trajectory shown in Figure 6.7.8 has the following physical interpretation: the pendulum is initially whirling clockwise. As it loses energy, it has a harder time rotating over the top. The corresponding trajectory spirals down the arm of the U-tube until $E<1$; then the pendulum doesn't have enough energy to whirl, and so it settles down into a small oscillation about the bottom. Eventually the motion damps out and the pendulum comes to rest at its stable equilibrium. \\ \tab
+
+This example shows how far we can go with pictures-without invoking any difficult formulas, we were able to extract all the important features of the pendulum's dynamics. It would be much more difficult to obtain these results analytically, and much more confusing to interpret the formulas, even if we could find them. 
+
+\textbf {Chapter 6.8 Index Theory} \\ 
+In Section 6.3 we learned how to linearize a system about a fixed point. Linearization is a prime example of a local method: it gives us a detailed microscopic view of the trajectories near a fixed point, but it can't tell us what happens to the trajectories after they leave that tiny neighborhood. Furthermore, if the vector field starts with quadratic or higher-order terms, the linearization tells us nothing. \\ \tab
+
+In this section we discuss index theory, a method that provides global information about the phase portrait. It enables us to answer such questions as: Must a closed trajecory always encircle a fixed point? If so, what types of fixed points are permitted? What types of fixed points can coalesce in bifurcations? The method also yields information about trajectories near higher-order fixed poitns. Finally, we can sometimes use index arguments to rule out the possibility of closed orbbits in certain parts of the phase plane. 
+\textbf {The index of a closed curve}
+\\ \tab The index of a closed curve C is an integer that measures the winding of the vector field on C. The index also provides information about any fixed points that might happen to lie inside the curve as we'll see. \\ \tab
+This idea may remind you of a concept in electrostatics. In that subject, one often introduces a hypothetical closed surface (A "Gaussian surface") to probe a configuration of electric charges. By studying the behavior of the electric field on the surface, one can determine the total amount of charge inside the surface. Amazingly, the behavior on the surface tells us what's happening far way inside the surface! In the present context, the electric field is analogous to our vector field, the Gaussian surface is analogous to the curve C, and the total charge is analogous to the index. \\ 
+\includegraphics{fig_681} \\ \tab
+Now let's make these notions precise. Suppose that $\dot{x}=f(x)$ is a smooth vector field on the phase plane. Consider a closed curve C (Figure 6.8.1). This curve is not necessarily a trajectory--it's simply a loop that we're putting in the phase plane to probe the behavior of the vector field. We also assume that C is "simple closed curve" (i.e., it doesn't intersect itself) and that it doesn't pass through any fixed points of the system. Then at each point x on C, the vector field $\dot{x}=(\dot{x},\dot{y})$ makes a well-defined angle 
+\\ \tab $\phi = tan^{-1}(\dot{y}/\dot{x}$ \\
+with the positive x-axis (Figure 6.8.1) \\ 
+\tab As x moves counterclockwise around C, the angle $\phi$ changes continuously since the vector field is smooth. Also, when x returns to its starting place, $\phi$ returns to its original direction. Hence, over one circuit, $\phi$ has changed by an integer multiple of $2\pi$. Let $[\phi]_{c}$ be the net change in $\phi$ over one circuit. Then the index of the closed curve C with respect to the vector field f is defined as \\ \tab
+$I_{c}=\frac{1}{2\pi}[\phi]_{c}$ \\ 
+Thus $I_{c}$ is the net number of clockwise revolutions made by the vector field as x moves once counterclockwise around C. \\
+\tab To compute the index, we do not need to know the vector field everywhere; we only need to know it along C.
+
+\textbf{Properties of the Index} \\ \tab
+Now we list some of the most important properties of the index. \\ \tab
+1. Suppose that C can be continuously deformed into $C^{'}$ without passing through a fixed point. Then $I_{c}=I{c^{'}}$. \\ \tab
+This property has an elegant proof: Our assumptoins imply that we deform C into $C^{'}$, the index $I_{c}$ varies continuously. But $I_{c}$ is an integer--hence it can't change without jumping! (To put it more formally, if an integer-valued function is continuous, it must be constant). \\ \tab
+As you think about this argument, try to see where we used the assumption that the intermediate curves don't pass through any fixed points. \\ \tab
+2. If C doesn't enclose any fixed points, then $I_{c} = 0$. \\ \tab
+Proof: By property (1), we can shrink C to a tiny circle without changing the index. But $\phi$ is essentially constant on such a circle, because all the vectors point in nearly the same direction, thanks to the assumed smoothness of vector field (Figure 6.8.6). Hence $[\phi]_{c}=0$ and therefore $I_{c}=0$ \\
+
+\includegraphics{fig_686}
+\\ \tab 
+3. If we reverse all the arrows in the vector field by changing $t \to -t$, the index is unchanged. \\ \tab
+Proof: All angles changes from $\phi$ to $\phi+\pi$. Hence $[\phi]_{c}$ stays the same. \\ \tab
+4. Suppose that the closed curve C is actually a trajectory for the system, i.e., C is a closed orbit. Then $I_{c}=+1$. \\ \tab
+We won't prove this, but it should be clear from geometric intuition (Figure 6.8.7).
+\\
+\includegraphics{fig_687}
+
+Notice that the vector field is everywhere tangent to C, because C is a trajectory. Hence, as x winds around C once, the tangent vector also rotates once in the same sense. 
+
+\textbf {Index of a Point} \\ \tab
+The properties above are useful in several ways. Perhaps most importantly, they allow us to define the index of a fixed point, as follows. \\ \tab
+Suppose x* is an isolated fixed point. Then the index I of x* is defined as $I_{c}$, where C is any closed curve that encloses x* and no other fixed points. By property (I) above, $I_{c}$ is independent of C and is therefore a property of x* alone. Therefore we may drop the subscript C and use the notation I for the index of a point.
+
+\textbf {Theorem 6.8.1} If a closed curve C surrounds n isolated fixed points $x_{1}*,..., x_{n}*$, then \\ \tab
+$I_{c}=I_{1}+I_{2}+\hdots + I_{n}$ \\
+
+where $I_{k}$ is the index of $x_{k}*$, for k=1,...,n. 
+
+\textbf {Ideas behind the proof} The argument is a familiar one, and comes up in multivariable calculus, complex variables, electrostatics, and various other subjects. We think of C as a balloon and suck most of the air out of it, being careful not to hit any of the fixed points. The result of this deformation is a new closed curve $\Gamma$, consisting of n small circles $\gamma_{1},...,\gamma_{n}$ about the fixed points, and two-ways bridges connecting these circles (Figure 6.8.8). Note that $I_{\Gamma}=I_{c}$, by property (1), since we didn't cross any fixed points we didn't cross any fixed poitns during the deformation. Now let's compute $I_{\Gamma}$ by considering $[\phi]_{\Gamma}$. There are contributions to $[\phi]_{\Gamma}$ from the small circles and from the two-way bridges. The key point is that the contributions from the bridges cancel out: as we move around $\Gamma$, each bridge is traversed once in one direction, and later in the opposite direction. Thus we only need to consider the contributions from the small circles. On $\gamma_{k}$, the angle $\phi$ changes by $[\phi]_{\gamma_{k}}=2\pi I_{k}$, by definition of $I_{k}$. Hence \\ \tab
+
+$I_{\Gamma}=\frac{1}{2\pi}[\phi]_{\Gamma}= \frac{1}{2\pi} \sum_{k=1}^{n}[\phi]_{\gamma_{k}}=\sum_{k=1}^{n}I_{k}$
+\\ and since $I_{\Gamma} = I_{c}$ we're done
+\\ \includegraphics{fig_688}
+
+This theorem is reminiscent of Gauss's law in electrostatics, namely that the electric flux through a surface is proportional to the total charge enclosed. See excersice 6.8.12 for a further exploration of this analogy between index and charge. 
+\textbf {Theorem 6.8.2} Any closed orbit in the phase plane must enclose fixed points whose indices sum to +1. 
+\textbf {Proof} Let C denote the closed orbit. From property (4) above, $I_{c}=+1$. \\
+Then theorem 6.8.1 implies $\sum_{k=1}^{n}I_{k}=+1$. \\ \tab
+Theorem 6.8.2 has many practical consequences. For instance, it implies that there is always at least one fixed point inside any closed orbit in the phase plane (as you may have noticed on your own). If there is only one fixed point inside, it cannot be a saddle point. Furthermore, Theorem 6.8.2 can sometimes be used to rule out the possible occurence of closed trajectories, as seen in the following examples.
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

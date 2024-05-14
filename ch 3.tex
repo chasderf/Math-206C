@@ -1,0 +1,221 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\begin{document}
+
+
+\title {Nonlinear Dynamics and Chaos: part 1. One-dimensional Flows Ch 4 Flows on the Circle}
+
+\author{Charlie Seager}
+
+\date{4/19/2024}
+
+\maketitle
+
+\textbf {Chapter 4.0 Introduction} \\ \tab
+So far we've concentrated on the equation $\dot{x}=f(x)$, which we visualized as a vector field on the line. Now it's time to consider a new kind of differential equation and its corresponding phase space. This equation,
+\begin{center}
+$\dot{\theta}=f(\theta)$
+\end{center}
+corresponds to a vector field on the circle. Here $\theta$ is a point on the circle and $\dot{\theta}$ is the velocity vector at that point, determined by the rule $\dot{\theta}=f(\theta)$. Like the line, the circle is one dimensional, but it has an important new property: by flowing in one direction, a particle can eventually return to its starting place (Figure 4.0.1). Thus periodic solutions become possible for the first time in this book! To put it another way, vector fields on the circle provide the most basic model of system that can oscillate. \\ \tab 
+However, in all other respects, flows on the circle are similar to flows on the line, so this will be a short chapter. We will discuss the dynamics of some simple oscillators, and then show that these equations arise in a wide variety of applications. For example, the flashing of fireflies and the voltage oscillations of superconducting Josephson junction have been modeled by the same equation, even though their oscillation frequencies differ by about ten orders of magnitude! 
+
+\includegraphics{fig_401}
+
+\textbf {Chapter 4.1 Examples and Definitions} 
+Let's begin with some example, and then give a more careful definition of vector fields on the circle
+
+\textbf {Chapter 4.2 Uniform Oscillator} \\ \tab
+A point on a circle is often called an angle or a phase. Then the simplest oscillator of all is one in which the phase $\theta$ changes uniformly:
+\begin{center}
+$\dot{\theta}=\omega$
+\end{center}
+where $\omega$ is a constant. The solution is
+\begin{center}
+$\theta(t)=\omega t + \theta_{0}$
+\end{center}
+which corresponds to uniform motion around the circle at an angular frequency $\omega$. This solution is periodic, in the sense that $\theta{t}$ changes by $2\pi$, and therefor retruns to the same point on the circle, after a time $T=2\pi/\omega$. We call T the period of the oscillation. \\ \tab
+
+Notice that we have said nothing about the amplitude of the oscillation. There really is no amplitude variable in our system. If we had an amplitude as well as a phase variable, we'd be in a two-dimensional phase space; this situation is more complicated and will be discussed later in the book. (Or if you prefer, you can imagine that the oscillation occurs at some fixed amplitude, corresponding to the radius of our circular phase space. In any case, amplitude play no role in the dynamics).
+
+\textbf {Example 4.2.1} \\ \tab
+Two joggers, Speedy and Lucky, are running at a steady pace around a circular track around the park. It takes Speedy $T_{1}$ seconds to run once around the track, whereas it takes Lucky $T_{2}>T_{1}$ seconds. Of course, speedy will periodically overtake Lucky; how long does it take for Speedy to lap Lucky once, assuming that they start together? \\ \tab
+Solution: Let $\theta_{1}(t)$ be Speedy's position on the track. Then $\dot{\theta_{1}}=\omega_{1}$ where $\omega_{1}=2\pi/T_{1}$. This equation says that speedy runs at a steady pace and completes a circuit every $T_{1}$ seconds. Similarly, suppose that $\dot{\theta_{2}}=\omega_{2}=2\pi/T_{2}$ for Lucky. \\ \tab
+The condition for Speedy to lap Lucky is that the angle between them has increased by $2\pi$. Thus if we define the phase difference $\phi=\theta_{1}-\theta_{2}$, we want to find how long it takes for $\phi$ to increase by $2\pi$ (Figure 4.2.1). By subtraction we find $\dot{\phi}=\dot{\theta_{1}}-\dot{\theta_{2}}=\omega_{1}-\omega_{2}$. Thus $\phi$ increases by $2\pi$ after a time 
+\begin{center}
+$T_{lap}=\frac{2\pi}{\omega_{1}-\omega_{2}}=({\frac{1}{T_{1}}} - {\frac{1}{T_{2})}}^{-1}$
+\end{center}
+This example (4.2.1) illustrates an effect called the beat phenomenon. Two noninteracting oscillators with different frequencies will periodically go in and out of phase with each other. you may have heard this effect on a Sunday morning: sometimes the bells of two different churches will ring simultaneously, then slowly drift apart, and then eventually ring together again. If the oscillators interact (for example, if the two joggers try to stay together or the bell ringers can hear each other), then we can get more interesting effects, as we will see in Section 4.5 on the flashing rhythm of fireflies. 
+
+\textbf{Chapter 4.3 Nonuniform Oscillator} \\ \tab
+The equation
+\begin{center}
+$\dot{\theta}=\omega-a sin \theta$ \tab (1)
+\end{center}
+arises in many different branches of science and engineering. Here is a partial list:
+\\ \tab Electronics (phase locked loops)
+\\ \tab Biology (oscillating neurons, firefly flashing rhythm, human sleep-wake cycle) 
+\\ \tab Condensed-matter physics (Josephson junction, charge-density waves) 
+\\ \tab Mechanics (Overdamped pendulum driven by a constant torque). \\
+Some of these applications will be discussed later in this chapter and in the exercises.
+\\
+\includegraphics{fig_431}
+
+\tab To analyze (1), we assume that $\omega>0$ and $a \geq 0$ for convenience; the results for negative $\omega$ and a are similar. A typical graph of $f(\theta)=\omega-asin\theta$ is shown in Figure 4.3.1. Note that $\omega$ is the mean and a is the amplitude. 
+
+\textbf{Vector Fields}
+ If a = 0, (1) reduces to the uniform oscillator. The parameter a introduces a nonuniformity in the flow around the circle: the flow is fastest at $\theta = - \pi/2$ and slowest at $\theta = \pi/2$ (Figure 4.3.2a). This nonuniformity becomes more pronounced as a increases. When a is slightly less than $\omega$, the oscillation is very jerky: the phase point $\theta(t)$ takes a long time to pass through a bottleneck near $\theta = \pi/2$ after which it zips around the rest of the circle on a much faster time scale. When $a=\omega$, the system stops oscillating altogether: a half stable fixed point has been born in a saddle-node bifurcation at $\theta=\pi/2$(Figure 4.3.2b) Finally when $a>\omega$, the half stable fixed point splits into a stable and unstable fixed point (Figure 4.3.2c) All trajectories are attracted to the stable fixed point as $t \to \infty$
+
+\includegraphics{fig_432}
+
+The same information can be shown by plotting the vector fields on the circle (Figure 4.3.3).
+
+\includegraphics{fig_433}
+
+\textbf {Oscillation Period}
+\tab For $a< \omega$, the period of the oscillation can be found analytically, as follows the time required for $\theta$ to change by $2\pi$ is given by 
+\begin{center}
+$T=\int dt=\int_{0}^{2\pi} \frac{dt}{d\theta} d\theta = \int_{0}^{2\pi} \frac{d\theta}{\omega-asin\theta}$
+\end{center}
+
+where we have used (1) to replace $dt/d\theta$. This intergal can be evaluated by complex variable methods, or by the substitution $u= tan \frac{\theta}{2}$ (See Excercise 4.3.2 for details). The result is 
+\begin{center}
+$T=\frac{2\pi}{\sqrt{\omega^{2}-a^{2}}}$
+\end{center}
+
+Figure 4.3.4 shows the graph of T as a function of a
+\\ 
+
+\includegraphics{fig_434}
+
+When a = 0, Equation (2) reduces to $T=2\pi/\omega$, the familiar result for a uniform oscillator. The period increases with a and diverges as a approaches $\omega$ from below (we denote this limit by $a \to \omega^{-})$ 
+\begin{center}
+$\sqrt{\omega^{2}-a^{2}}=\sqrt{\omega+a}\sqrt{\omega-a} \approx \sqrt{2\omega}\sqrt{\omega-a}$ \tab (2)
+\end{center}
+as $a \to \omega^{-}$. Hence 
+\begin{center}
+$T \approx (\frac{\pi \sqrt{2}}{\sqrt{\omega}}) \frac{1}{\sqrt{\omega-a}}$ \tab (3)
+\end{center}
+which shows that T blows up like $(a_{c}-a)^{-1/2}$, where $a_{c}=\omega$. Now lets explain the origin of this square root scaling law.
+
+\textbf {Ghosts and Bottlenecks}
+The square root scaling lawa found above is a very general feature of systems that are close to a saddle-node bifurcation. Just after the fixed points collide, there is a saddle-node remnant or ghost that leads to slow passage through a bottleneck. \\ \tab
+For example, consider $\dot{\theta}=\omega-asin\theta$ for decreasing values of a, starting with $a>\omega$. As a decreases, the two fixed points approach each other, collide and disappear (this sequence was shown earlier in Figure 4.3.3, except now you have to read from right to left). For a slightly less than $\omega$, the fixed points near $\pi/2$ no longer exist, but they still make themselves felt through a saddle node ghost (Figure 4.3.5)
+\\
+\includegraphics{fig_435}
+
+A graph of $\theta(t)$ would have the shape shown in Figure 4.3.6. Notice how the trajectory spends practically all its time getting through the bottleneck
+\\
+\includegraphics{fig_436}
+Now we want to derive a general scaling law for the time required to pass through a bottleneck. The only thing that matters is the behavior of $\dot{\theta}$ in the immediate vicinity of the minimum, since the time spent there dominates all other time scales in the problem. Generically, $\dot{\theta}$ looks parabolic near its minimum. Then the problem simplifies tremendously: the dynamcis can be reduced to the normal form for a saddle-node bifurcation! By a lcoal rescaling of space, we can rewrite the vector field as 
+\begin{center}
+$\dot{x}=r+x^{2}$
+\end{center}
+where r is proportional to the distance from the bifurcation and $0< r<<1$. The graph of $\dot{x}$ is shown in Figure 4.3.7
+\\
+\includegraphics{fig_437}
+
+To estimate the time spent in the bottleneck, we calculate the time taken for x to go from $-\infty$ (all the way on one side of the bottleneck) to $+\infty$ (all the way on the other side). The result is
+\begin{center}
+$T_{bottleneck}= \int_{-\infty}^{\infty} \frac{dx}{r+x^{2}} = \frac{\pi}{\sqrt{r}}$, \tab (4)
+\end{center}
+
+which shows the generality of the square root scaling law. (Excercise 4.3.1 reminds you how to evaluate the integral in (4)).
+
+\textbf {Chapter 4.4 Overdamped Pendulum}
+\\ \tab We now consider a simple mechanical example of a nonuniform oscillator: an overdamped pendulum driven by a constant torque. Let $\theta$ denote the angle between the pendulum and the downward vertical, and suppose that $\theta$ increases counterclockwise (Figure 4.4.1)
+\\
+\includegraphics{fig_441}
+
+Then Newton's law yields:
+\begin{center}
+$mL^{2}{\ddot{\theta}}+b{\dot{\theta}}+mgLsin\theta = \Gamma$ \tab (1)
+\end{center}
+where m is the mass and L is the length of the pendulum, b is a visous damping constant, g is the acceleration due to gravity, and $\Gamma$ is a constant applied torque. All of these parameters are positive. In particular $\Gamma > 0$ implies that the applied torque drives the pendulum counterclockwise, as shown in Figure 4.4.1. \\
+\tab Equation (1) is the second order system, but in the overdmaped limit of extremely large b, it may be approximated by a first-order system (see section 3.5 and Excercise 4.4.1). In this limit the inertia term 
+$mL^{2}\ddot{\theta}$ is negligible and so (1) becomes
+\begin{center}
+$b \dot{\theta}+mgLsin\theta = \Gamma$ \tab (2)
+\end{center}
+To think about this problem physically, you should imagine that the pendulum is immersed in molasses or honey, some thick liquid (viscous). The torque $\Gamma$ enables the pendulum to plow through its viscous surroundings. Please realize that this is the opposite limit from the familiar frictionless case in which energy is conserved, and the pendulum swings back and forth forever. In the present case, energy is lost to damping and pumped in by the applied torque. \\
+To analyze (2), we first nondimensionalize it. Dividing by mgL yields
+
+\begin{center}
+$\frac{b}{mgL}\dot{\theta}=\frac{\Gamma}{mgL}-sin\theta$.
+\end{center}
+Hence, if we let
+\begin{center}
+$\tau=\frac{mgL}{b}t, \tab \gamma=\frac{\Gamma}{mgL}$ \tab (3)
+\end{center}
+then 
+\begin{center}
+$\theta^{'}=\gamma-sin\theta$ \tab (4)
+\end{center}
+where $\theta^{'}=d\theta/d\tau$
+\\
+The dimensoinless group $\gamma$ is the ratio of the applied torque to the maximum gravitational torque. If $\gamma > 1$ then the applied torque can never be balanced by the gravitational torque and the pendulum will overturn continually. The rotaion rate is nonuniform, since gravity helps the applied torque on one side and opposes it on the other (Figure 4.4.2)
+
+\includegraphics{fig_442}
+
+As $\gamma \to 1^{+}$ the pendulum takes longer and longer to climb past $\theta=\pi/2$ on the slow side. When $\gamma=1$ a fixed point appears at $\theta^{*}=\pi/2$, and then splits into two when $\gamma<1$ (Figure 4.4.3). On physical grounds, its clear that the lower of the two equilibrium positions is the stable one.
+
+\includegraphics{fig_443}
+
+As $\gamma$ decreases, the two fixed points move farther apart. Finally, when $\gamma=0$, the applied torque vanishes and there is an unstable equilibrium at the top (inverted pendulum) and a stable equilibrium at the bottom.
+
+\textbf {Chapter 4.5 Fireflies}
+\\ Fireflies provide one of the most spectacular examples of synchronization in nature. In some parts of southeast Asia, thousands of male fireflies gather in trees at ngiht and flash on and off in unison. Meanwhile the female fireflies cruise overhead, looking for males with a handsome light. \\ \tab
+To really appreciate this amazing display, you have to see a movie or videotape of it. A good example is shown in David Attenborough's (1992) television series The Trials of Life, in the episode called "Talking to Strangers". See Buck and Buck (1976) for a beautifully written introduction to synchronous fireflies, and Buck (1988) for a more recent review. For mathematical models of synchronous fireflies, see Mirollo and Strogatz (1990) and Ermentrout (1991). \\ \tab
+
+How does the synchrony occur? Certainly the fireflies don't start out synchronized: they arrive in the trees at dusk, and the synchrony builds up gradually as the night goes on. The key is that the fireflies influence each other: When one firefly sees the flash of another, it slows down or speeds up so as to flash more nearly in phase on the next cycle. \\ \tab
+
+Hanson (1978) studied this effect experimentally, by periodically flashing a light at a firefly and watching it try to synchronize. For a range of periods close to the firefly's natural period (about 0.9 sec), the firefly was able to match its frequency to the periodic stimulus. In this case, one says that the firefly had been entertrained by the stimulus. However, if the stimulus was too fast or too slow, the firefly could not keep up and entrainment was lost-then a kind of beat phenomenon occured. But in contrast to the simple beat phenomenon of section 4.2, the phase difference between stimulus and firefly did not increase uniformly. The phase difference increased slowly during part of the beat cycle, as the firefly struggled in vain to synchronize, and then it increased rapidly through $2\pi$, after which the firefly tried agian on the beat cycle. This process is called phase walk-through or phase drift.
+
+\textbf {Model}
+\\ \tab Ermentrout and Rinzel (1984) proposed a simple model of the firefly's flashing rhythm and its response to stimuli. Suppose that $\theta(t)$ is the phase of the firefly's flashing rhythm, where $\theta=0$ corresponds to the instant when a flash is emitted. Assume that in the absence of stimuli, the firefly goes through its cycle at a frequency $\omega$, according to $\dot{\theta}=\omega$.
+\\ \tab Now suppose theres a periodic stimulus whose phase $\Theta$ satisfies
+\begin{center}
+$\dot{\Theta}=\Omega$ \tab (1)
+\end{center}
+where $\Theta=0$ corresponds to the flash of the stimulus. We model the firefly's response to this stimulus as follows: If the stimulus is ahead in the cycle, then we assume that the firefly speeds up in an attempt to synchronize. Conversely, the firefly slows down if its flashing too early. A simple model that incorporates these assumptions is
+\begin{center}
+$\dot{\theta}=\omega+Asin(\Theta-\theta)$ \tab (2)
+\end{center}
+where $A>0$. For example, if $\Theta$ is ahead of $\theta$ (ie. $0<\Theta-\theta<\pi$) the firefly speeds up $(\dot{\theta}> \omega)$. The resttling strength A measures the fireflys ability to modify its instantaneous frequency.
+
+\textbf {Analysis}
+\\ \tab To see whether entrainment can occur, we look at the dynamics of the pahse difference $\phi=\Theta-\theta$. Subtracting (2) from (1) yields
+\begin{center}
+$\dot{\phi}=\dot{\Theta}-\dot{\theta}= \Omega-\omega-Asin\phi$ \tab (3)
+\end{center}
+
+which is a nonuniform oscillator equation for $\phi(t)$. Equation (3) can be nondimensionalized by introducing 
+\begin{center}
+$\tau=At, \tab \mu=\frac{\Omega-\omega}{A}$ \tab (4)
+\end{center}
+
+Then
+\begin{center}
+$\phi^{'}=\mu-sin\phi$ \tab (5)
+\end{center}
+
+where $\phi^{'}=d\phi/d\tau$. The dimensionless group $\mu$ is a measure of the frequency difference relative to the resettling strength. When $\mu$ is small, the frequencies are relatively close together and we expect that entrainment should be possible. That is confirmed by Figure 4.5.1, where we plot the vector fields for (5), for different values of $\mu \geq 0$ (The case $\mu >0$ is similar).
+
+\includegraphics{fig_451}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

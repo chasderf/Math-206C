@@ -1,0 +1,67 @@
+\documentclass{article}
+\usepackage{amsmath}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\begin{document}
+
+
+\title {Calculus of Variations Ch 3: The General Variation of a Functional}
+
+\author{Charlie Seager}
+
+\maketitle
+
+\textbf {Chapter 3: The General Variational of a functional: Page 54, 13: Deriviation of the Basic Formula, 54 14: End Points Lying on Two Given curves or surfaces, 59 15: Broken Extremals, The Weierstrass-Erdmann Conditions, 61}
+
+\textbf {Segment 13 Derivation of the Basic Formula} \\ In this section, we derive the general formula for the variation of a functional of the form
+\begin{center}
+$J[y_1 ,..., y_n] = \int_{x_0}^{x_1} F(x, y_1 ,..., y_n, y'_1 ,..., y'_n) dx$
+\end{center}
+begining with the case where (1) depends on a single function y and hence reduces to 
+\begin{center}
+$J[y] = \int_{x_0}^{x_1} F(x, y, y') dx$
+\end{center}
+
+\textbf {Segment 14 End Points Lying on Two Given Curves or Surfaces} \\
+The first two chapters of this book have been devoted mainly to fixed end point problems, where the boundary conditions require that all admissible curves have two given end points. The only exception is the simple variable end point problem considered in Sec. 6, where the end points of the admissible curves are free to move along two fixed straight lines parallel to the y-axis. We now consider a more general variable end point problem. To keep matters simple, we start with the case where there is only one unknown function. our problem can be stated as follows: Among all smooth curves whose end points $P_0$ and $P_1$ lie on two given curves $y = \phi(x)$ and $y= \psi(x)$ find the curve for which the functional
+\begin{center}
+$J[y] = \int_{x_0}^{x_1} F(x, y, y') dx$
+\end{center}
+has an extremum. For example, the problem of finding the distance between two plane curves is of this type, with
+\begin{center}
+$F(x,y,y') = \sqrt{1 + y'^{2}}$
+\end{center}
+
+\textbf {Segment 15 Broken Extremals: The Weiestrass-Erdmann Conditions} \\
+So far, we have only considered functions defined for smooth curves and hence we have only permitted smooth solutions of variational problems. However, it is easy to give examples of variational problems which have no solutions in the class of smooth curves, but which have solutions if we extend the class of admissible curves to include piecewise smooth curves. Thus, consider the functional
+\begin{center}
+$J[y] = \int_{-1}^1 y^2(1-y')2 dx \tab y(-1)=0 \tab y(1) = 1$
+\end{center}
+which has a corner (i.e., a discontinuous first derivative) at the point x = 0.
+Such a piecewise smooth extremal with corners is called a broken extremal.
+Another problem involving broken extremals has already been encountered
+in Example 2, p. 20. There it is required to find the curve joining two points
+$(x_0, y_0)$ and $(x_1, y_1)$ which generates the surface of least area when rotated
+about the x-axis. As already noted, if $y_0$ and $y_1$ are sufficiently small
+compared to $x_1 - x_0$, the solution of the problem is given by the broken
+extremal $Ax_0x_1B$ shown in Fig. 2(b), p. 21. This extremal consists of three
+line segments (two vertical and one horizontal) and can be included in the
+class of piecewise smooth curves if we set up the problem in parametric form.
+Guided by the above considerations, we enlarge the class of admissible
+functions, relaxing the requirement that they be smooth everywhere. Thus,
+we pose the following problem : Among allfunctions y(x) which are continuously
+differentiable for $a \leq x \leq$ b except possibly at some point $c (a < c < b),$ and which satisfy the boundary conditions 
+\begin{center}
+y(a) = A \tab y(b) = B
+\end{center}
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

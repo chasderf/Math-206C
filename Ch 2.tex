@@ -1,0 +1,115 @@
+\documentclass{article}
+\usepackage{amsmath}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\begin{document}
+
+
+\title {Calculus of Variations Ch 2: Further Generalizations}
+
+\author{Charlie Seager}
+
+\maketitle
+
+\textbf {Chapter 2: Further Generalizations: Page 34, 9: The fixed end point problem for n unknown functions, page 34, 10 variational problems in parametric form, page 38 segment 11: functionals depending on Higher Order Derivatives, page 40 segment 12, Variational problems with subsidary conditions, page 42 problems, 50}
+
+\textbf {Segment 9 The fixed End Point Problem for n Unknown Functions}
+\\
+Let $F(x, y_1,..., y_n, z_1 ,..., z_n)$ be a function with continous first and second (partial) derivatives with respect to all its arguments.
+\\
+We are looking for an extremum of the functional (1) defined on the set of the set of smooth curves joining two fixed points in (n+1)-dimensional Euclidean space $\delta_{n+1}$. The problem of finding geodesics, i.e. shortest curves joining two points of some manifold, is of this type. The same kind of problem arises in geometric optics, in finding the paths along which light rays propagate in an inhomogeneous medium. Think about Fermat's principle.
+
+\textbf {Theorem} A necessary condition for the curve
+\begin{center}
+$y_t = y_t(x) \tab (i = 1 ,..., n)$
+\end{center}
+to be an extremal of the functional
+\begin{center}
+$\int_a^b F(x, y_1 ,..., y_n , y'_1 ,..., y'_n) dx$
+\end{center}
+is that the functions $y_1(x)$ satisfy the Euler equations (3)
+
+\textbf {Segment 10 Variational Problems in Parametric Form} So far, our functionals of curves are given by explicit equations so now we are going to cover functionals of curves in parametric form.
+
+\textbf {Theorem} A necessary and sufficient condition for the functional
+\begin{center}
+$\int_{t_0}^{t_1} \phi (t, x, y, \dot{x}, \dot{y}) dt$
+\end{center}
+to depend only on the curve in the xy-plane defined by the paramteric equations x = x(t), y = y(t) and not on the choice of the parametric representation of the curve, is that the intgrand $\phi$ should not involve t explicitly and should be a positive-homogenous function of degree 1 in $\dot{x}$ and $\dot{y}$
+
+\textbf {Segment 11 Functionals Depending on HIgher Order Derivatives}
+
+\textbf {Segment 12 Variational Problems with Subsidiary Conditions}
+\textbf {Segment 12.1 The isoperimetric problem} In the simplest variational problem considered in Chapter 1, the class of admissible curves was specified (apart from certain smoothness requirements) by conditions imposed on the end points of the curves. However, many applicationso f the calculus of variations lead to problems in which not only boundary counditions, but also conditions of quite a different type known as subsidiary conditions (synonymously, side conditions or constrains) are impsoed on the admissible curves
+
+\textbf {Theorem 1} Given the functional
+\begin{center}
+$J[y] = \int_a^b F(x,y, y') dx$
+\end{center}
+let the admissible curves satisfy the conditions
+\tab y(a) = A, \tab y(b) = B \tab K[y] = $\int_a^b G(x,y, y') dx = l$
+where K[y] is another funcitonal, and let J[y] have an extremum for y = y(x). Then if y = y(x) is not an extremal of K[y], there exists a constant $\lambda$ such that y = y(x) is an extremal of the funcitonal
+\begin{center}
+$\int_a^b (F + \lambda G) dx$
+\end{center}
+i.e. y = y(x) satisfies the differential equation
+\begin{center}
+$F_y = \frac{d}{dx} F_{y'} + \lambda (G_y - \frac{d}{dx} G_{y'}) = 0$
+\end{center}
+
+\textbf {12.2 Finite Subsidiary conditions} In the isoperimetric problem, the subsidiary conditions which must be satisfied by the functions $y_1 ,.., y_n$ are of the form (34) i.e. they are specified by the functionals. We now consider a problem of a different type, which can be stated as follows: Find the functions $y_1(x)$ for which the functional (32) has an extremum, where the admissible functions satisfy the boundary conditions
+\begin{center}
+$y_1(a) = A_1 \tab y_1(b) = B_1 \tab (i = 1 ,..., n)$
+\end{center}
+and k "finite" subsidiary conditions (k < n)
+\begin{center}
+$g_j(x, y_1,...,y_n) = 0 \tab (j = 1,..., k)$
+\end{center}
+
+\textbf {Theorem 2 } Given the functional
+\begin{center}
+$J[y,z] = \int_a^b F(x, y, z, y', z') dx$
+\end{center}
+let the admissible curves lie on the surface
+\begin{center}
+g(x,y,z) = 0
+\end{center}
+and satisfy the boundary conditions
+\begin{center}
+$y(a) = A_1 \tab y(b) = B_1$
+\end{center}
+
+\begin{center}
+$z(a) = A_2 \tab z(b) = B_2$
+\end{center}
+and moreover, let J[y] have an extremum for the curve
+\begin{center}
+y = y(x) \tab z = z(x)
+\end{center}
+Then if $g_y$ and $g_z$ do not vanish simultaneously at any given point of the surface (38) there exists a function $\lambda (x)$ such that (40) is an extremal of the functional
+\begin{center}
+$\int_a^b [F + \lambda (x) g] dx$
+\end{center}
+i.e. satisfies the differential equations
+\begin{center}
+$F_y + \lambda g_y - \frac{d}{dx} F_{y'} = 0$
+\end{center}
+
+\begin{center}
+$F_z + \lambda g_z - \frac{d}{dx} F_{z'} = 0$
+\end{center}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

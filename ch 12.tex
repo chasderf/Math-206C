@@ -1,0 +1,282 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{mathrsfs}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\begin{document}
+
+
+\title {Nonlinear Dynamics and Chaos: part 3: Chapter 12: Strange Attractors}
+
+\author{Charlie Seager}
+
+\date{5/3/2024}
+\maketitle
+
+\textbf {Chapter 12.0 Introduction} \\
+
+Our work in the previous three chapters has revealed quite a bit about chaotic systems, but something important is missing: intuition. We know what happens but not why it happens. For instance, we don't know what causes sensitive dependence on initial conditions, nor how a differential equation can generate a fractal attractor. Our first goal is to understand such things in a simple, geometric way. \\ \tab
+
+These same issues confronted scientists in the mid-1970. At the time, the only known examples of strange attractors were the Lorenz attractor (1963) and some mathematical constructions of Smale (1967). Thus there was a need for other concrete examples, preferably as transparent as possible. These were supplied by Henon (1976) and Rossler (1976) using the intuitive concepts of stetching and folding. These topics are discussed in Sections 12.1-12.3. The chapter concludes with experimental examples of strange attractos from chemistry and mechanics. In addition to their inherent interest, these examples illustrates the techniques of attractor reconstruction and Poincare sections, two standard methods for analyzing experimental data from chaotic systems. \\
+
+\textbf {Chapter 12.1 The Simplest Examples} \\
+
+Strange attractors have two properties that seem hard to reconcile. Trajectories on the attractor remain confined to a bounded region of phase space, yet they seperate from their neighbors exponentially fast (at least initially). How can trajectories diverge endlessly and yet stay bounded? \\ \tab
+
+The basic mechanism involves repeated stretching and folding. Consider a small blob of iniital conditions in phase space (Figure 12.1.1). \\
+
+\includegraphics{fig_1211}
+
+A strange attractor typically arises when the flow contracts the blob in some directions (reflecting the dissipation in the system) and stetches it in others (leading to sensitive dependence on initial conditions). The stretching cannot go on forever-the distorted blob must be folded back on itself to remain in the bounded region. \\ \tab
+
+To illustrate the effects of stretching and folding, we consider a domestic example. \\
+
+\textbf {Making Pastry} \\
+
+Figure 12.1.2 shows a process used to make filo pastry or croissant \\
+
+\includegraphics{fig_1212}
+
+The dough is rolled out and flattened, then folded over, then rolled out again, and so on. After many repititions, the end product is a flaky, layered structure-the culinary analog of a fractal attractor. \\ \tab
+
+Furthermore, the process shown in Figure 12.1.2 automatically generates sensitive dependence on initial conditions. Suppose that a small drop of food coloring is put in the dough, representing nearby initial conditions. After many iterations of stretching, folding, and re-injection, the coloring will be spread throughout the dough. \\ \tab
+
+Figure 12.1.3 presents a more detailed view of this pastry map, here modeled as a continuous mapping of a rectangle into itself. \\
+
+\includegraphics{fig_1213}
+
+The rectangle abcd is flattened, streched, and folded into the horseshoe a'b'c'd', also shown as $S_{1}$. In the same way, $S_{1}$ is itself flattened, stretched and folded into $S_{2}$, and so on. As we go from one stage to the next, the layers become thinner and there are twice as many of them. \\ \tab
+
+Now try to picture the limiting set $S_{\infty}$. It consists of infinitely many smooth layers, sperated by gaps of various sizes. In fact, a vertical cross section through the middle of $S_{\infty}$ would resemble a Cantor set! Thus $S_{\infty}$ is (locally) the product of a smooth curve with a cantor set. The fractal structure of the attractor is a consequence of the stretching and folding that created $S_{\infty}$ in the first place. \\
+
+\textbf {Terminology} \\ \tab
+
+The transformation shown in Figure 12.1.3 is normally called a horseshoe map, but we have avoided that name because it encourages confusion with another horseshoe map (the Smale horseshoe), which has very different properties. In particular, Smale's horseshoe map does not have a strange attractor; its invariorous discussion of chaos, but its analysis and significance are best deferred ot a more advanced course. See Excercise 12.1.7 for an introduction, and Guckenheimer and Holmes (1983) or Arrowsmith and Place (1990) for detailed treatments. \\ \tab
+
+Because we want to reserve the word horseshoe for Smale's mapping, we have used the name pastry map for the mapping above. A better name would be "the baker's map" but that name is already taken by the map in the following example. \\
+
+\textbf{The Importance of Dissipation} \\
+
+For $a< \frac{1}{2}$, the baker's map shrinks areas in phase space. Given any region R in the square, \\ \tab \tab
+area(B(R))< area(R) \\
+
+This result follows from elementary geometry. The baker's map elongates R by a factor of 2 and flattens it by a factor of a, so area(B(R))=2a x area (R). Since $a<\frac{1}{2}$ by assumption, area(B(R))<area(R) as required. (Note that the cutting operation does not change the region's area). \\ \tab
+Area contraction is the analog of the volume contraction that we found for the Lorenz equations in Section 9.2. As in that case, it yields several conclusions. For instance, the attractor A for the baker's map must have zero area. Also, the baker's map cannot have any repelling fixed points, since such points would expand area elements in their neighborhood. \\ \tab
+
+In contrast, when $a=\frac{1}{2}$ the baker's map is area-preserving: area(B(R))=area(R). Now the square S is mapped onto itself, with no gaps between the strips. The map has qualitatively different dynamics in this case. Transients never decay-the orbits shuffle around endlessly in the square but never settle down to a lower dimensional attractor. This is a kind of chaos that we have not seen before! \\ \tab
+
+This distinction between $a<\frac{1}{2}$ and $a=\frac{1}{2}$ exemplifies a broader theme in nonlinear dynamics. In general, if a map or flow contracts volumes in phase space, it is called dissipative. Dissipative systems commonly arise as models of physical situations involving friction, viscosity, or some other proces that dissipates energy. In contrast, area-preserving maps are associated with conservative systems, particularly with the Hamiltonian systems of classical mechanics. \\ \tab
+
+The distinction is crucial because area-preserving maps cannot have attractors (strange or otherwise). As defined in Section 9.3, an "attractor" should attract all orbits starting in a sufficiently small open set containing it; that requirement is incompatible with area-preservation. \\ \tab
+
+Several of the exercises give a taste of the new phenomena that arise in area-preserving maps. To learn more about the fascinating world of Hamiltonian chaos, see the review articles by Jensen (1987) or Henon (1983), or the books by Tabor (1989) or Litchtenberg and Lieberman (1992). \\
+
+\textbf {Chapter 12.2 Henon Map} \\
+
+In this section we discuss another two-dimensional map with a strange attractor. It was devised by the theoretical astronomer Micheal Henon (1976) to illuminate the microstructure of strange attractors. \\ \tab
+
+According to Gleick (1987, p.149), Henon became interested in the problem after hearing a lecture by the Physicist Yves Pomeau, in which Pomeau described the numerical difficulties he had encountered in trying to resolve the tightly packed sheets of the Lorenz attractor. The difficulties stem from the rapid volume contraction in the Lorenz system: after one circuit around the attractor, a volume in phase space is typically squashed by a factor of about 14,000 (Lorenz 1963). \\ \tab
+
+Henon had a clever idea. Instead of tackling the Lorenz system directly, he sought a mapping that captured its essential features but which also had an adjustable amount of dissipation. Henon chose to study mappings rather than differential equations because maps are faster to simulate and their solutions can be followed more accurately and for a longer time. \\ \tab
+The Henon map is given by \\ \tab \tab
+$x_{n+1}=y_{n}+1-ax_{n}^{2}, \tab y_{n+1}=bx_{n}$ \tab (1) \\
+where a and b are adjustable paramters. Henon (1976) arrived at this map by an elegant line of reasoning. To simulate the stretching and folding that occurs in the Lorenz system, he considered the following chain of transformations (Figure 12.2.1). \\
+
+\includegraphics{fig_1221}
+
+Start with a rectangular region elongated along the x-axis (Figure 12.2.1a). Stetch and fold the rectangle by applying the transformation \\ \tab \tab
+
+$T': x'=x, y'=1+y-ax^{2}$. \\
+
+(The primes denote iteration, not differentiation). The bottom and top of the rectangle get mapped to parabolas (Figure 12.2.1b). The parameter a controls the folding. Now fold the region even more by contracting Figure 12.2.1b along the x-axis: \\ \tab \tab
+
+$T'': x"=bx', \tab y"=y'$ \\
+
+where $-1<b<1$. This produces Figure 12.2.1c. Finally, come back to the orientation along the x-axis by reflecting across the line y=x (Figure 12.2.1d): \\ \tab \tab
+
+$T"'=x"'=y", \tab y"' = x"$. \\
+
+Then the composite transformation $T=T''' T'' T'$ yields the Hanon mapping (1), where we use the notation $(x_{n}, y_{n})$ for (x,y) and $(x_{n+1},y_{n+1})$ for $(x'", y"')$. \\ 
+
+\textbf {Elementary Properties of the Henon Map} \\ \tab
+
+As desired, the Henon map captures several properties of the Lorenz system. (These properties will be verified in the examples below and in the excercises). \\ \tab \tab
+1. The Henon map is invertible. This property is the counterpart of the fact that in the Lorenz system, there is a unique trajectory through each point in phase space. In particular, each point has a unique past. In this respect the Henon map is superior to the logistic map, its one-dimensional analog. The logistic map stretches and folds the unit interval, but it is not invertible since all points (except the maximum) come from two pre-images. \\ \tab \tab
+2. The Henon map is dissipative. It contracts areas, and does so at the same rate everywhere in phase space. This property is the analog of constant negative divergence in the Lorenz system. \\ \tab \tab
+
+3. For certain parameter values, the Henon map has a trapping region. In other words, there is a region R that gets mapped inside itself (Figure 12.2.2). As in the Lorenz system, the strange attractor is enclosed in the trapping region. \\
+
+\includegraphics{fig_1222} 
+
+\tab \tab The next property highlights an important difference between the Henon map and the Lorenz system. \\ 
+4. Some trajectories of the Henon map escape to infinity. In contrast, all trajectories of the Lorenz system are bounded; they all eventually enter and stay inside a certain large ellipsoid (Exercise 9.2.2). But it is not surprising that the Henon map has some unbounded trajectories; far from the origin, the quadratic term in (1) dominates and repels orbits to infinity. Similar behavior occurs in the logistic map-recall that orbits starting outside the unit interval eventually become unbounded. \\ 
+
+Now we verify properties 1 and 2. For 3 and 4, see Exercises 12.2.9 and 12.2.10. \\
+
+\textbf {Choosing Parameters} \\ \tab
+
+The next step is to choose suitable values of the parameters. As Henon (1976) explains, b should not be too close to zero, or else the area contraction will be excessive and the fine structure of the attractor will be invisible. But if b is too large, the folding won't be strong enough. (Recall that b plays two roles: it conrtols the dissipation and produces extra folding in going from Figure 12.2.1b to figure 12.2.1c). A good choice is b=0.3. \\ \tab
+
+To find a good value of a, Henon had to do some exploring. If a is too small or too large, all trajectories escape to infinity: there is no attractor in these cases. (This is reminiscent of the logistic map, where almost all trajectories escape to infinity unless $0 \leq 4 \leq 4$). For intermediate values of a, the trajectories either escape to infinity or approach an attractor, depending on the initial conditions. As a increases through or approach an attractor, depending on the initial conditions. As a increases through this range, the attractor changes from a stable fixed point to a stable 2-cycle. The system then undergoes a period-doubling route to chaos, followed by chaos intermingled with periodic windows. Henon picked a=1.4, well into the chaotic region. \\ 
+
+\textbf {Zooming in on a strange attractor} \\ \tab
+
+In a stricking series of plots, Henon provided the first direct visualization of the fractal structure of a strange attractor. He set a=1.4, b=0.3 and generated the attractor by computing ten thousand successive iterates of (1), starting from the origin. You really must try this for yourself on a computer. The effect is eerie-the points $(x_{n},y_{n})$ hop around erratically, but soon the attractor begins to take form, "like a ghost out of the mist" (Gleick 1987, p.150). \\ \tab
+
+The attractor is bent like a boomerang and is made of many parallel curves (Figure 12.2.3a) \\
+
+\includegraphics{fig_1223}
+
+Figrue 12.2.3b is an enlargement of the small square of Figure 12.2.3a. The characteristic fine structure of the attractor begins to emerge. There seem to be six parallel curves: a long curve near the middle of the frame, then two closely spaced curves above it, and then three more. If we zoom in on those three curves (Figure 12.2.3c), it becomes clear that they are actually six curves, grouped one, two, three, exactly as before! And those curves are themselves made of thinner curves in the same pattern, and so on. The self-similarity continues to arbitrarily small scales. \\
+
+\textbf {The unstable Manifold of the Saddle Point} \\ \tab
+
+Figure 12.2.3 suggests that the Henon attractor is Cantor-like in the transverse direction, but smooth in the longitudinal direction. There's a reason for this. The attractor is closely related to a locally smooth-object. To be more precice, Benedicks and Carleson (1991) have proven that the attractor is the closure of a branch of the unstable manifold; see also Simo (1979). \\ \tab
+
+Hobson (1993) has recently developed a method for computing this unstable manifold to very high accuracy. As expected, it is indistinguishible from the strange attractor. Hobson also presents some enlargement of less familiar parts of the Henon attractor, one of which looks like Saturn's rings (Figure 12.2.4). \\
+
+\includegraphics{fig_1224}
+\\
+
+\textbf {Chapter 12.3 Rossler System} \\
+So far we have used two-dimensional maps to help us understand how stretching and folding can generate strange attractors. Now we return to differential equation. \\ \tab
+
+In the culinary spirit of the pastry map and the baker's map, Otto Rossler (1976) found inspiration in a taffy-pulling machine. By pondering its action, he was led to a system of three differential equations with a simpler strange attractor than Loren's. The Rossler system has only one quadratic nonlinearity xz: \\ \tab \tab
+
+$\dot{x}=-y-z \\ \tab \tab
+\dot{y}=x+ay \\ \tab \tab
+\dot{z}=b+z(x-c)$ \tab (1) \\
+
+We first met this system in Section 10.6, where we saw that it undergoes a period-doubling route to chaos as c is increased. \\ 
+Numerical integration shows that this system has a strange attractor for a=b=0.2, c=5.7 (Figure 12.3.1). A schematic version of the attractor is shown in Figure 12.3.2. Neighboring trajectories seperate by spiraling out ("stetching"), then cross without intersecting by goinog into the third dimension ("folding") and then circulate back near their starting places ("re-injection"). We can now see why three dimensions are needed for a flow to be chaotic. \\ \tab
+Let's consider the schematic picture in more detail, following the visual approach of Abraham and Shaw (1983). our goal is to construct a geometric model of the Rossler attractor, guided by the stretching, folding, and re-injection seen in numerical integrations of the system. \\
+
+\includegraphics{fig_1231}
+
+\tab Figure 12.3.3a shows the flow near a typical trajectory. In one direction there's compression toward the attractor, and in the other direction there's divergence along the attractor. Figure 12.3.3b highlights the sheet on which there's sensitive dependence on initial conditions. These are the expanding directions along which stetching takes place. Next the flow folds the wide part of the sheet in two and then bends it around so that it nearly joins the narrow part (Figure 12.3.4a). Overall, the flow has taken the single sheet and produced two sheets after one circuit. Repeating the process, those two sheets produce four (Figure 12.3.4b) and then those produce eight (Figure 12.3.4c), and so on. \\
+
+\includegraphics{fig_1232}
+
+\includegraphics{fig_1233}
+
+\includegraphics{fig_1234}
+
+\tab In effect, the flow is acting like the pastry transformation, and the phase space is acting like the dough! Ultimately the flow generates an infinite complex of lightly packed surfaces: the strange attractor. \\ \tab
+
+Figure 12.3.5 shows a Poincare section of the atractor. We slice the attractor with a plane, thereby exposing its cross section. (In the same way, biologists examine complex three-dimensional structures by slicing them and preparing slides.) If we take a further one-dimensional slice or Lorenz section through the Poincare section, we find an infinite set of points seperated by gaps of various sizes. \\ 
+
+\includegraphics{fig_1235}
+
+\tab This pattern of dots and gaps is a topological Cantor set. Since each dot correspond to one layer of the compelx, our model of the Rossler attractor is a Cantor set of surfaces. More precisely, the attractor is locally topologically equivalent to the Cartesian product of a ribbon and a Cantor set. This is precisely the structure we would expect, based on our earlier work with the pastry map. \\
+
+\textbf {Chapter 12.4 Chemical Chaos and Attractor Reconstruction} \\
+
+In this section we describe some beautiful experiments on the Belousov-Zhabotin-sky chemical reaction. The results show that strange attractors really do occur in nature, not just in mathematics. For more about chemical chaos, see Argoul et al. (1987). \\ \tab
+In the BZ reaction, malonic acid is oxidized in an acidic medium by bromate ions, with or without a catalyst (usually cerous or ferrous ions). It has been known since the 1950s that this reaction can exhibit limit-cycle oscillations, as discussed in Section 8.3. By the 1970s it became natural to inquire whether the BZ reaction could also become chaotic under appropiate conditions. Chemical chaos was first reported by Schmitz, Graziani, and Hudson (1977), but their results left room for skepticism-some chemists suspected that the observed complex dynamics might be due instead of uncontrolled fluctuations in experimental control parameters. What was needed was some demonstration that the dynamics obeyed the newly emerging laws of chaos. \\ \tab
+
+The elegant work of Roux, Simoyi, Wolf, and Swinney established the reality of chemical chaos (Simoyi et al. 1982, Roux et al 1983). They conducted an experiment on the BZ reaction in a "continuous flow stirred tank reactor". In this standard set-up, fresh chemicals are pumped through the reactor at a constant rate to replenish the reactants and to keep the system far from equilibrium. The flow rate acts as a control parameter. The reaction is also stirred continuously to mix the chemicals. this enforces spartial homogeneity, thereby reducing the effective number of degrees of freedom. The behavior of the reaction is monitored by measuring B(t), the concentration of Bromide ions. \\ \tab
+
+Figure 12.4.1 shows a time series measured by Roux et al. (1983). At first glance the behavior looks periodic, but it really isn't - the amplitude is erratic. Roux et al (1983) argued that this aperiodicity corresponds to chaotic motion on a strange attractor, and is not merely random behavior caused by imperfect experimental control. \\
+
+\includegraphics{fig_1241}
+
+\tab The first step in their argument is almost magical. Put yourself in their shoes-how could you demonstrate the presence of an underlying strange attractor, given that you only measure a single time series B(t)? It seems that there isnt enough information. Ideally, to characterize the motion in phase space, you would like to simultaneously measure the varying concentrations of all the other chemical species involved in the reaction. But that's virtually impossible, since there are at least twenty other chemical species, not to mention the ones that are unknown. \\ \tab
+
+Roux et al (1983) exploited a surprising data-analysis technique, now known as attractor reconstruction (Packward et al. 1980, Takens 1981). The claim is that for systems governed by an attractor, the dynamics in the full phase space can be reconstructured from measurements of just a single time series! Somehow that single variable carries sufficient information about all the others. \\ \tab
+
+The method is based on time delays. For instance, define a two-dimensional vector $x(t)=(B(t), B(t+\tau))$ for some delay $\tau > 0$. Then the time series B(t) generates a trajectory x(t) in a two-dimensional phase space. Figure 12.4.2 shows the result of this procedure when applied to the data of figure 12.4.1 using $\tau=8.8$ seconds. The experimental data trace out a straange attractor that looks remarkably like the Rossler attractor! \\ \tab
+
+Roux et al. (1983) also considered the attractor in three-dimensional vector $x(t)=(B(t),B(t+\tau), B(t+2\tau))$. To obtain a Poincare section of the attractor, they computed the intersections of the orbits x(t) with a fixed plane approximately normal to the plane approximately normal as a dashed line in Figure 12.4.2). Within the experimental resolution, the data falls on a one-dimensional curve. Hence the chaotic trajectories are confined to an approximately two-dimensional sheet. \\ \tab 
+
+Roux et al. then constructed an approximate one-dimensional map that governs the dynamics on the attractor. Let $X_{1},X_{2},...,X_{n},X_{n+1}+...$ denote successive values of $B(t+\tau)$ at points where the orbit x(t) corsses the dashed line shown in Figure 12.4.2. A plot of $X_{n+1}$ vs $X_{n}$ yields the result shown in Figure 12.4.3. The data fall on a smooth one-dimensional map, within experimental resolution. This confirms that the observed aperiodic behavior is governed by deterministic laws: Given $X_{n}$, the map determines $X_{n+1}$. \\ 
+
+\includegraphics{fig_1243}
+
+\tab Furthermore, the map is unimodal, like the logistic map. This suggests that the chaotic state shown in Figure 12.4.1 may be reached by a period-doubling scenario. Indeed such period-doublings were found experimentally (Coffman et al. 1987), as shown in Figure 12.4.4.  \\
+
+\includegraphics{fig_1244} 
+
+\tab The final nail in the coffin was the demonstration that the chemical system obeys the U-sequence expected for unimodal maps (Section 10.6). In the regime past the onset of chaos, Roux et al. (1983) observed many distinct periodic windows. As the flow rate was varied, the periodic states occurred in precisely the order predicted by universality theory. \\ \tab
+
+Taken together, these results demonstrate that deterministic chaos can occur in a nonequilibrium chemical system. The most remarkable thing is that the results can be understood (to a large extent) in terms of one-dimensional maps, even though the chemical kinetics are at least twenty-dimensional. Such is the power of universality theory. \\ \tab
+
+But let's not get carried away. The universality theory works only because the attractor is nearly a two-dimensional surface. This low dimensionality results from the continuous stirring of the reaction, along with strong dissipation in the kinetics themselves. Higher-dimensional phenomena like chemical turbulence remain beyond the limits of the theory. \\
+
+\textbf {Comments on Attractor Reconstruction} \\ \tab
+
+The key to the analysis of Roux et al. (1983) is the attractor reconstruction. There are at least two issues to worry about when implementing the method. \\ \tab
+First, how does one choose the embedding dimension, i.e., the number of delays? Should the time series be converted to a vector with two components, or three or more? Roughly speaking, one needs enough delays so that the underlying attractor can disentangle itself in phase space. The usual approach is to increase the embedding dimension and then compute the correlation dimensions of the resulting attractors. The computed values will keep increasing until the embedding dimension is large enough; then there's enough room for the attractor and the estimated correlation dimension will level off at the "true" value. \\ \tab
+
+Unfortunately, the method breaks down once the embedding dimension is too large; the sparsity of data in phase space causes statistical sampling problems. This limits our ability to estimate the dimension of high-dimensional attractors. For further discussion, see Grassberger and and Procaccia (1983). Eckmann and Ruelle (1985) and Moon (1992). \\ \tab
+
+A second issue concerns the optimal value of the delay $\tau$. For real data (which are always contaminated by noise), the optimum is typically around one-tenth to one-half the mean orbital period around the attractor. See Fraser and Swinney (1986) for details. \\ \tab
+
+The following simple example suggests why some delays are better than others.  \\
+
+ \textbf {Chapter 12.5 Forced Double-Well Oscillator} \\
+
+So far, all of our examples of strange attractors have come from autonomous systems, in which the governing equations have no explicit time-dependence. As soon as we consider forced oscillators and other nonautonomous systems, strange attractors start turning up everywhere. That is why we have ignored driven systems until now-we simply didn't have the tools to deal with them. \\ \tab
+
+This section provides a glimpse of some of the phenomena that arise in a particular forced oscillator, the driven double-well oscillator studied by Francis Moon and his colleagues at Cornell. For some more information about this system, see Moon and Homes (1979), Homes (1979), Guckenheimer and Holmes (1983), Moon and Li (1985) and Moon (1992). For introductions to the vast subject of forced nonlinear oscillations, see Jordan and Smith (1987), Moon (1992), Thompson and Stewart (1986), Guckenheimer and Holmes (1983). \\
+
+\tab 
+
+\textbf {Magneto-Elastic Mechanical System} \\ \tab
+
+Moon and Holmes (1979) studied the mechanical system shown in Figure 12.5.1. \\
+
+\includegraphics{fig_1251} 
+
+A slender steel beam is clamped in a rigid framework. Two permanent magnets at the base pull the beam in opposite directions. The magnets are so strong that the beam buckles to one side or the other; either configuration is locally stable. These buckled states are seperated by an energy barrier, corresponding to the unstable equilibrium in which the beam is straight and posed halfway between the magnets. \\
+
+\tab To drive the system out of its stable equilibrium, the whole apparatus is shaken from side to side with an electromagnetic vibration generator. The goal is to understand the forced vibrations of the beam as mentioned by x(t), the displacement of the tip from the midline of the magnets. \\
+
+\tab For weak forcing, the beam is observed to vibrate slightliy while staying near one or the other magnet, but as the forcing is slowly increased, there is a sudden point at which the beam begins whipping back and forth erratically. The irregular motion is sustained and can be observed for hours-tens of thousands of drive cycles. \\ 
+\textbf{Double-Well Analog} \\ \tab
+
+The magneto-elastic system is representative of a wide class of driven bistable systems. An easier system to visualize is a damped particle in a double-well potential (Figure 12.5.2). Here the two wells correspond to the two buckled states of the beam, seperated by the hump at x=0. \\
+
+\includegraphics{fig_1252}
+
+Suppose the well is shaken periodically from side to side. On physical grounds what might we expect? If the shaking is weak, the particle should stay near the bottom of a well, jiggling slightly. For stronger shaking, the particle's excursions become larger. We can imagine that there are (at least) two types of stable oscillation: a small-amplitude, low-energy oscillation about the bottom of a well; and a large-amplitude, high energy oscillation in which the particle goes back and forth over the hump, sampling one well and then the other. The choice between these oscillations probably depends on the initial conditions? Finally, when the shaking is extremely strong, the particle is always flung back and forth across the hump, for any initial conditions. \\ \tab
+
+We can also anticipate an intermediate case that seems complicated. If the particle has barely enough to climb to the top of the hump, and if the forcing and damping are balanced in a way that keeps the system in this precarious state, then the particle may sometimes fall one way, sometimes the other, depending on the precise timing of the forcing. This case seems potentially chaotic. \\ \tab
+
+\textbf {Model and Simulations} \\
+
+Moon and Holmes (1979) modeled their system with the dimensionless equation \\
+
+$\ddot{x}+\delta \dot{x} - x + x^{3} = F cos \omega t$ \tab (1) \\
+
+where $\delta > 0$ is the damping constant, F is the forcing strength and $\omega$ is the forcing frequency. Equation (1) can also be viewed as Newton's law for a particle in a double-well potential of the form $V(x)= \frac{1}{4}x^{4}-\frac{1}{4}x^{2}$. In both cases, the force $Fcos \omega$ is an inertial force that arises from the oscillation of the coordinate system; recall that x is defined as the displacement relative to the moving frame, not the lab frame. \\ \tab
+
+The mathematical analysis of (1) requires some advance techniques from global bifurcation theory; see Holmes (1979) or secction 2.2 Guckenheimer and Holmes (1983). Our more modest goal is to gain some insight into (1) through numerical simultations. \\ \tab
+
+In all the simulations below, we fix \\ \tab \tab
+
+$\delta = 0.25, \omega=1$ \\
+
+while varying the forcing strength F. \\
+
+\textbf {Fractal Basin Boundaries} \\
+
+\tab Example 12.5.3 shows that it can be hard to predict the final state of the system, even when that state is simple. This sensitivity to initial conditions is conveyed more vividly by the following graphical method. Each initial condition in a 900x900 grid is color-coded according to its fate. If the trajectory starting at $(x_{0},y_{0})$ ends up in the left well, we place a blue dot at $(x_{0}, y_{0})$; if the trajectory ends up in the right well, we place a red dot. \\ \tab
+Color plate 3 shows the computer generated result for (1). The blue and red regions are essentially cross sections of the basins of attraction for the two attractors, to the accuracy of the grid. Color plate 3 shows large patches in which all the points are colored red, and others in which all the points are colored blue. In between, however, the slightest change in initial conditions leads to alternations in  the final state reached. In fact, if we magnify these regions, we see further between the basins as a fractal. Near the basin boundary, long-term prediction becomes essentially impossible, because the final state of the system is exquisitely sensitive to tiny changes on initial condition (Color plate 4). \\
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

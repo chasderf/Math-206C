@@ -1,0 +1,97 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\begin{document}
+
+
+\title {Nonlinear Dynamics and Chaos: part 1. One-dimensional Flows Ch 2 Flows on the line}
+
+\author{Charlie Seager}
+
+\maketitle
+
+\textbf {Chapter 1 was just an overview explaining the history of dynamics starting with Newton combining his theories with Keplers}
+
+\textbf {Chapter 2.1 A geometric way of thinking} \\ Pictures are often more helpful than formulas for analyzing nonlinear systems. We will introduce one of the most basic techniques of dynamics: interpreting a differential equation as a vector field. An imaginary partical is also known as a phase point.
+
+\textbf {Chapter 2.2} This shows us an example of an electrical circuit which is a linear system
+\includegraphics{fig_223}
+\textbf {Chapter 2.3 Population growth} 
+The simplest model for the growth of a population of organisms is $\dot{N} = rN$, where N(t) is the population at time t, and $r > 0$ is the growth rate  \\
+\includegraphics[scale=0.5]{population_growth_fig_231}
+
+This model predicts exponential growth: $N(t) = N_{0}e^{rt}$ where $N_{0}$ is the population at t=0. \\
+Of course such exponential growth cannot go on forever. To model the effects of overcrowding and limited resources, population biologists and demographers often assume that the per capita growth rate $N/N$ as shown in Fig. 2.3.1. However, for populations larger than a certain carrying capacity K, the growth rate actually becomes negative; the death rate is higher than the birth rate. \\
+A mathematically convenient way to incorporate these ideas is to assume that the per capita growth rate $N/N$ decreases linearly with N (Fig 2.3.2)
+
+\includegraphics{fig_232}
+
+This leads to the logistic equation 
+\begin{center}
+$\dot{N} = rN(1-\frac{N}{K})$
+\end{center}
+first suggested to describe the growth of human populations by Verhulst in 1838. This equation can be solved analytically but once again we prefer a graphical approach. We plot N versus N to see what the vector field looks like. Note that we plot N versus N to see what the vector field looks like. Note that we plot only $N \geq 0$ since it makes no sense to think about a negative population (Figure 2.3.3). Fixed points occur at $N* = 0$ and $N* = k$ as found by setting N=0 and solving for N. By looking at the flow in Figure 2.3.3, we see that $N*=0$ is an unstable fixed point and $N* = K$ is a stable fixed point. In biological terms N=0 is an unstable equilibrium, a small population will grow exponentially fast and run away from N=0. On the other hand, if N is disturbed slightly from K, the disturbance will decay monotonically and $N(t) \to K$ as $t \to \infty$.
+
+Fun fact, fig 2.3.3 shows that if we start a phase point at any $N_{0}>0$ it will always flow toward N=K. Hence the population always approaches the carrying capacity \\
+
+The only exception is if $N_{0}=0$; then theres nobody around to start reproducing and so N=0 for all time (The model does not allow for spontaneous generation!)
+
+\includegraphics{fig_233}
+
+Fig 2.3.3 also allows us to reduce the qualitative shape of the solutions for example if $N_{0} < K/2$ the phase point moves faster and faster until it crosses $N=K/2$ where the parabola in Fig 2.3.3 reaches its maximum. Then the phase point slows down and eventually creeps toward $N=K$. In biological terms, this means that the population initally grows in an accelerating fashion, and the graph of N(t) is concave up. But after N = K/2, the derivative N begins to decrease, and so N(t) is concave down as it asymptotes to the horizontal line N=K (Fig 2.3.4) Thus the graph of N(t) is S-shaped or sigmoid for $N_{0}<K/2$
+
+\includegraphics{fig_234}
+
+Something qualitatively different occurs if the initial condition $N_{0}$ lies between K/2 and K; now the solutions are concave down for all t. If the population initially exceeds the carrying capacity $(N_{0} > K)$, then N(t) decreases toward N=K and is concave up. Finally if $N_{0}=0$ or $N_{0}$, then the population stays constant. \\
+
+\textbf {Critique of the logistic model} \\ Before leaving this example, we should make a few comments about the biological validity of the logistic equation. The algebraic form of the model is not to be taken literally. The model should really be regarded as a metaphor for populations that have a tendency to grow from zero population up to some carrying capacity K. \\
+
+Originally a much stricter interpretation was proposed and the model was argued to be a universal law of growth (Pearl 1927). The logistic equation was tested in lab experiments with colonies of bacteria, yeast, or other simple organisms were grown in conditions with constant climate, food supply, and absence of predators. For a good review of this literature, see Krebs (1972 pp. 190-200). These experiments often yielded sigmoid growth curves, in some cases with an impressive match to the logistic predictions. \\
+On the other hand the agreement was much worse for fruit flies, four beetles and other organisms that have complex life cycles, involving eggs, larvae, pipae and adults. In these organisms, the predicted asymptotic approach to a steady carying capacity was never observed -- instead the populations exhibited large, persistant fluctuations after an intial period of logistic growth. See Krebs(1972) for a discussion of the possible causes of these fluctuations, including age structure and time-delayed effects of overcrowding in the population.
+
+\textbf {Chapter 2.4 Linear Stability Analysis}
+
+\textbf {Chapter 2.5 Existence and uniqueness}
+
+Our treatment of vector fields has been very informal. In particular, we have taken a cavalier attitude toward questions of existence and uniqueness of solutions to the system $\dot{x} = f(x)$. That's in keeping with the "applied" spirit of this book. Nevertheless, we should be aware of what can go wrong in pathological cases.
+
+\textbf {Chapter 2.6 Impossibility of Oscillations}
+
+Fixed points dominate the dynamics of first-order systems. In all our examples so far, all trajectories either approached a fixed point, or diverged to $+- \infty$. In fact, those are the only things that can happen for a vector field on the real line. The reason is that trajectories are forced to increase or decrease monotonically, or remain constant (Fig 2.6.1). To put it more geometrically, the phase point never reverses direction.
+
+\includegraphics{fig_261}
+
+Thus, if a fixed point is regarded as an equilibrium solution, the approach to equilibrium is always monotonic -- overshoot and damped oscillations can never occur in a first-order system. FOr the same reason, undamped oscillations are impossible. Hence there are no periodic solutions to $\dot{x} = f(x)$. \\
+These general results are fundamentally topological in origin. They reflect the fact that $\dot{x} = f(x)$ corresponds to flow on a line. If you flow monotonically on a line, you'll never come back to your starting place -- that's why periodic solutions are impossible. (Of course, if we were dealing with a circle rather than a line, we could eventually return to our starting place. Thus vecor on the circle can exhibit periodic solutions, as we discuss in chapter 4).
+
+\textbf {Chapter 2.7 Potentials}
+
+There's another way to visualize the dynamics of the first-order system $\dot{x} = f(x)$ based on the physical idea of potential energy. We picture a particle sliding down the walls of a potential well, where the potential V(x) is defined by 
+\begin{center}
+$f(x) = - \frac{dV}{dx}$
+\end{center}
+As before, you should imagine that the particle is heavily damped -- its inertia is completely negligible compared to the damping force and the force due to the potential.
+
+\textbf {Chapter 2.8 Solving equations on the computer}
+Throughout this chapter we have used graphical and analytical methods to analyze first order systems. Every budding dynamicist should master a third tool: numerical methods. In the old days, numerical methods were impractical because they required enormous amounts of tedious hand-calculation. Computers enable us to approximate the solutions to analytically interactable problems and also to visualize those solutions. In this section we take our first look at dynamics on the computer, in the context of numerical integration of $\dot{x}=f(x)$. \\
+Numerical integration is a vast subject. We will barely scratch the surface. See chapter 15 of press et al for an excellent treatment. 
+\textbf {Euler's Method}
+The problem can be posed this way: given the differential equation $\dot{x}=f(x)$ subject to the condition $x=x_{0}$ at $t=t_{0}$, find a systematic way to approximate the solution x(t).
+
+Suppose we use the vector field interpretation of $\dot{x} = f(x)$. That is, we think of a fluid flowing steadily on the x-axis with velocity f(x) at the location x. Imagine we're riding along with a phase point being carried downstream by the fluid. Initially we're at $x_{0},$ and the local velocity is $f(x_{0})$. If we flow for a short time $\triangle{t},$ we'll have moved a distance $f(x_{0})\triangle{t}$ because distance = rate x time. Of course thats not quite right, because our velocity was changing a little bit throughout the step. But over a sufficiently small step, the velocity will be nearly constant and our approximation should be reasonably good. Hence our new position $x(t_{0}+\triangle{t})$ is approximately $x_{0} + f(x_{0})\triangle{t}$. Let's call this approximation $x_{1}$. Thus 
+\begin{center}
+$x(t_{0} + \triangle{t}) \approx x_{1} = x_{0} + f(x_{0})\triangle{t}$
+\end{center}
+
+Now we iterate. Our approximation has taken us to a new location $x_{1}$; our new velocity is $f(x_{1});$ we step forward to $x_{2} = x_{1} + f(x_{1})\triangle{t}$; and so one. In general, the update rule is 
+\begin{center}
+$x_{n+1} = x_{n} + f(x_{n})\triangle{t}$
+\end{center}
+
+This is the simplest possible numerical integration scheme. It is known as Euler's method.
+\\
+The rest of the chapter reviews the improved Euler's method and Runge Kutta method
+
+
+\end{document}

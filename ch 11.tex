@@ -1,0 +1,163 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{mathrsfs}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\begin{document}
+
+
+\title {Nonlinear Dynamics and Chaos: part 3: Chapter 11 Fractals}
+
+\author{Charlie Seager}
+
+\date{5/2/2024}
+\maketitle
+
+\textbf {Chapter 11.0 Introduction} \\
+
+Back in Chapter 9, we found that the solutions of the Lorenz equations settle down to a complicated set in phase space. This set is the strange attractor. As Lorenz (1963) realized, the geometry of this set must be very perculiar, something like an "infinite complex of surfaces." In this chapter we develop the ideas needed to describe such strange sets more precisely. The tools come from fractal geometry. \\ \tab
+
+Roughly speaking, fractals are complex geometric shapes with fine structure at arbitrarly small scales. Usually they have some degree of self similarity. In other words, if we magnify a tiny part of a fractal, we will see features reminiscent of the whole. Sometimes the similarity is exact; more often is only approximate or statistical. \\ \tab
+Fractals are of great interest because of their exquisite combination of beauty, complexity, and endless structure. They are reminiscent of natural objects like mountains, clouds, coastlines, blood vessel networks, and even broccoli, in a way that classical shapes like cones and squares can't match. They have also turned out to be useful in scientifc application ranging from computer graphics and image compression to the structural mechanics of cracks and the fluid mechanics of viscous fingering. \\ \tab
+
+Our goals in this chapter are modest. We want to become familiar with the simplest fractals and to understand the various notions of fractal dimension. These ideas will be used in Chapter 12 to clarify the geometric structure of strange attractors. \\ \tab
+
+Unfortunately, we will not be able to delve into the scientific applications of fractals, nor the lovely mathematical theory behind them. For the clearest introduction to the theory and applications of fractals, see Falconer (1990). The books of Madelbrot (1982), Peitgen and Ritcher (1986), Barnsley (1988), Feder (1988), and Shroeder (1991) are also recomended for their many fascinating pictures and examples. \\
+
+\textbf {Chapter 11.1 Countable and Uncountable Sets} \\
+This section reviews the parts of set theory that we'll need in later discussions of fractals. You may be familiar with this material already; if not, read on. \\ \tab
+
+Are some infinities larger than others? Surprisingly, the answer is yes. In the late 1800s, Georg Cantor invented a clever way to compare different infinite sets. Two sets X and Y are said to have the same cardinality (or number of elements) if there is an invertible mapping that pairs each element $x \in X$ with precisely one $y \in Y$. Such a mapping is called a one-to-one correspondence; it's like a buddy system, where every x has a buddy y, and no one in either set is left out or counted twice. \\ \tab
+
+A familiar infinite set is the set of natural numbers $N=\{1,2,3,4...\}$. This set provides a basis for comparison-if another set X can be put into one-to-one correspondence with the natural numbers, then X is said to be countable. Otherwise X is uncountable. \\ \tab 
+
+These definitions lead to some surprising conclusions, as the following examples show.
+
+\textbf {Chapter 11.2 Cantor Set} \\
+
+Now we turn to another of Cantor's creations, a fractal known as the Cantor set. It is simple and therefore pedagogically useful, but it is also much more than that-as we'll see in Chapter 12, the Cantor set is intimately related to the geometry of strange attractors. \\ \tab
+
+Figure 11.2.1 shows how to construct the Cantor set. \\
+
+\includegraphics{fig_1121}
+
+We start with the closed interval $S_{0}=[0.1]$ and remove its open middle third, i.e., we delete the interval $(\frac{1}{3}, \frac{2}{3})$ and leave the endpoints behind. This produces the pair of closed intervals shown as $S_{1}$. Then we remove the open middle thirds of those two intervals to produce $S_{2}$, and so on. The limiting set $C=S_{\infty}$ is the Cantor set. It is difficult to visualize, but Figure 11.2.1 suggests that it consist of an infinite number of infinitesimal pieces, seperated by gaps of various sizes. \\
+
+\textbf {Fractal Properties of the Cantor Set} \\
+
+The Cantor set C has several properties that are typical of fractals more generally: \\ \tab \tab
+1. C has structure at arbitrarily small scales. If we enlarge part of C repeatedly, we continue to see a complex pattern of points seperated by gaps of various sizes. This structure is neverending like worlds within worlds. In contrast, when we look at a smooth curve or surface under repeated magnification, the picture becomes more and more featureless. \\ \tab \tab
+2. C is self-similar. It contains smaller copies of itself at all scales. For instance, if we take the left part of C (the part contained in the interval $[0, \frac{1}{3}])$ and enlarge it by a factor of three, we get C back again. Similarly, the parts of C in each of the four intervals of $S_{2}$ are gemetrically similar to C, except scaled down by a factor of nine. \\ \tab \tab \tab
+If you're having trouble seeing the self similarity, it may help to think about the sets of $S_{2}$-it looks just like $S_{1}$ is $S_{2}$, reduced by a factor of three. In general, the left half of $S_{n+1}$ looks like all of $S_{n}$, scaled down by three. Now set $n=\infty$. The conclusion is that the left half of $S_{\infty}$ looks like $S_{\infty}$, scaled down by three, just as we claimed earlier. \\ \tab \tab \tab
+Warning: The strict self-similarity of the Cantor set is found only in the simplest fractals. Most general fractals are only approximately self-similar. \\ \tab \tab 
+3. The dimension of C is not an integer. As we'll show in Section 11.3, its dimension is actually ln2/ln3 $\approx$ 0.63! The idea of a noninteger dimension is bewildering at first, but it turns out to be a natural generalization of our intuitive ideas about dimension, and provides a very useful tool for quantifying the structure of fractals. \\
+\tab
+Two other properties of the Cantor set are worth noting, although they are not fractal properties as such: C has measure zero and it consists of uncountably many points. These properties are clarified in the examples below. \\
+
+\textbf {Chapter 11.3 Dimension of Self-Similar Fractals} \\
+What is the "dimension" of a set of points? For similar objects, the answer is clear-lines and smooth curves are one dimensional, planes and smooth surfaces are two-dimensional, solids are three-dimensional, and so on. If forced to give a definition, we could say that the dimension is the minimum number of coordinates needed to describe every point in the set. For instance, a smooth curve is one-dimensional because every point in the set. For instance, a smooth curve is one-dimensional because every point on it is determined by one number, the arc length from some fixed reference point on the curve. \\ \tab
+But when we try to apply this definition to fractals, we quickly run into paradoxes. Consider the von Koch curve, defined recursively in Figure 11.3.1. \\
+
+\includegraphics{fig_1131}
+
+We start with a line segment $S_{0}$. To generate $S_{1}$, we delete the middle third of $S_{0}$ and replace it with the other two sides of an equilateral triangle. Subsequent stages are generated recursively by the same rule: $S_{n}$ is obtained by replacing the middle third of each line segment in $S_{n-1}$ by the other two sides of an equilateral triangle. The limiting set $K=S_{\infty}$ is the von Kock curve. \\ 
+
+\textbf {A Paradox} \\ \tab
+
+What is the dimension of the von Koch curve? Since it's a curve, you might be tempted to say it's one dimensional. But the trouble is that K has infinite arc length! To see this, observe that if the length of $S_{0}$ is $L_{0}$, then the length of $S_{1}$ is $L_{1}=\frac{4}{3}L_{0}$ because $S_{1}$ contains four segments, eahc of length $\frac{1}{3}L_{0}$. The length increases by a factor of $\frac{4}{3}$ at each stage of the contruciton, so $L_{n}=(\frac{4}{3})^{n}L_{0} \to \infty$ as $n \to \infty$. \\ \tab 
+Moreover, the arc length between any two points on K is infinite, by similar reasoning. Hence points on K aren't determined by their arc legnth from a particular point, because every point is infinitely far from every other! \\ \tab
+
+This suggests that K is more than one-dimensional. But would we really want to say that K is two-dimensional? It certainly doesn't seem to have any "area". So the dimension should be between 1 and 2, whatever that means. \\ \tab
+
+With this paradox as motivation, we now consider some improved notions of dimension that can cope with fractals. \\
+
+\textbf {Similarity Dimension} \\ \tab
+
+The simplest fractals are self-similar, i.e., they are made of scaled-down copies of themselves, all the way down to arbitrarily small scales. The dimension of such fractals can be defined by extending an elementary observation about classical self-similar sets like line segments, squares, or cubes. For instance, consider the square region shown in Figure 11.3.2 \\ 
+
+\includegraphics{fig_1132}
+
+If we shrink the square by a factor of 2 in each direction, it takes four of the small squares to equal the whole. Or if we scale the original square down by a factor of 3, then nine small squares are required. In general, if we reduce the linear dimensions of the square region by a factor of r, it takes $r^{2}$ of the smaller squares to equal the original. \\ \tab
+
+Now suppose we play the same the same game with a solid cube. The results are different: if we scale the cube down by a factor of 2, it takes eight of the smaller cubes to make up the original. In general, if the cube is scaled down by r, we need $r^{3}$ of the smaller cubes to make up the larger one. \\ \tab
+
+The exponents 2 and 3 are no accident; they reflect the two-dimensionality of the square and the three-dimensionality of the cube. This connection between dimensions and exponents suggest the following definition. Suppose that a self-similar set is composed of m copies of itself scaled down by a factor of r. Then the similarity dimension d is the exponent defined by $m=r^{d}$ or equivalently \\ \tab \tab
+$d=\frac{ln m}{ln r}$ \\
+This formula is easy to use, since m and r are usually clear from inspection. \\ 
+
+\textbf {Chapter 11.4 Box Dimension} \\
+
+To deal with fractals that are not self-similar, we need to generalize our notion of dimension still further. Various definitinos have been proposed; see Falconer (1990) for a lucid discussion. All the definitions share the idea of "measurement at a scale $\epsilon$"-roughly speaking, we measure the set in a way that ignores irregularities of size less than $\epsilon$, and then study how the measurements vary as $\epsilon \to 0$. \\ 
+\textbf {Definition of Box Dimension} \\ \tab
+
+One kind of measurement involves covering the set with boxes of sizes $\epsilon$ (Figure 11.4.1). \\
+
+\includegraphics{fig_1141} 
+
+Let S be a subset of D-dimensional Euclidean space, and let $N(\epsilon)$ be the minimum number of D-dimensional cubes of side $\epsilon$ needed to cover S. How does $N(\epsilon)$ depend on $\epsilon$? To get some intuition, consider the classical sets shown in Figure 11.4.1. For a smooth curve of length L, $N(\epsilon) \propto L/\epsilon$; for a planar region of area A bounded by a smooth curve, $N(\epsilon) \propto A/\epsilon^{2}$. The key observation is that the dimension of the set equals the exponent d in the power law $N(\epsilon) \propto 1/\epsilon^{d}$. \\ \tab
+
+This power law also holds for most fractals sets S, except that d is no longer an integer. By analogy with the classical case, we interpret d as a dimension, usually called the capacity or box dimension of S. An equivalent definition is \\ \tab \tab
+$ d = \lim_{\epsilon \to 0} \frac{ln N(\epsilon)}{ln (1/\epsilon)}$, if the limit exists. \\ 
+
+\textbf {Critique of Box Dimension} \\ \tab
+
+When computing the box dimension, it is not always easy to find a minimal cover. There's an equivalent way to compute the box dimension that avoids this problem. We cover the set with a square mesh of boxes of side $\epsilon$, count the number of occupied boxes $N(\epsilon)$, and then compute d as before. \\ \tab
+
+Even with this improvement, the box dimension is rarely used in practice. Its computation requires too much storage and computer time, compared to other types of fractal dimension (see Below). The box dimension also suffers from some mathematical drawbacks. For example, its value is not always what it should be: the set of rational numbers between 0 and 1 can be proven to have a box dimension of 1 (Falconer 1990 p.44), even though the set has only countably many points. \\ \tab
+
+Falconer (1990) discusses other fractal dimensions, the most important of which is the Hausdorff dimension. It is more subtle than the box dimension. The main conceptual dimension is that the Hausdorff dimension uses covering by small sets of varying sizes, not just boxes of fixed size $\epsilon$. It has nicer mathematical properties than the box dimension, but unfortunately, it is even harder to compute numerically. \\
+
+\textbf {Chapter 11.5 Pointwise and Correlation Dimensions} \\
+
+Now it's time to return to dynamics. Suppose that we're studying a chaotic system that settles down to a strange attractor in phase space. Given that strange attractos typically have fractal microstructure (as we'll see in Chapter 12), how could we estimate the fractal dimension> \\ \tab
+
+First we generate a set of very many points $\{x_{i}, i=1,...,n\}$ on the attractor by letting the system evolve for a long time (after taking care to discord the initial transcient, as usual). To get better statistics, we could repeat this procedure for several different trajectories. In practice, however, almost all trajectories on a strange attractor have the same long-term statistics so it's sufficient to run one trajecotry for an extremely long time. Now that we have many points on the attractor, we could try computing the box dimension, but that approach is impractical as mentioned earlier. \\ \tab
+
+Grassberger and Procaccia (1983) proposed a more efficient approach that has become standard. Fix a point x on the attractor A. Let $N_{x}(\epsilon)$ denote the number of points on A inside a ball of radius $\epsilon$ about x (Figure 11.5.1). \\
+
+\includegraphics{fig_1151}
+
+Most of the points in the ball are unrelated to the imediate portion of the trajectory through x; instead they come from later parts that just happen to pass close x. Thus $N_{x}(\epsilon)$ measures how frequently a typical trajectory visits an $\epsilon$-neighborhood of x.
+\\ \tab
+Now vary $\epsilon$. As $\epsilon$ increases, the number of points in the ball typically grows as a power law: \\ \tab \tab
+$N_{x}(\epsilon) \propto \epsilon^{d}$ \\ 
+
+where d is called the pointwise dimension at x. The pointwise dimension can depend significantly on x; it will be smaller in rarefield region on the attractor. To get an overall dimension of A, one averages $N_{x}(\epsilon)$ over many x. The resulting quantity $C(\epsilon)$ is found empirically to scale as \\ \tab \tab
+
+$C(\epsilon) \propto \epsilon^{d}$ \\
+where d is called the correlation dimension. \\ \tab
+
+The correlation dimension takes account of the density of points on the attractor, and thus differs from the box dimension, which weight all occupied boxes equally, no matter how many points they contain. (Mathematically speaking, the correlation dimension involves an invarient measure supported on a fractal, not just the fractal itself). In general $d_{correlation} \leq d_{box}$, although they are usually very close (Grassberger and Procaccia 1983). \\ \tab
+
+To estimate d, one plots log $C(\epsilon)$ vs log $\epsilon$. If the relation $C(\epsilon) \propto \epsilon^{d}$ were valid for all $\epsilon$, we'd find a straight line of slope d. In practice the power law holds only over an intermediate range of $\epsilon$ (Figure 11.5.2). \\
+
+\includegraphics{fig_1152}
+
+The curve saturates at large $\epsilon$ because the $\epsilon$-balls engulf the whole attractor and so $N_{x}(\epsilon)$ can grow no further. On the other hand, at extremely small $\epsilon$, the only ponit in each $\epsilon$-ball is x itself. So the power law is expected to hold only in the scaling region where \\ \tab \tab
+
+(minimum seperation of poitns on A) << $\epsilon$ << (diameter of A). \\
+
+\textbf {Multifractals} \\ \tab
+
+We conclude by mentioning a recent development, although we cannot go into details. In the logistic attractor of Example 11.5.2, the scaling varies from place to place, unlike in the middle-thirds Cantor set, where there is a uniform scaling by $\frac{1}{3}$ everywhere. Thus we cannot completely characterize the logistic attractor by its dimension, or any other single number-we need some kind of distribution function that tells us how the dimension varies across the attractor. Sets of this type are called multifractals. \\ \tab
+
+The notion of pointwise dimension allows us to quantify the local variations in scaling. Given a multifractal A, let $S_{a}$ be the subset of A consisting of all points with pointwise dimension a. If a is a typical scaling factor on A, then it will be represented often, so $S_{a}$ will be a relatively large set; if a is unusual, then $S_{a}$ will be a small set. To be more quantitative, we note that each $S_{a}$ is itself a fractal, so it makes sense to measure its "size" by its fractal dimension. Thus, let f(a) denote the dimension of $S_{a}$. Then f(a) is called the multifractal spectrum of A or the spectrum of scaling indices (Halsey et al 1986). \\ \tab
+
+Roughly speaking, you can think of the multifractal as an interwoven set of fractals of different dimensions a, where f(a) measures their relative weights. Since very large and very small a are unlikely, the shape of f(a) typically looks like Figure 11.5.6. The maximum values of f(a) turns out to be the box dimension (Halsey et al. 1986). \\
+
+\includegraphics{fig_1156}
+
+\tab For systems at the oneset of chaos, multifractals lead to a more powerful versoin of the universality theory mentioned in Section 10.6. The universal quantity is now a function f(a), rather than a single number; it therefore offers much more information, and the possibility of more stringent tests. The theory's predictions have been checked for a variety of experimental systems at the oneset of chaos, with striking success. See Glazier and Libchaber (1988) for a review. On the other hand, we still lack a rigorous mathematical theory of multifractals; see Falconer (1990) for a discussion of the issues.
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

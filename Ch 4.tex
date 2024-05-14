@@ -1,0 +1,184 @@
+\documentclass{article}
+\usepackage{amsmath}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\begin{document}
+
+
+\title {Calculus of Variations Ch 4: The Canonical Form of the Euler Equations and Related Topics}
+
+\author{Charlie Seager}
+
+\maketitle
+
+\textbf { Ch 4: The Canonical Form of the Euler Equations and Related Topics page 67: segment 15, the Canoncial form of the euler equations. 67 segment 17 first integrals of the euler equations, page 70 segment 18 The legendre transformation page 71 segment 19 aconcial transformations page 77 segment 20 Noether's theorem, page 79 segment 21 The principle of least action; page 83 segment 22 Conservation laws; page 85, segment 23 The hamilton-jacobi equation; jacobis theorem page 88 problems}
+
+\textbf {FINALLY!! We are going to study classical mechanics of a system consisting of a finite number of particles.} Like how the trajectories in phase space of a mechanical system (which describe how the system evolves in time) can be found in the extremals of a certain functional. By using the calculus of variations, we can also find quantities connected with a given physical system which do not change as the sytem evolves in time. These and related ideas will be our chief concern here. First, we return to the subject of canonical variables (introduced in section 13) and discuss the reduction of the Euler equations to canonical form. 
+
+\textbf {Segment 16 The Canonical Form of the Euler Equations} Local characters are called canonical variables (corresponding to the functional $J[y_1 ,..., y_n]$, which were used on pg 58 to write a concise expression for the general variation of the functional $J[y_1 ,..., y_n]$ and on p. 63 to give a simple interpretation of the Weiestrass-Erdmann conditions.)
+
+\textbf {Segment 17 First Integrals of the Euler Equations} Reminder that the first integral of a system of differential equations is a function which has a constant value along each integral curve of the system.
+
+\textbf {Segment 18: The Legendre Transformation} We now consider another method of reducing the Euler equations to canonical form, a method which differs from that presented in sec. 16. The idea of this new method is to replace the variational problem under consideration by another, equivalent problem, such that the Euler equations for the new problem are the same as the canonical Euler equations for the original problem
+\textbf {18.1} We begin by discussing some related topics from the theory of extrema of funcitons of n variables. First, we consider the case n = 1. Suppose we are looking for an extremum, say a minimum, of the function $f(\xi)$ and suppose $f(\xi)$ is (strictly) convex, which means that 
+\begin{center}
+$f"(\xi) > 0$
+\end{center}
+wherever $f(\xi)$ is defined. We introduce a new independent variable
+\begin{center}
+$p = f'(\xi)$
+\end{center}
+called the tangential coordinate, which is just the slope of the tangent passing through a given point of the curve $\mathcal{n} = f(\xi)$. Since the hypothesis
+\begin{center}
+$\frac{dp}{d\xi} = f"(\xi) > 0$
+\end{center}
+
+\textbf {Segment 19 Canonical Transformations} \\ Next we look for transformations under which the canonical Euler equations preserve their canonical form. The reader will recall that in Sec. 8 we proved the invariance of the Euler equation
+\begin{center}
+$F_y - \frac{d}{dx} F_{y'} = 0$
+\end{center}
+
+\textbf {Segment 20 Noether's Theorem} \\ In sec. 17 we proved that the system of Euler equations corresponding to the functional 
+\begin{center}
+$\int_a^b F(y_1 ,..., y_n , y'_1 ,..., y'_n) dx$
+\end{center}
+where F doesnt depend on x explicitly, has the first integral
+\begin{center}
+$H = -F + \sum_{i=1}^n y'_i F_{y'_1}$
+\end{center}
+
+\textbf {Definition} The functional (44) is said to be invariant under the transfromation (45) if $J[\gamma *] = J [\gamma]$ i.e. if 
+\begin{center}
+$\int_{x_0*}^{x_1*} F( x*, y*, \frac{dy*}{dx*}) dx* = \int_{x_0}^{x_1} F(x, y, \frac{dy}{dx}) dx$
+\end{center}
+
+\textbf {Theorem (Noether)} if the functional
+\begin{center}
+$J[y] = \int_{x_0}^{x_1} F(x, y, y') dx$
+\end{center}
+is invariant under the family of transformations (47) for arbitrary $x_0$ and $x_1$, then
+\begin{center}
+$\sum_{i=1}^n F_{y_1'} \psi_1 + (F - \sum_{i=1}^n y_i' F_{yi'}) \varphi = const$
+\end{center}
+along each extremal of J[y], where
+\begin{center}
+$\varphi(x,y, y') = \frac{\partial \Phi (x, y, y' ; \epsilon)}{\partial \epsilon} |_{\epsilon = 0}$ 
+\end{center}
+\begin{center}
+$\psi_i (x, y, y') = \frac{\partial \Psi_i (x, y, y' ; \epsilon)}{\partial \epsilon} |_{\epsilon = 0}$ 
+\end{center}
+In other words, every one-parameter family of transformations leaving J[y] invariant leads to a first integral of its system of Euler equations.
+
+\textbf {Segment 21: The Principle of Least Action} \\We now apply the general results obtained in the preceding sections to
+some mechanical problems. Suppose we are given a system of n particles (mass points), where no constraints whatsoever are imposed on the system. Let the ith particle have mass $m_i$ and coordinates $x_i , y_i , z_i (i = 1, ... ,n).$
+Then the kinetic energy of the system is
+\begin{center}
+$T = \frac{1}{2} \sum_{i=1}^n m_i (\dot{x}_i^2 + \dot{y}_i^2 + \dot{z}_i^2)$
+\end{center}
+We assume that the system has potential energy U, i.e. that there exists a function
+\begin{center}
+$U = U(t, x_1, y_1, z_1 ,... x_n, y_n , z_n)$
+\end{center}
+such that the force acting on the ith particle has components
+\begin{center}
+$X_i = -\frac{\partial U}{\partial x_i}, \tab Y_i = -\frac{\partial U}{\partial y_i}, \tab Z_i = -\frac{\partial U}{\partial z_i}$
+\end{center}
+next, we introduce the expression
+\begin{center}
+L = T - U
+\end{center}
+called the Lagrangian (function) of the system of particles. Obviously, L is a function of the time t and of the positions ($x_i, y_i, z_i)$ and velocities ($\dot{x}_i, \dot{y}_1 , \dot{z}_i$) of the n particles in the system.
+
+\textbf {Theorem} The motion of a system of n particles during the time interval $[t_0, t_1]$ is described by those function $x_i (t), y_i(t), z_i(t), 1 \leq i \leq n$ for which the integral
+\begin{center}
+$\int_{t_0}^{t_1} L dt$
+\end{center}
+called the action, is a minimum.
+
+\textbf {Chapter 22 Conservation Laws} \\ We have just seen that the equations of motion of a mechanical system consisting of n particles, with kinetic energy (56), potential energy (57) and Lagrangian (58), can be obtained from the principle of least action, i.e. by minimizing the integral
+\begin{center}
+$\int_{t_0}^{t_0} L dt = \int_{t_0}^{t_1} (T-U) dt$
+\end{center}
+Keep the energy equal to the total energy 
+\textbf {1 Conservation of Energy} Suppose the given system is conservative, which means that the Lagrangian L (or more precisely, the potential energy U) doesnt depend on time explicitly. Then as shown in Sec. 17 (see also sec. 20 ex 3), H = const along each extremal, i.e. the total energy of a conservative system doesnt change during the motion of the system
+\textbf {2. Conservation of momentum} First we recall that according to Noether's theorem (sec 20) invariance of the functional (49) under the family of transformations ....
+\textbf {3. Conservation of angular momentum} Suppose the integral (62) is invariant under rotations about the z-axis, i.e. under coordinate transformations of the form ....
+
+\textbf {Sec. 23 The Hamilton-Jacobi Equation Jacobi's Theorem} \\ Consider the functional
+\begin{center}
+$J[y] = \int_{x_0}^{x_1} F(x, y_1 ,..., y_n , y'_1,..., y'_n)dx$
+\end{center}
+defined on the curves lying in some region R, and suppose that one and only one extremal of (64) goes through two arbitrary points A and B. The integral
+\begin{center}
+$S = \int_{x_0}^{x_1} F(x, y_1, ..., y_n , y'_1 ,.., y'_n)dx$
+\end{center}
+evaluated along the extremal joining the points
+\begin{center}
+$A = (x_0, y_1^0 ,..., y_n^0), \tab B = (x_1 , y_1^1 ,..., y_n^1)$
+\end{center}
+is called the geodetric distance between A and B. The quantity S is obviously a single-value function of the coordinates of the points A and B.
+\\
+Later the book talks about how a specific partial differential equation (72), which is in general nonlinear, is called the Hamilton-Jacobi equation. There is an intimate connection between the Hamilton-Jacobi equation and the canonical Euler equations. In fact, the canonical equations represent the so-called characteristic system associated with equation (72) 19. We shall approach this matter from a somewhat different point of view by establishing a connection between solution of the Hamilton-Jacobi equation and first integrals of the system of Euler equations:
+\textbf {Theorem 1} Let
+\begin{center}
+$S = S(x, y_1, ..., y_n , \alpha_1 ,..., \alpha_m)$
+\end{center}
+be a solution, depending on m $( \leq n)$ paramters $\alpha_1 ,..., \alpha_m$ of the Hamilton-Jacobi equation (72). Then each derivative
+\begin{center}
+$\frac{\partial S}{\partial \alpha_i} \tab (i = 1, ... , m)$
+\end{center}
+is a first integral of the system of canonical Euler equations
+\begin{center}
+$\frac{d y_i}{dx} = \frac{\partial H}{\partial p_i}, \tab \frac{dp_i}{dx} = - \frac{\partial H}{\partial y_i}$,
+\end{center}
+i.e., 
+\begin{center}
+$\frac{\partial S}{\partial \alpha_i} = const \tab (i = 1,..., m)$
+\end{center}
+along each extremal
+
+\textbf {Theorem 2 (Jacobi)} Let
+\begin{center}
+$S = S(x, y_1 ,..., y_n, \alpha_1 ,..., \alpha_n)$
+\end{center}
+be a complete integral of the Hamilton-Jacobi equation (72) i.e. a general solution of (72) depending on n paramters $\alpha_i ,..., \alpha_n$. Moreover, elt the determinant of the n x n matrix
+\begin{center}
+$||\frac{\partial^2 S}{\partial \alpha_i \partial y_k} ||$ \tab (78)
+\end{center}
+be nonzero, and let $\beta_1 ,..., \beta_n$ be n arbitrary constants. Then the functions
+\begin{center}
+$y_i = y_i (x, \alpha_1 ,..., \alpha_n , \beta_1 ,..., \beta_n) \tab (i = 1,..., n)$ \tab (79)
+\end{center}
+defined by the relations
+\begin{center}
+$\frac{\partial}{\partial \alpha_i} S(x, y_1 ,..., y_n, \alpha_1 ,..., \alpha_n) = \beta_i \tab (i = 1,...,n)$ \tab (80)
+\end{center}
+together with the functions
+\begin{center}
+$p_i = \frac{\partial}{\partial y_i} S(x, y_1 ,..., y_n, \alpha_1 ,..., \alpha_n) \tab (i = 1,..., n)$ \tab (81)
+\end{center}
+where the $y_i$ are given by (79), constitute a general solution of the canonical system
+\begin{center}
+$\frac{dy_i}{dx} = \frac{\partial H}{\partial p_i}, \tab \frac{dp_i}{dx} = -\frac{\partial H}{\partial y_i}$ \tab (i = 1,..., n) \tab (82)
+\end{center}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

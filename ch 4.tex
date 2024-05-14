@@ -1,0 +1,334 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\begin{document}
+
+
+\title {Nonlinear Dynamics and Chaos: part 1. One-dimensional Flows Ch 4 Flows on the Circle}
+
+\author{Charlie Seager}
+
+\date{4/19/2024}
+
+\maketitle
+
+\textbf {Chapter 4.0 Introduction} \\ \tab
+So far we've concentrated on the equation $\dot{x}=f(x)$, which we visualized as a vector field on the line. Now it's time to consider a new kind of differential equation and its corresponding phase space. This equation,
+\begin{center}
+$\dot{\theta}=f(\theta)$
+\end{center}
+corresponds to a vector field on the circle. Here $\theta$ is a point on the circle and $\dot{\theta}$ is the velocity vector at that point, determined by the rule $\dot{\theta}=f(\theta)$. Like the line, the circle is one dimensional, but it has an important new property: by flowing in one direction, a particle can eventually return to its starting place (Figure 4.0.1). Thus periodic solutions become possible for the first time in this book! To put it another way, vector fields on the circle provide the most basic model of system that can oscillate. \\ \tab 
+However, in all other respects, flows on the circle are similar to flows on the line, so this will be a short chapter. We will discuss the dynamics of some simple oscillators, and then show that these equations arise in a wide variety of applications. For example, the flashing of fireflies and the voltage oscillations of superconducting Josephson junction have been modeled by the same equation, even though their oscillation frequencies differ by about ten orders of magnitude! 
+
+\includegraphics{fig_401}
+
+\textbf {Chapter 4.1 Examples and Definitions} 
+Let's begin with some example, and then give a more careful definition of vector fields on the circle
+
+\textbf {Chapter 4.2 Uniform Oscillator} \\ \tab
+A point on a circle is often called an angle or a phase. Then the simplest oscillator of all is one in which the phase $\theta$ changes uniformly:
+\begin{center}
+$\dot{\theta}=\omega$
+\end{center}
+where $\omega$ is a constant. The solution is
+\begin{center}
+$\theta(t)=\omega t + \theta_{0}$
+\end{center}
+which corresponds to uniform motion around the circle at an angular frequency $\omega$. This solution is periodic, in the sense that $\theta{t}$ changes by $2\pi$, and therefor retruns to the same point on the circle, after a time $T=2\pi/\omega$. We call T the period of the oscillation. \\ \tab
+
+Notice that we have said nothing about the amplitude of the oscillation. There really is no amplitude variable in our system. If we had an amplitude as well as a phase variable, we'd be in a two-dimensional phase space; this situation is more complicated and will be discussed later in the book. (Or if you prefer, you can imagine that the oscillation occurs at some fixed amplitude, corresponding to the radius of our circular phase space. In any case, amplitude play no role in the dynamics).
+
+\textbf {Example 4.2.1} \\ \tab
+Two joggers, Speedy and Lucky, are running at a steady pace around a circular track around the park. It takes Speedy $T_{1}$ seconds to run once around the track, whereas it takes Lucky $T_{2}>T_{1}$ seconds. Of course, speedy will periodically overtake Lucky; how long does it take for Speedy to lap Lucky once, assuming that they start together? \\ \tab
+Solution: Let $\theta_{1}(t)$ be Speedy's position on the track. Then $\dot{\theta_{1}}=\omega_{1}$ where $\omega_{1}=2\pi/T_{1}$. This equation says that speedy runs at a steady pace and completes a circuit every $T_{1}$ seconds. Similarly, suppose that $\dot{\theta_{2}}=\omega_{2}=2\pi/T_{2}$ for Lucky. \\ \tab
+The condition for Speedy to lap Lucky is that the angle between them has increased by $2\pi$. Thus if we define the phase difference $\phi=\theta_{1}-\theta_{2}$, we want to find how long it takes for $\phi$ to increase by $2\pi$ (Figure 4.2.1). By subtraction we find $\dot{\phi}=\dot{\theta_{1}}-\dot{\theta_{2}}=\omega_{1}-\omega_{2}$. Thus $\phi$ increases by $2\pi$ after a time 
+\begin{center}
+$T_{lap}=\frac{2\pi}{\omega_{1}-\omega_{2}}=({\frac{1}{T_{1}}} - {\frac{1}{T_{2})}}^{-1}$
+\end{center}
+This example (4.2.1) illustrates an effect called the beat phenomenon. Two noninteracting oscillators with different frequencies will periodically go in and out of phase with each other. you may have heard this effect on a Sunday morning: sometimes the bells of two different churches will ring simultaneously, then slowly drift apart, and then eventually ring together again. If the oscillators interact (for example, if the two joggers try to stay together or the bell ringers can hear each other), then we can get more interesting effects, as we will see in Section 4.5 on the flashing rhythm of fireflies. 
+
+\textbf{Chapter 4.3 Nonuniform Oscillator} \\ \tab
+The equation
+\begin{center}
+$\dot{\theta}=\omega-a sin \theta$ \tab (1)
+\end{center}
+arises in many different branches of science and engineering. Here is a partial list:
+\\ \tab Electronics (phase locked loops)
+\\ \tab Biology (oscillating neurons, firefly flashing rhythm, human sleep-wake cycle) 
+\\ \tab Condensed-matter physics (Josephson junction, charge-density waves) 
+\\ \tab Mechanics (Overdamped pendulum driven by a constant torque). \\
+Some of these applications will be discussed later in this chapter and in the exercises.
+\\
+\includegraphics{fig_431}
+
+\tab To analyze (1), we assume that $\omega>0$ and $a \geq 0$ for convenience; the results for negative $\omega$ and a are similar. A typical graph of $f(\theta)=\omega-asin\theta$ is shown in Figure 4.3.1. Note that $\omega$ is the mean and a is the amplitude. 
+
+\textbf{Vector Fields}
+ If a = 0, (1) reduces to the uniform oscillator. The parameter a introduces a nonuniformity in the flow around the circle: the flow is fastest at $\theta = - \pi/2$ and slowest at $\theta = \pi/2$ (Figure 4.3.2a). This nonuniformity becomes more pronounced as a increases. When a is slightly less than $\omega$, the oscillation is very jerky: the phase point $\theta(t)$ takes a long time to pass through a bottleneck near $\theta = \pi/2$ after which it zips around the rest of the circle on a much faster time scale. When $a=\omega$, the system stops oscillating altogether: a half stable fixed point has been born in a saddle-node bifurcation at $\theta=\pi/2$(Figure 4.3.2b) Finally when $a>\omega$, the half stable fixed point splits into a stable and unstable fixed point (Figure 4.3.2c) All trajectories are attracted to the stable fixed point as $t \to \infty$
+
+\includegraphics{fig_432}
+
+The same information can be shown by plotting the vector fields on the circle (Figure 4.3.3).
+
+\includegraphics{fig_433}
+
+\textbf {Oscillation Period}
+\tab For $a< \omega$, the period of the oscillation can be found analytically, as follows the time required for $\theta$ to change by $2\pi$ is given by 
+\begin{center}
+$T=\int dt=\int_{0}^{2\pi} \frac{dt}{d\theta} d\theta = \int_{0}^{2\pi} \frac{d\theta}{\omega-asin\theta}$
+\end{center}
+
+where we have used (1) to replace $dt/d\theta$. This intergal can be evaluated by complex variable methods, or by the substitution $u= tan \frac{\theta}{2}$ (See Excercise 4.3.2 for details). The result is 
+\begin{center}
+$T=\frac{2\pi}{\sqrt{\omega^{2}-a^{2}}}$
+\end{center}
+
+Figure 4.3.4 shows the graph of T as a function of a
+\\ 
+
+\includegraphics{fig_434}
+
+When a = 0, Equation (2) reduces to $T=2\pi/\omega$, the familiar result for a uniform oscillator. The period increases with a and diverges as a approaches $\omega$ from below (we denote this limit by $a \to \omega^{-})$ 
+\begin{center}
+$\sqrt{\omega^{2}-a^{2}}=\sqrt{\omega+a}\sqrt{\omega-a} \approx \sqrt{2\omega}\sqrt{\omega-a}$ \tab (2)
+\end{center}
+as $a \to \omega^{-}$. Hence 
+\begin{center}
+$T \approx (\frac{\pi \sqrt{2}}{\sqrt{\omega}}) \frac{1}{\sqrt{\omega-a}}$ \tab (3)
+\end{center}
+which shows that T blows up like $(a_{c}-a)^{-1/2}$, where $a_{c}=\omega$. Now lets explain the origin of this square root scaling law.
+
+\textbf {Ghosts and Bottlenecks}
+The square root scaling lawa found above is a very general feature of systems that are close to a saddle-node bifurcation. Just after the fixed points collide, there is a saddle-node remnant or ghost that leads to slow passage through a bottleneck. \\ \tab
+For example, consider $\dot{\theta}=\omega-asin\theta$ for decreasing values of a, starting with $a>\omega$. As a decreases, the two fixed points approach each other, collide and disappear (this sequence was shown earlier in Figure 4.3.3, except now you have to read from right to left). For a slightly less than $\omega$, the fixed points near $\pi/2$ no longer exist, but they still make themselves felt through a saddle node ghost (Figure 4.3.5)
+\\
+\includegraphics{fig_435}
+
+A graph of $\theta(t)$ would have the shape shown in Figure 4.3.6. Notice how the trajectory spends practically all its time getting through the bottleneck
+\\
+\includegraphics{fig_436}
+Now we want to derive a general scaling law for the time required to pass through a bottleneck. The only thing that matters is the behavior of $\dot{\theta}$ in the immediate vicinity of the minimum, since the time spent there dominates all other time scales in the problem. Generically, $\dot{\theta}$ looks parabolic near its minimum. Then the problem simplifies tremendously: the dynamcis can be reduced to the normal form for a saddle-node bifurcation! By a lcoal rescaling of space, we can rewrite the vector field as 
+\begin{center}
+$\dot{x}=r+x^{2}$
+\end{center}
+where r is proportional to the distance from the bifurcation and $0< r<<1$. The graph of $\dot{x}$ is shown in Figure 4.3.7
+\\
+\includegraphics{fig_437}
+
+To estimate the time spent in the bottleneck, we calculate the time taken for x to go from $-\infty$ (all the way on one side of the bottleneck) to $+\infty$ (all the way on the other side). The result is
+\begin{center}
+$T_{bottleneck}= \int_{-\infty}^{\infty} \frac{dx}{r+x^{2}} = \frac{\pi}{\sqrt{r}}$, \tab (4)
+\end{center}
+
+which shows the generality of the square root scaling law. (Excercise 4.3.1 reminds you how to evaluate the integral in (4)).
+
+\textbf {Chapter 4.4 Overdamped Pendulum}
+\\ \tab We now consider a simple mechanical example of a nonuniform oscillator: an overdamped pendulum driven by a constant torque. Let $\theta$ denote the angle between the pendulum and the downward vertical, and suppose that $\theta$ increases counterclockwise (Figure 4.4.1)
+\\
+\includegraphics{fig_441}
+
+Then Newton's law yields:
+\begin{center}
+$mL^{2}{\ddot{\theta}}+b{\dot{\theta}}+mgLsin\theta = \Gamma$ \tab (1)
+\end{center}
+where m is the mass and L is the length of the pendulum, b is a visous damping constant, g is the acceleration due to gravity, and $\Gamma$ is a constant applied torque. All of these parameters are positive. In particular $\Gamma > 0$ implies that the applied torque drives the pendulum counterclockwise, as shown in Figure 4.4.1. \\
+\tab Equation (1) is the second order system, but in the overdmaped limit of extremely large b, it may be approximated by a first-order system (see section 3.5 and Excercise 4.4.1). In this limit the inertia term 
+$mL^{2}\ddot{\theta}$ is negligible and so (1) becomes
+\begin{center}
+$b \dot{\theta}+mgLsin\theta = \Gamma$ \tab (2)
+\end{center}
+To think about this problem physically, you should imagine that the pendulum is immersed in molasses or honey, some thick liquid (viscous). The torque $\Gamma$ enables the pendulum to plow through its viscous surroundings. Please realize that this is the opposite limit from the familiar frictionless case in which energy is conserved, and the pendulum swings back and forth forever. In the present case, energy is lost to damping and pumped in by the applied torque. \\
+To analyze (2), we first nondimensionalize it. Dividing by mgL yields
+
+\begin{center}
+$\frac{b}{mgL}\dot{\theta}=\frac{\Gamma}{mgL}-sin\theta$.
+\end{center}
+Hence, if we let
+\begin{center}
+$\tau=\frac{mgL}{b}t, \tab \gamma=\frac{\Gamma}{mgL}$ \tab (3)
+\end{center}
+then 
+\begin{center}
+$\theta^{'}=\gamma-sin\theta$ \tab (4)
+\end{center}
+where $\theta^{'}=d\theta/d\tau$
+\\
+The dimensoinless group $\gamma$ is the ratio of the applied torque to the maximum gravitational torque. If $\gamma > 1$ then the applied torque can never be balanced by the gravitational torque and the pendulum will overturn continually. The rotaion rate is nonuniform, since gravity helps the applied torque on one side and opposes it on the other (Figure 4.4.2)
+
+\includegraphics{fig_442}
+
+As $\gamma \to 1^{+}$ the pendulum takes longer and longer to climb past $\theta=\pi/2$ on the slow side. When $\gamma=1$ a fixed point appears at $\theta^{*}=\pi/2$, and then splits into two when $\gamma<1$ (Figure 4.4.3). On physical grounds, its clear that the lower of the two equilibrium positions is the stable one.
+
+\includegraphics{fig_443}
+
+As $\gamma$ decreases, the two fixed points move farther apart. Finally, when $\gamma=0$, the applied torque vanishes and there is an unstable equilibrium at the top (inverted pendulum) and a stable equilibrium at the bottom.
+
+\textbf {Chapter 4.5 Fireflies}
+\\ Fireflies provide one of the most spectacular examples of synchronization in nature. In some parts of southeast Asia, thousands of male fireflies gather in trees at ngiht and flash on and off in unison. Meanwhile the female fireflies cruise overhead, looking for males with a handsome light. \\ \tab
+To really appreciate this amazing display, you have to see a movie or videotape of it. A good example is shown in David Attenborough's (1992) television series The Trials of Life, in the episode called "Talking to Strangers". See Buck and Buck (1976) for a beautifully written introduction to synchronous fireflies, and Buck (1988) for a more recent review. For mathematical models of synchronous fireflies, see Mirollo and Strogatz (1990) and Ermentrout (1991). \\ \tab
+
+How does the synchrony occur? Certainly the fireflies don't start out synchronized: they arrive in the trees at dusk, and the synchrony builds up gradually as the night goes on. The key is that the fireflies influence each other: When one firefly sees the flash of another, it slows down or speeds up so as to flash more nearly in phase on the next cycle. \\ \tab
+
+Hanson (1978) studied this effect experimentally, by periodically flashing a light at a firefly and watching it try to synchronize. For a range of periods close to the firefly's natural period (about 0.9 sec), the firefly was able to match its frequency to the periodic stimulus. In this case, one says that the firefly had been entertrained by the stimulus. However, if the stimulus was too fast or too slow, the firefly could not keep up and entrainment was lost-then a kind of beat phenomenon occured. But in contrast to the simple beat phenomenon of section 4.2, the phase difference between stimulus and firefly did not increase uniformly. The phase difference increased slowly during part of the beat cycle, as the firefly struggled in vain to synchronize, and then it increased rapidly through $2\pi$, after which the firefly tried agian on the beat cycle. This process is called phase walk-through or phase drift.
+
+\textbf {Model}
+\\ \tab Ermentrout and Rinzel (1984) proposed a simple model of the firefly's flashing rhythm and its response to stimuli. Suppose that $\theta(t)$ is the phase of the firefly's flashing rhythm, where $\theta=0$ corresponds to the instant when a flash is emitted. Assume that in the absence of stimuli, the firefly goes through its cycle at a frequency $\omega$, according to $\dot{\theta}=\omega$.
+\\ \tab Now suppose theres a periodic stimulus whose phase $\Theta$ satisfies
+\begin{center}
+$\dot{\Theta}=\Omega$ \tab (1)
+\end{center}
+where $\Theta=0$ corresponds to the flash of the stimulus. We model the firefly's response to this stimulus as follows: If the stimulus is ahead in the cycle, then we assume that the firefly speeds up in an attempt to synchronize. Conversely, the firefly slows down if its flashing too early. A simple model that incorporates these assumptions is
+\begin{center}
+$\dot{\theta}=\omega+Asin(\Theta-\theta)$ \tab (2)
+\end{center}
+where $A>0$. For example, if $\Theta$ is ahead of $\theta$ (ie. $0<\Theta-\theta<\pi$) the firefly speeds up $(\dot{\theta}> \omega)$. The resttling strength A measures the fireflys ability to modify its instantaneous frequency.
+
+\textbf {Analysis}
+\\ \tab To see whether entrainment can occur, we look at the dynamics of the pahse difference $\phi=\Theta-\theta$. Subtracting (2) from (1) yields
+\begin{center}
+$\dot{\phi}=\dot{\Theta}-\dot{\theta}= \Omega-\omega-Asin\phi$ \tab (3)
+\end{center}
+
+which is a nonuniform oscillator equation for $\phi(t)$. Equation (3) can be nondimensionalized by introducing 
+\begin{center}
+$\tau=At, \tab \mu=\frac{\Omega-\omega}{A}$ \tab (4)
+\end{center}
+
+Then
+\begin{center}
+$\phi^{'}=\mu-sin\phi$ \tab (5)
+\end{center}
+
+where $\phi^{'}=d\phi/d\tau$. The dimensionless group $\mu$ is a measure of the frequency difference relative to the resettling strength. When $\mu$ is small, the frequencies are relatively close together and we expect that entrainment should be possible. That is confirmed by Figure 4.5.1, where we plot the vector fields for (5), for different values of $\mu \geq 0$ (The case $\mu >0$ is similar).
+
+\includegraphics{fig_451}
+
+When $\mu=0$ all trajectories flow toward a stable fixed point at $\phi^{*}=0$ (Figure 4.5.1a). Thus the firefly eventually entrains with zero phase difference in the case $\Omega=\omega$. In other words, the firefly and the stimulus flash simultaneously if the firefly is driven at its natureal frequency. \\ \tab
+Figure 4.5.1b shows that for $0< \mu<1$, the curve in Figure 4.5.1a lifts up and the stable and unstable fixed points move closer together. All trajectories are still attracted to a stable fixed point, but now $\phi^{*}>0$. SInce the phase difference approaches a constant, one says that the firefly's rhythm is phase-locked to the stimulus. \\ \tab
+
+Phase-locking means that the firefly and the stimulus run with the same instantaneous frequency, although they no longer flash in unison. The result $\phi^{*}>0$ implies that the stimulus flashes ahead of the firefly in each cycle. This makes sense-we assumed $\mu>0$ which means that $\Omega>\omega$: the stimulus is inherently faster than the firefly, and drives it faster than it wants to go Thus the firefly falls behind. But it never gets lapped-it always lags in phase by a constant amount $\phi^{*}$. \\ \tab
+If we continue to increase at $\mu=1$. For $\mu > 1$ both fixed points have disappeared and now phase-locking is lost; the phase difference $\phi$ increases indefinitely, corresponding to phase drift (Figure 4.5.1c) (Of course, once $\phi$ reaches $2\pi$ the oscillators are in phase again). Notice that the phases don't seperate at a uniform rate, in qualitative agreement with the experiments of Hanson (1978): $\phi$ increases most slowly when it passes under the minimum of the sine wave in Figure 4.5.1c at $\phi=\pi/2$ and most rapidly when it passes under the maximum at $\phi=-\pi/2$. \\ \tab
+The model makes a number of specific and testable predictions. Entertainment is predicted to be possible only within a symmetric interval of driving frequencies, specifically $\omega-A \leq \Omega \leq \omega + A$. This interval is called the range of entrainment (Figure 4.5.2)
+\\
+\includegraphics{fig_452}
+
+By measuring the range of entrainment experimentally, one can nail down the value of the parameter A. Then the model makes a rigid prediction for the phase difference during entrainment, namely
+\begin{center}
+$sin\phi^{*}=\frac{\Omega-\omega}{A}$ \tab (6)
+\end{center}
+
+where $-\pi/2 \leq \phi^{*} \leq \pi/2$ corresponds to the stable fixed point of (3). \\ \tab 
+Moreover, for $\mu > 1$, the period of phase drift may be predicted as follows. The time required for $\phi$ to change by $2\pi$ is given by
+\begin{center}
+$T_{drift}=\int dt = \int_{0}^{2\pi} \frac{dt}{d\phi} d\phi = \int_{0}^{2\pi} \frac{d\phi}{\Omega-\omega-Asin{\phi}}$
+\end{center}
+
+To evaluate this integral, we invoke (2) of section 4.3, which yields 
+\begin{center}
+$T_{drift}=\frac{2\pi}{\sqrt{(\Omega-\omega)^{2}-A^{2}}}$ \tab (7)
+\end{center}
+Since A and $\omega$ are presumably fixed properties of the firefly, the predictions (6) and (7) could be tested simply by varying the drive frequency $\Omega$. Such experiments have yet to be done. \\ \tab
+Actually, the biological reality about synchronous fireflies is more complicated. The model presented here is reasonable for certain species, such as Pteroptyx cribellata, which behave as if A and $\omega$ were fixed. However, the species that is best at synchronizing, Pteroptyx alaccae, is actually able to shift its frequency $\omega$ toward the drive frequency $\Omega$ (Hanson 1978). In this way it is able to achieve nearly zero phase difference, even when driven at periods that differ from its natural period by $\pm 15$ percent! A model of this remarkable effect has been presented by Ermentrout (1991). 
+
+\textbf {4.6 Superconducting Joesephson Junctions}
+Josephson junction are superconducting devices that are capable of generating voltage oscillations of extraordinarily high frequency, typicall $10^{10}-10^{11}$ cycles per second. They have great technological promise as amplifiers, voltage standards, detectors, mixers, and fast switching devices for digital circuits. Josephson junctions can detect electric potentials as small as one quadrillionth of a volt, and they have been used to detect far-infared radiation from distant galaxies. For an introduction to Josephson junctions, as well as superconductivity more generally, see Van Duzer and Turner (1981). \\ \tab
+
+Although quantum mechanics is required to explain the origin of the Josephson effect, we can nevertheless describe the dynamics of Josephson junctions in classical terms. Josephson junctions have been particularly useful for experimental studies of nonlinear dynamics, because the equation governing a single junction is the same as that for a pendulum! In this section we will study the dynamics of a single junction in the overdamped limit. In later sections we will discuss underdamped junctions, as well as arrays of enormous numbers of junctions coupled together. 
+
+\textbf {Physical Background} \\ \tab
+A Josephson junction consists of two closely spaced superconductors seprated by a weak connection (Figure 4.6.1). This connection may be provided by an insulator, a normal metal, a semiconductor, a weakened superconductor, or some other material that weakly couple the two superconductors. The two superconducting regions may be characterized by quantum mechanical wave function $\psi_{1}e^{i\phi_{1}}$ and $\psi_{2}e^{i\phi_{2}}$ respectively. Normally a much more complicated description would be necessary because there are $\tilde 10^{23}$ electrons to deal with, but in the superconducting ground state, these electrons form "Cooper pairs" that can be described by a single macroscopic wave function. This implies an atonishing degree of coherence among the electrons. The cooper pairs act like a miniature version of synchronous fireflies: they all adopt the same phase, because this turns out to minimuze the energy of the superconductor. \\
+\includegraphics{fig_461}
+
+As a 22=year old graduate student Brain Josephson (1962) suggested that it should be possible for a current to pass between the two superconductors, even if there were no voltage difference between them. Athough this behavior would be impossible classically, it could occur because of quantum mechanical tunneling of Cooper pairs across the junction. An observation of this "Josephson effect" was made by Anderson and Rowell in 1963. \\ \tab
+
+Incidentally, Josephson won the Nobel Prize in 1973, after which he lsot interest in mainstream physics and was rarely heard from agian. See Josephson (1982) for an interview in which he reminisces about his early work and discusses his more recent interests in transcedental meditation, consciousness, langauge, and even psychic spoon-bending and paranormal phenomena. 
+
+
+\textbf {The Josephson Relations} \\ \tab
+We now give a more quantitative discussion of the Josephon effect. Suppose that a Josephon junction is connected to a dc current source (Figure 4.6.2), so that a constant current $I>0$ is driven through the junction. Using quantum mechanics, one can show that if this current is less than a certain critical current $I_{c}$, no voltage will be devolved across the junction; that is, the junction acts as if it had zero resistance! However, the phases of the two superconductors will be driven apart to a constant phase difference $\phi=\phi_{2}-\phi_{1}$ where $\phi$ satisfies the Josephson current phase relation
+\begin{center}
+$I=I_{c}sin\phi$ \tab (1)
+\end{center}
+
+\includegraphics{fig_462}
+
+Equation (1) implies that the phase difference increases as the bias current I increases. \\ \tab
+When I exceeds $I_{c}$, a constant phase difference can no longer be maintained and a voltage develops across the junction. The phases on the two sides of the junction begin to slip with respect to each other, with the rate of slippage governed by the Josephson voltage-phase relation
+\begin{center}
+$V=\frac{\hbar}{2e}\dot{\phi}$ \tab (2)
+\end{center}
+Here V(t) is the instantaneous voltage across the junction, $\hbar$ is Planck's constant divided by $2\pi$, and e is the charge on the electron. For an elementary derivation of the Josephson relation (1) and (2), see Feynman's argument (Feynman et al. (1965) Vol III), also reproduced in Van Duzer and Turner (1981) 
+
+\textbf {Equivalent Circuit and Pendulum Analog}
+
+The relation (1) applies only to the supercurrent carried by the electron pairs. In general, the total current passing through the junction will also contain contributions from a displacement current and an ordinary current. Representing the displacement current by a capacitor, and the ordinary current by a resistor, we arrive at the equivalent circuit shown in Figure 4.6.3, first analyzed by Stewart (1968) and McCumber (1968) \\
+
+\includegraphics{fig_463}
+
+Now we apply Kirchoff's voltage and current laws. For this parallel circuit, the voltage drop across the junction. Hence the current through the capicitor equals CV and the current through the resistor equals V/R. The sum of these currents and the supercurrent $I_{c}sin\phi$ must equal the bias current $I$; hence 
+\begin{center}
+$CV+\frac{V}{R}+I_{c}sin\phi=I$ \tab (3)
+\end{center}
+Equation (3) may be rewritten soley in terms of the phase difference $\phi$, thanks to (2). The result is
+
+\begin{center}
+$\frac{\hbar{C}}{2e}\ddot{\phi} + \frac{\hbar}{2eR} \dot{\phi} +I_{c} sin\phi = I$ \tab (4)
+\end{center}
+
+which is precisely analogous to the equation govening a damped pendulum driven by a constant torque! In the notation of Section 4.4, the pendulum equation is
+\begin{center}
+$mL^{2}\ddot{\theta} + b \dot{\theta} + mgLsin\theta = \Gamma$
+\end{center}
+
+Hence the analogies are as follows
+\begin{center}
+Pendulum: Angle $\theta$ \tab Josephson junction:phase difference $\phi$ \tab Angular veloctiy $\dot{\theta}$ \tab Voltage:$\frac{\hbar}{2e}\dot{\phi}$ \tab mass: m \tab Capicitance: C \tab Applied torque: $\Gamma$ \tab Bias current: I \tab Damping constant: b \tab Conductance: $1/R$ \tab Maximum gravitational torque: $mgL$ \tab Critical current $I_{c}$
+\end{center}
+
+This mechanical analog has often proved useful in visualizing the dynamics of Josephson junctions. Sullivan and Zimmerman (1971) actually constructed such a mechanical analog, and measured the average rotation rate of the pendulum as a function of the applied torque; this is the analog of the physicall important I-V curve (current-voltage curve) for the Josephson Junction.
+
+\textbf {Typical Parameter Values} \\ \tab
+Before analyzing (4), we mention some typical parameter values for Josephson junctions. The critical current is typically in the range $I_{c} \approx 1 \mu A - 1 m A$, and a typical voltage is $I_{c}R \approx 1 mV$. Since $2e/h \approx 4.83 x 10^{14}$ Hz/V, a typical frequency is on the order of $10^{11}$ Hz. Finally, a typical length scale for Josephson junctions is around $1 \mu m$, but this depends on the geometry and the type of coupling used. 
+
+\text{Dimensionless Formulation}
+\\ \tab If we divide (4) by $I_{c}$ and define a dimensionless time
+\begin{center}
+$\tau = \frac{2eI_{c}R}{\hbar} t,$ \tab (5)
+\end{center}
+
+we obtain the dimensionless equation
+\begin{center}
+$\beta \phi^{"} + \phi^{'} + sin \phi = \frac{I}{I_{c}}$ \tab (6)
+\end{center}
+
+where $\phi^{'}=d\phi/d\tau$. The dimensionless group $\beta$ is defined by
+
+\begin{center}
+$\beta = \frac{2e I_{c} R^{2}C}{\hbar}$.
+\end{center}
+
+and is called McCumber parameter. It may be thought of as a dimensionless capacitance. Depending on the size, the geometry, and the type of coupling used in the Josephson junction, the value of $\beta$ can range from $\beta \approx {10^{-6}}$ to much larger values $(\beta \approx 10^{6})$ \\ \tab
+
+We are not yet prepared to analyze (6) in general. For now, lets restrict ourselves to the overdamped limit $\beta << 1$. Then the term $\beta \phi^{"}$ may be neglected after a rapid initial transient, as discussed in Section 3.5 and so (6) reduces to a nonuniform oscillator:
+\begin{center}
+$\phi^{'}=\frac{I}{I_{c}}-sin \phi$ \tab (7)
+\end{center}
+
+As we know from Section 4.3 the solutions of (7) tend to a stable fixed point when $I<I_{c}$ and vary periodically when $I>I_{c}$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

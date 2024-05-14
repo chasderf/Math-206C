@@ -1,0 +1,226 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\begin{document}
+
+
+\title {Nonlinear Dynamics and Chaos: part 2: Two-Dimensional Flows: Ch 7: Limit Cycles}
+
+\author{Charlie Seager}
+
+\date{4/23/2024}
+
+\maketitle
+
+\textbf {Chapter 7.0 Inroduction}
+
+A limit cycle is an isolated closed trajectory. Isolated means that neighboring trajectories are not closed; they spiral either toward or away from the limit cycle (Figure 7.0.1). \\ 
+\includegraphics{fig_701}
+If all neighboring trajectories approach the limit cycle, we say the limit cycle is stable or attracting. Otherwise the limit cycle is unstable, or in exceptional cases, half-stable. \\ \tab
+Stable limit cycles are very important scientifically-they model systems that exhibit self-sustained oscillations. In other words, these systems oscillate even in the absence of external periodic forcing. Of the countless examples that could be given, we mention only a few: the beating of a heart; the periodic firing of a pacemaker neuron; daily rhythms in human body temperature and hormone secretion; chemical reactions that oscillate spontaneously; and dangerous self-excited vibrations in bridges and airplane wings. In each case, there is a standard oscillations of some preferred period waveform, and amplitude. If the system is pertubed slightly, it always returns to the standard cycle. \\ \tab
+Limit cycles are inherently nonlinear phenomena; they can't occur in linear systems. Of course, a linear system $\dot{x}=Ax$ can have closed orbits, but they won't be isolated; if x(t) is a periodic solution, then so is cx(t) for any constant $c \neq 0$. Hence x(t) is surrounded by a one-parameter family of closed orbits (Figure 7.0.2). Consequently, the amplitude will persist forever. In contrast, limit cycle oscillations are determined by the structure of the system itself. \\
+\includegraphics{fig_702}
+
+The next section presents two examples of systems with limit cycles. In the first case, the limit cycle is obvious by inspection, but normally it's difficult to tell whether a given system has a limit cycle, or indeed any closed orbits, from the governing equations alone. Sections 7.2-7.4 present some techniques for ruling out closed orbits or for proving their existence. The remainder of the chapter discusses analytical methods for approximating the shape and period of a closed orbit and for studying its stability. 
+\textbf {Chapter 7.1 Examples}
+Here there are oscillators and a simple limit cycle.
+
+\textbf {Chapter 7.2 Ruling out Closed Orbits} \\
+Suppose we have a strong suspicion based on numerical evidence or otherwise, that a particular system has no periodic solutions. How could we prove this? In the last chapter (6) we mentioned one method, based on index theory (see Examples 6.8.5 and 6.8.6). Now we present three other ways of ruling out closed orbits. They are of limited applicability, but they're worth knowing about, in case you get lucky. 
+\textbf{Gradient Systems}\\ \tab
+Suppose the system can be written in the form $\dot{x}=-\nabla V$, for some continuously differentiable, single-valued scalar function V(x). Such a system is called a gradient system with potential function V.
+
+\textbf {Theorem 7.2.1}: Closed orbits are impossible in gradient systems. \\ \tab
+Proof: Suppose there were a closed orbit. We obtain a contradiction by considering the charge in V is single valued. But on the other hand \\ \tab
+$\triangle V = \int_{0}^{T} \frac{dV}{dt} dt \\ \tab
+= \int_{0}^{T} (\nabla V \cdot \dot{x}) dt \\ \tab
+= -\int_{0}^{T} ||\dot{x}||^{2}dt \\ \tab
+<0$
+
+(unless $\dot{x}=0$ in which case the trajectory is a fixed point, not a closed orbit). This contradiction shows that closed orbits can't exist in gradient systems. \\ \tab
+The trouble with Theorem 7.2.1 is that most two-dimensional systems are not gradient systems. (Although curiously all vector fields on the line are gradient systems: this gives another explanation for the absence of oscillations noted in Sections 2.6 and 2.7). 
+
+\textbf {Liapunov Functions} \\ \tab
+Even for systems that have nothing to do with mechanics, it is occasionally possible to construct an energy-like function that decreases along trajectories. Such a function is called a Liapunov function. If a Liapunov function exists, then closed orbits are forbidden, by the same reasoning as in Example 7.2.2 . \\ \tab
+To be more precise, consider a system $\dot{x}=f(x)$ with a fixed point at x*. Suppose that we can find a Liapunov function, i.e., a continuously differentiable, real-valued function V(x) with the following properties: \\ \tab
+1. $V(x)>0$ for all $x \neq x*$, and $V(x*)=0$ (We say that V is positive definite). \\ \tab
+2. $\dot{V}<0$ for all $x \neq x*$. (All trajectories flow "downhill" toward x*). \\
+Then x* is globally asymptotically stable: for all initial conditions; $x(t) \to x*$ as $t \to \infty$. In particular the system has no closed orbits. (For a proof, see Jordan and Smith 1987). \\ \tab
+The intuition is that all trajectories move monotonically down the graph of V(x) toward x* (Figure 7.2.1). \\
+\includegraphics{fig_721}
+
+The solutions can't get stuck anywhere else because if they did, V would stop changing, but by assumption, $V<0$ everywhere except at x*. \\ \tab
+Unfortunately, there is no systematic way to construct Liapunov functions. Divine inspiration is usually required, although sometimes one can work backwards. Sums of squares occasionally work, as in the following example. \\ \tab
+\textbf{Dulac's Criterion} \\ \tab
+The third method for rulling out closed orbits is based on Green's theorem, and is known as Dulac's criterion. 
+\textbf {Dulac's Criterion:} Let $\dot{x}=f(x)$ be a continously differentiable, real-valued function g(x) such that $\nabla \cdot (g\dot{x})$ has one sign throughout R, then there are no closed orbits lying entirely in R. \\ \tab
+Proof: Suppose there were a closed orbit C lying entirely in the region R. Let A denote the region inside C (Figure 7.3.2). Then Green's theorem yields \\ \tab
+$\int \int_{A} \nabla \cdot (g\dot{x})dA = \oint_{C} g \dot{x} \cdot n d \ell$ \\
+
+where n is the outward normal and $d\ell$ is the element of arc length along C. Look first at the double integral on the left: it must be nonzero, since $\nabla \cdot (g\dot{x})$ has one sign in R. On the other hand, the line integral on the right equals zero since $\dot{x}\cdot n = 0$ everywhere, by the assumption that C is a trajectory (the tangent vector $\dot{x}$ is orthogonal to n). This contradiction implies that no such C can exist.
+\\
+\includegraphics{fig_722}
+
+Dulac's criterion suffers from the same drawback as Liapunov's method: there is no algorithm for finding g(x). Candidates that occasionally work are $g=1, 1/x^{a}y^{b}, e^{ax}$, and $e^{ay}$
+
+
+\textbf {Chapter 7.3 Poincare-Bendixson Theorem} \\
+Now that we know how to rule out closed orbits, we turn to the opposite task: finding methods to establish that closed orbits exist in particular systems. The following theorem is one of the few results in this direction. It is also one of the key theoretical results in nonlinear dynamics, because it implies that chaos can't occur in the phase plane, as discussed briefly at the end of this section. \\ 
+\textbf {Poincare-Bendixson Theorem:} Suppose that: \\ (1) R is a closed, bounded subset of the plane: \\ 
+(2) $\dot{x}=f(x)$; is a continuously differentiable vector field on an open set containing R; \\
+(3) R does not contain any fixed points; and \\ 
+(4) There exists a trajectory C that is "confined" in R, in the sense that it starts in R and stays in R for all future time (Figure 7.3.1). \\
+\includegraphics{fig_731}
+
+Then either C is a closed orbit, or it spirals toward a closed orbit as $t \to \infty$. In either case, R contains a closed orbit (shown as a heavy curve in Figure 7.3.1). \\ \tab The proof of this theorem is subtle, and requires some advanced ideas form topology. For details, see Perko (1991), Coddington and Levinson (1955), Hurewicz (1958) or Cesari (1963). \\ \tab
+
+ In Figure 7.3.1, we have drawn R as a ring-shaped region because any closed orbit must encircle a fixed point (P in Figure 7.3.1) and no fixed point are allowed in R. \\
+\includegraphics{fig_732}
+
+When applying the Poincare-Bendixson theorem it's easy to satisfy conditions (1)-(3): condition (4) is the tough one. How can we be sure that a confined trajectory C exists? The standard trick is to construct a trapping region R, i.e. a closed connected set such that the vector field points "inward" everywhere on the boundary of R (Figure 7.3.2). Then all trajectories in R are confined. If we can also arrange that there are no fixed points in R, then the Poincare-Bendixson theorem ensures that R contains a closed orbit. \\ \tab
+The Poincare-Bendixson theorem can be difficult to apply in practice. One convenient case occurs when the system has a simple representation in polar coordinates, as in the following example.
+
+\textbf {No Chaos in the Phase Plane} \\ \tab
+The Poincare-Bendixson theorem is one of the central results of nonlinear dynamics. It says that the dynamical possibilities in the phase plane are very limited: if a trajectory must eventually approach a closed orbit. Nothing more complicated is possible. \\ \tab
+This result depends crucially on the two-dimensionality of the plane. In higher-dimensional systems $(n \geq 3)$, the Poincare-Bendixson theorem no longer applies and something radically new can happen: trajectories may wander around forever in a bounded region without settling down to a fixed point or a closed orbit. In some cases, the trajectories are attracted to a complex geometric object called a strange attractor, a fractal set on which the motion is aperiodic and sensitive to tiny changes in the initial conditions. The sensitivity makes the motion unpredictable in the long run. We are now face to face with chaos. We'll discuss this fascinating topic soon enough but for now you should appreciate that the Poincare-Bendixson theorem implies that chaos can never occur in the phase plane. 
+
+\textbf {Chapter 7.4 Lienard Systems} \\
+In the early days of nonlinear dynamics, say from about 1920 to 1950, there was a great deal of research on nonlinear oscillations. The work was initially motivated by the development and vaccum tube technology, and later it took on a mathematical life of its own. it was found that many oscillating circuits could be modeled by second-order differential equations of the form
+\\ \tab
+$\ddot{x}+f(x)\dot{x}+g(x)=0$ \\
+now known as Lienard's equation. This equation is a generalization of the van der Pol oscillator $\ddot{x}+\mu (x^{2}-1)\dot{x}+x=0$ mentioned in Section 7.1. It can also be interpreted mechanically as the equation of motion for a unit mas subject to a nonlinear damping force $-f(x)\dot{x}$ and a nonlinear restoring force -g(x). \\ \tab
+Lienard's equation is equivalent to the system \\ \tab
+$\dot{x}=y$ \\ \tab
+$\dot{y}=-g(x)-f(x)y$. \\
+The following theorem states that this system has a unique, stable limit cycle under appropiate hypotheses on f and g. For a proof, see Jordan and Smith (1987), Grimshaw (1990), or Perko (1991). 
+
+\textbf {Lineard's Theorem:} Suppose that f(x) and g(x) satisfy the following conditions: \\ \tab
+(1) f(x) and g(x) are continuously differentiable for all x: \\ \tab
+(2) g(-x)=-g(x) for all x (i.e., g(x) is an odd function); \\ \tab
+(3) $g(x)> 0$ for $x>0$; \\ \tab
+(4) f(-x)=f(x) for all x (i.e., f(x) is an even function); \\ \tab
+(5) The odd function $F(x)= \int_{0}^{x}f(u)du$ has exactly one positive zero at x=0, is negative for $0<x<a$, is positive and nondecreasing for $x>a$, and $F(x) \to \infty$ as $x \to \infty$. \\ \tab
+Then the system (2) has a unique, stable limit cycle surrounding the origin in the phase plane. \\ \tab
+This result should seem plausible. The assumptions on g(x) mean that the restoring force acts like an ordinary spring, and tends to reduce any displacement, whereas the assumptions on f(x) imply that the damping is negative at small $|x|$ and positive at large $|x|$. Since small oscillations are pumped up and large oscillations are damped down, it is not surprising that the system tends to settle into a self-sustained oscillation of some intermediate amplitude.
+
+\textbf {Chapter 7.5 Relaxation Oscillations} \\ 
+It's time to change gears. So far in this chapter, we have focused on a qualitative question: Given a particular two dimensional system, does it have any periodic solutions? Now we ask a quantitative question: Given that a closed orbit exists, what can we say about its shape and period? In general, such problems can't be solved exactly, but we can still obtain useful approximations if some parameter is large or small. \\ \tab
+We begin by considering the van der Pol equation \\ \tab
+$\ddot{x}+\mu (x^{2}-1)\dot{x}+x=0$ \\ 
+for $\mu >> 1$. In this strongly nonlinear limit we'll see that the limit cycle consists of an extremely slow buildup followed by a sudden discharge, followed by another slow buildup, and so on. Oscillations of this type are often called relaxation oscillations, because the "stress" accumulated during the slow buildup is "relaxed" during the sudden discharge. Relaxation oscillations occur in many other scientific contexts, from the stick-slip oscillations of a bowed violing string to the periodic firing of nerve cells driven by a constant current (Edelstein-Keshet 1988, Murray 1989, Rinzel and Ermentrout 1989). 
+\textbf {Chapter 7.6 Weakly Nonlinear Oscillators} \\ 
+This section deals with equations of the form \\ \tab
+$\ddot{x}+x+\epsilon h(x, \dot{x})=0$ \tab (1) \\
+where $0\leq \epsilon << 1$ and $h(x, \dot{x})$ is an arbitrary smooth function. Such equations represent small pertubations of the linear oscillator $\ddot{x}+x=0$ and are therefore called weakly nonlinear oscillators. Two fundamentals examples are the van der Pol equation \\ \tab
+$\ddot{x}+x+\epsilon(x^{2}-1)\dot{x}=0$, \tab (2)\\ 
+(now in the limit of small nonlinearity), and the Duffing equation \\ \tab
+$\ddot{x}+x+\epsilon x^{3}=0$ \tab (3) \\
+To illustrate the kinds of phenomena that can arise, Figure 7.6.1 shows a computer generated solution of the van der Pol equation in the $(x, \dot{x})$ phase plane, for $\epsilon=0.1$ and an initial condition close to the origin. The trajectory is a slowly winding spiral; it takes many cycles for the amplitude to grow substantially. \\ 
+
+\includegraphics{fig_761}
+
+Eventually the trajectory asymptotes to an approximately circular limit cycle whose radius is close to 2. \\ \tab
+We'd like to be able to predict the shape, period, and radius of this limit cycle. Our analysis will exploit the fact that the oscillator is "close to" a simple harmonic oscillator, which we understand completely. 
+\textbf {Regular Pertubation Theory and its Failure} \\ \tab
+As a first appraoch, we seek solutions of (1) in the form of a power series in $\epsilon$. Thus if $x(t,\epsilon)$ is a solution, we expand it as \\ \tab
+$x(t, \epsilon)=x_{0}(t) + \epsilon x_{1}(t) + \epsilon^{2}x_{2}(t)+\hdots$ \tab (4) \\
+where the unknown function $x_{k}(t)$ are to determine from the governing equation and the initial conditions. The hope is that all the important information is captured by the first few terms-ideally, the first two-and that the higher-order terms represent only tiny corrections. This technique is called regular pertubation theory. It works well on certain classes of problems (for instance, Excercise 7.3.9), but as we'll see, it runs into trouble here. \\
+To expose the source of the difficulties, we begin with a practice problem that can be solved exactly. Consider the weakly damped linear oscillator \\ 
+\tab $\ddot{x}+2\epsilon \dot{x}+x=0$. \tab (5) \\
+with initial conditions \\ \tab
+$x(0)=0 \tab \dot{x}(0)=1$ \tab (6) \\
+Using the techniques of Chapter 5, we find the exact solution \\
+$x(t, \epsilon)=(1-\epsilon^{2})^{-1/2} e^{\epsilon t}sin[(1-\epsilon^{2})^{1/2} t]$. \tab (7) \\
+Now let's solve the same problem using pertubation theory. Substitution of (4) into (5) yields \\ \tab
+$\frac{d^{2}}{dt^{2}}(x_{0}+\epsilon x_{1}+\hdots)+2\epsilon {\frac{d}{dt}(x_{0}+\epsilon x_{1}+\hdots)}+(x_{0}+\epsilon x_{1}+\hdots)=0$ \tab (8) \\
+If we group the terms according to powers of $\epsilon$, we get \\
+$[\ddot{x}_{0}+x_{0}]+\epsilon[\ddot{x}_{1}+2\dot{x}_{0}+x_{1}]+O(\epsilon^{2})=0$ \tab (9) \\
+Since (9) is supposed to hold for all sufficiently small $\epsilon$, the coefficients of each power of $\epsilon$ must vanish seprately. Thus we find \\ \tab
+$O(1): \ddot{x}_{0}+x_{0}=0$ \tab (10) \\
+$O(\epsilon): \ddot{x}_{1}+2\dot{x}_{0}+x_{1}=0$ \tab (11) \\
+(We're ignoring the $O(\epsilon^{2})$ and higher equations, in the optimistic spirit mentioned earlier.) \\ \tab
+The appropiate initial conditions for these equations come from (6). At t=0 (4) implies that $0=x_{0}(0)+\epsilon x_{1}(0)+\hdots$; this holds for all $\epsilon$, so \\ \tab
+$x_{0}(0)=0, \tab x_{1}(0)=0$ \tab (12) \\
+By applying a similar argument to $\dot{x}_{0}(0)=1, \tab \dot{x}_{1}(0)=0$ \tab (13) \\
+Now we solve the initial value problems one by one; they fall like domimpes. The solution of (10), subject to the initial conditions $x_{0}(0)=0$, $\dot{x}_{0}(0)=1$, is \\ \tab
+$x_{0}(t)=sin t$ \tab (14) \\
+Plugging this solution into (11) gives \\
+$\ddot{x}_{1}+x_{1}=-2cos t$ \tab (15) \\
+Here's the first sign of trouble; the right hand side of (15) is a resonant forcing. The solution of (15) subject to $x_{1}(0)=0, \dot{x}_{1}(0)=0$ is \\ \tab
+$x_{t}(t)=-tsint$, \tab (16) \\ 
+which is a secular term, i.e., a term that grows without bound as $t \to \infty$ \\ \tab
+In summary, the solution of (5), (6) according to pertubation theory is \\ \tab
+$x(t, \epsilon)=sint - \epsilon t sin t + O(\epsilon^{2})$ \tab (17) \\
+How does this compare with the exact solution (7)? In excersice 7.6.1, you are asked to show that the two formulas agree in the following sense: If (7) is expanded as power series in $\epsilon$, the first two terms are given by (17). In fact (17) is the beginning of a convergent series expansion for the true solution. For any fixed t, (17) provides a good approximation as long as $\epsilon$ is small enough-specifically, we need $\epsilon t<< 1$ so that the correction term (which is actually $O(\epsilon^{2}t^{2}))$ is negligible. But normally we are interested in the behavior for fixed $\epsilon$, not fixed t. In that case we can only expect the pertubation approximation to work for times $t << O(1/\epsilon)$. To illustrate this limitation, Figure 7.6.2 plots the exact solution (7) and the pertubation series (17) for $\epsilon =0.1$. As expected, the pertubation series works reasonably well if $t << \frac{1}{\epsilon}=10$, but it braks down after that. \\
+\includegraphics{fig_762}
+\tab In many situations we'd like our approximation to capture the true solution's qualitative behavior for all t, or at least for large t. By this criterion, (17) is a failure, as Figure 7.6.2 makes obvious. There are two major problems: \\ \tab
+(1) The true solution (7) exhibits two time scales: a fast time $t \tilde O(1)$ for the sinusoidal oscillations and a slow time $t \tilde 1/\epsilon$ over which the amplitude decays. Equation (17) completely misrepresents the slow time scale behavior. In particular, because of the secular term $t sin t$, (17) falsely suggests that the solution grows with time whereas we know from (7) that the amplitude $A=(1-\epsilon^{2})^{-1/2}e^{-\epsilon t}$ decays exponentially. \\
+\tab
+The discrpancy occurs because $e^{\epsilon t}=1-\epsilon t + O(\epsilon^{2}t^{2})$, so to this order in $\epsilon$, it appears (incorrectly) that the amplitude increases with t. To get the correct result, we'd need to calculate an infinite number of terms in the series. That's worthless; we want series approximations that work well with just one or two terms. \\
+The frequency of the oscillations in (7) is $\omega=(1-\epsilon^{2})^{1/2} \approx 1-\frac{1}{2}\epsilon^{2}$, which is shifted slightly from the frequency $\omega = 1$ of (17). After a very long time $t \tilde O(1/\epsilon^{2})$, this frequency error will have a significant cumulative effect. Note that this is a third, super-slow time scale! 
+\textbf {Two Timing} \\ \tab
+The elementary example above reveals a more general truth: There are going to be (at least) two time scales in weakly nonlinear oscillators. We've already met this phenomenon in Figure 7.6.1, where the amplitude of the spiral grew very slowly compared the cycle time. An analytical method called two-timing builds in the fact of two time scales from the start, and produces better approximations than regular pertubation theory. In fact, more than two times can be used, but we'll stick to the simplest case. \\
+
+To apply two-timing to (1), let $\tau = t$ denote the fast O(1) time, and let $T=\epsilon t$ denote the slow time. We'll treat these two times as if they were independent variables. In particular, functions of the slow time T will be regarded as constants on the fast time scale $\tau$. It's hard to justify this idea rigously, but it works! (Here's an analogy: its like saying that your height is constant on the time scale of a day. Of course, over many months or years your hieght can change dramatically, especially if you're an infant or a pubescent teenager, but over one day your height stays constant, to a good approximation.) \\ \tab
+Now we turn to the mechanics of the method. We expand the solution of (1) as a series \\ \tab
+$x(t, \epsilon)=x_{0}(\tau, T) + \epsilon x_{1}(\tau, T) + O(\epsilon^{2})$. \tab (18) \\
+The time derivatives in (1) are transformed using the chain rule: \\ \tab
+$\dot{x}=\frac{dx}{dt}= \frac{\partial x}{\partial T} + \frac{\partial T}{\partial t} = \frac{\partial x}{\partial \tau}+ \epsilon \frac{\partial x}{\partial T}$ \tab (19) \\
+A subscript notation for differentiation is more compact; thus we write (19) as \\ \tab
+$\dot{x}=\partial_{\tau}x+\epsilon \partial_{T}x$ \tab (20) \\
+After substituting (18) into (20) and collecting powers of $\epsilon$, we find \\ \tab
+$\dot{x}=\partial_{\tau}x_{0}+\epsilon(\partial_{T}x_{0}+\partial_{\tau}x_{1})+O(\epsilon^{2})$, \tab (21) \\
+Similarly, \\ \tab
+$\ddot{x}=\partial_{\tau \tau}x_{0}+\epsilon(\partial_{\tau \tau} x_{1}+2\partial_{T \tau}x_{0})+O(\epsilon^{2})$ \tab (22) \\
+To illustrate the method, let's apply it to our earlier test problem.
+\\
+\includegraphics{fig_763}
+\textbf {Averaged Equations} \\ \tab
+The same steps occur again and again in problems about weakly nonlinear oscillators. We can save time by deriving some general formulas. \\ \tab Consider the equation for a general weakly nonlinear oscillator: \\ \tab
+$\ddot{x}+x+\epsilon h(x, \dot{x})=0$ \tab (45) \\
+The usual two-timing substitutions give  \\ \tab
+$O(1): \partial_{\tau \tau}x_{0}+x_{0}=0$ \tab (46) \\ 
+$O(\epsilon): \partial_(\tau \tau) x_{1}+x_{1}=-2\partial_{\tau T} x_{0}-h$ \tab (47) \\ 
+where now $h=h(x_{0}, \partial_{\tau}, x_{0})$. As in Example 7.6.2, the solution of the O(1) equation is \\ \tab
+$x_{0}=r(T)cos(\tau + \phi(T))$. \tab (48) \\
+Our goal is to derive differential equations for $r^{'}$ and $\phi^{'}$, analogous to (40) and (41). We'll find these equations by insisting, as usual, that there be no terms proportional to $cos(\tau + \phi)$ and $sin(\tau + \phi)$ on the right-hand side of (47). Substituting (48) into (47), we see that this right-hand side is \\ \tab
+$2[r^{'}sin(\tau + \phi)+r\phi^{'}cos(\tau + \phi)]-h$ \tab (49) \\
+where now $h=h(rcos(\tau+\phi), -rsin(\tau+\phi))$. \\ \tab
+To extract the terms in h proportional to $cos(\tau+\phi)$ and $sin(\tau + \phi)$, we borrow some ideas from Fourier analysis (If you're unfamiliar with Fourier analysis, dont worry--we'll derive all that we need in Excercise 7.6.12). Notice that h is a $2\pi$ periodic function of $\tau + \phi$. Let \\ \tab
+$\theta = \tau + \phi$ \\ \tab
+Fourier analysis tells us that $h(\theta)$, can be written as a Fourier series \\ \tab
+$h(\theta)=\sum_{k=0}^{\infty}a_{k}cosk{\theta}+\sum_{k=1}^{\infty}b_{k}sink\theta$ \tab (50) \\
+where the Foureir coefficients are given by \\ \tab
+$a_{0}=\frac{1}{2\pi}\int_{0}^{2\pi}h(\theta)d\theta$ \\ \tab
+$a_{k}=\frac{1}{\pi}\int_{0}^{2\pi}h(\theta)cos k \theta d\theta, \tab k \geq 1$ \\ \tab
+$b_{k}=\frac{1}{\pi}\int_{0}^{2\pi}h(\theta)sink\theta d\theta, \tab k \geq 1$ \tab (51) \\
+Hence (49) becomes \\ \tab
+$2[r^{'}sin\theta + r \phi^{'}cos\theta]-\sum_{k=0}^{\infty} a_{k} cos k\theta - \sum_{k=1}^{\infty} b_{k}sink\theta$ \tab (52) \\
+
+The only resonant terms in (52) are $[2r^{'}-b_{1}]sin\theta$ and $[2r\phi^{'}-a_{1}]cos\theta$. Therefore, to avoid secular terms we need $r^{'}=b_{1}/2$ and $r\phi^{'}=a_{1}/2$. Using the expressions in (51) for $a_{1}$ and $b_{1}$, we obtain \\ \tab
+$r^{'}= \frac{1}{2\pi}\int_{0}^{2\pi}h(\theta)sin\theta d\theta \approx \langle hsin\theta \rangle \\ \tab
+r\phi^{'}=\frac{1}{2\pi}\int_{0}^{2\pi}h(\theta)cos\theta d\theta \approx \langle h cos \phi \rangle$ \tab (53) \\
+where the angled brackets $\langle \cdot \rangle$ denote an average over one cycle of $\theta$. \\ \tab
+The equations in (53) are called the averaged or slow-time equations. To use them, we write out $h=h(rcos(\tau + \phi), \tab -rsin(\tau + \phi))=h(rcos\theta, -rsin \theta)$ explicitly, and then compute the relevant averages over the fast variable $\theta$, treating the slow variable r as constant. Here are some averages that appear often: \\ \tab
+$\langle cos \rangle = \langle sin \rangle = 0,$ \tab $\langle$ sin cos $\rangle = 0, \tab \langle cos^{3} \rangle = \langle sin^{3} \rangle = 0, \tab \langle cos^{2n+1} \rangle = \langle sin^{2n+1} \rangle = 0, \tab \langle cos^{2} \rangle = \langle sin^{2} \rangle = \frac{1}{2}, \tab \langle cos^{4} \rangle = \langle sin^{4} \rangle = \frac{3}{8}, \tab \langle cos^{2} sin^{2} \rangle = \frac{1}{8}, \tab
+\langle cos^{2\pi} \rangle = \langle sin^{2\pi} \rangle = \frac{1\cdot 3 \cdot 5 ... (2n-1)}{2 \cdot 4 \cdot 6 ... (2n)}, n \geq 1$ \tab (54) \\ 
+Other averages can either be derived from these, or found by direct integration. For instance, \\ \tab
+$\langle cos^{2}sin^{4} \rangle = \langle (1-sin^{2})sin^{4} \rangle = \langle sin^{4} \rangle - \langle sin^{6} \rangle = \frac{3}{8} - \frac{15}{48}= \frac{1}{16}$  \\
+$\langle cos^{3}sin \rangle = \frac{1}{2\pi}\int_{0}^{2\pi}cos^{3}\theta sin \theta d \theta = - \frac{1}{2\pi}[cos^{4}\theta]_{0}^{2\pi}=0$ 
+
+\textbf {Validity of Two-Timing} \\ \tab
+We conclude with a few comments about the validity of the two-timing method. The rule of thumb is that the one-term approximation $x_{0}$ will be within $O(\epsilon)$ of the true solution x for all times up to and including $t \tilde O(1/\epsilon)$ assuming that both x and $x_{0}$ start from the same initial condition. If x is a periodic solution, the situation is even better: $x_{0}$ remains within $O(\epsilon)$ of x for all t. \\ \tab
+But for precise statements and rigorous results about these matters, and for discussions of the subtleties that can occur, you should consult more advanced treatments, such as Guckenheimer and Holmes (1983) or Grimshaw (1990). Those authors use the method of averaging, an alterantive approach that yields the same results as two-timing. See exercise 7.6.25 for an introduction to this powerful technique. \\ \tab
+Also, we have been very loose about the sense in which our formulas approximate the true solutions. The relevant notion is that of asymptotic approximations. For introductions to asymptotics, see Lin and Segel (1988) or Bender and Orzag (1978).
+
+
+
+
+
+
+
+
+
+
+\end{document}

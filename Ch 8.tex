@@ -1,0 +1,74 @@
+\documentclass{article}
+\usepackage{amsmath}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\begin{document}
+
+
+\title {Calculus of Variations Ch 8 Direct Methods in The Calculus of Variations}
+
+\author{Charlie Seager}
+
+\maketitle
+
+\textbf{DIRECT METHODS IN THE CALCULUS OF V ARIATIONS Page 192. 39: Minimizing Sequences, 193. 40: The Ritz Method and the Method of Finite Differences, 195. 41: The Sturm-Liouville Problem, 198. Problems, 206.}
+
+\textbf {Section 39 Minimizing Sequences}
+
+\textbf {Theorem} If $\{y_n\}$ is a minimizing sequence of the functional J[y], with limit function $\hat{y}$ and if J[y] is lower semicontinuous at $\hat{y}^2$ then
+\begin{center}
+$J[\hat{y}] = \lim_{n \to \infty} J[y_n]$
+\end{center}
+
+\textbf {Section 40: The Ritz Method and the Method of Finite Differences}
+\textbf {Section 40.1} First, we describe the Ritz method, one of the most widely used direct variational methods. Suppose we are looking for the minimum of a functional J[y] defined on some space $\mathcal{M}$ of admissible functions, which for simplicity we take to be a normed lienar space. Let
+\begin{center}
+$\varphi_1 , \varphi_2 ,...$
+\end{center} 
+be an infinite sequence of functions in $\mathcal{M}$ and let $\mathcal{M}_n$ be the n-dimensional linear subspace of $\mathcal{M}$ spanned by the first n of the functions (8).
+
+\textbf {Definition} The sequence (8) is said to be complete (in $\mathcal{M}$) if given any $y \in \mathcal{M}$ and any $\epsilon > 0$, there is a linear combination $\mathcal{n}_n$ of the form (9) such that $||\mathcal{n}_n - y|| < \epsilon$ (where n depends on $\epsilon$
+
+\textbf {Theorem} If the functional J[y] is continuous, and if the sequence (8) is complete, then
+\begin{center}
+$\lim_{n \to \infty} \mu_n = \mu,$
+\end{center}
+where, 
+\begin{center}
+$\mu = inf_y J[y]$
+\end{center}
+
+\textbf {Section 41 The Sturm-Liouville Problem} In this section, we illustrate the application of direct variational methods to differential equations (cf. the remarks on p.192), by studying the following boundary value problem, known as the Sturm-Liouville problem: Let $P = P(x) > 0$ and $Q = Q(x)$ be two given functions, where Q is continous and P is continously differentiable.
+
+\textbf {Theorem} The Sturm-Liouville problem (14), (15) has an infintie sequence of eigenvalues $\lambda^{(1)}, \lambda^{(2)} ,...,$ and to each eigenvalue $\lambda^{(n)}$ there corresponds an eigenfunction $y^{(n)}$ which is unique to within a constant factor
+
+\textbf {Lemma 1} The sequence $\{y_n^{(1)}(x) \}$ contains a uniformly convergent subsequence.
+
+\textbf {Lemma 2} Let y(x) be continuous in $[0, \pi]$ and let
+\begin{center}
+$\int_0^{\pi} [ - (Ph')' + Q_1 h] y dx = 0$
+\end{center}
+for every function $h(x) \in \mathcal{D}_2(0,\pi)$ satisfying the boundary conditions
+\begin{center}
+$h(0) = h(\pi) = 0 \tab h'(0) = h'(\pi) = 0$
+\end{center}
+Then y(x) also belongs to $\mathcal{D}_2(0, \pi)$ and 
+\begin{center}
+$-(Py')' + Q_1 y = 0$
+\end{center}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

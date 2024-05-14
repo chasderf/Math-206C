@@ -1,0 +1,181 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\begin{document}
+
+
+\title {Nonlinear Dynamics and Chaos: part 2: Two-Dimensional Flows: Ch 5: Linear Systems}
+
+\author{Charlie Seager}
+
+\date{4/19/2024}
+
+\maketitle
+
+\textbf {Chapter 5.0 Inroduction}
+
+As we've seen, in one-dimensional phase spaces the flow is extremely confined-all trajectories are forced to move monotonically or remain constant. In higher-dimensional phase spaces, trajecteries have much more room to maneuver, and so a wider range of dynamical behavior becomes possible. Rather than attack all this complexity at once, we begin with the simplest class of higher-dimensional systems, namely linear systems in two dimensions. These systems are interesting in their own right and as we'll see later, they also play an important role in the classification of fixed points of nonlinear systems.
+
+\textbf {Chapter 5.1 Definitions and Examples}
+A two-dimensional linear system of the form
+\begin{center}
+$\dot{x}=ax+by$
+\end{center}
+
+\begin{center}
+$\dot{y}=cx+dy$
+\end{center}
+
+where a,b,c,d are parameters. If we use boldface to denote vectors, this system can be written more compactly in matrix form as 
+\begin{center}
+$\dot{x}=Ax$
+\end{center}
+where 
+\\ {A ={
+$\begin{pmatrix}
+a & b \\
+c & d
+\end{pmatrix}$
+} and x = $
+\begin{pmatrix}
+x \\
+y
+\end{pmatrix}
+$ } \\
+Such a system is linear in the sense that if $x_{1}$ and $x_{2}$ are solutions, then so is any linear combination $c_{1}x_{1}+c_{2}x_{2}$. Notice that $\dot{x}=0$ when x=0, so $x^{*}=0$ is always a fixed point for any choice of A. \\ \tab
+The solutions of $\dot{x}=Ax$ can be visualized as trajectories moving on the (x,y) plane, in this context called the phase plane. Our first example present the phase plane analysis of a familiar system.
+
+\textbf {Stability Language} \\ \tab
+It's useful to introduce some language that allows us to discuss the stability of different types of fixed points. This language will be especially useful when we analyze fixed point of nonlinear systems. For now we'll be informal; precise definitions of the different types of stability will be given in Excercise 5.1.10.
+
+\tab We say that $x^{*}=0$ is an attracting fixed point in Fugre 5.1.5a-c; all trajectories that start near $x^{*}$ approach it as $t \to \infty$. That is, $x(t) \to x^{*}$ as $t \to \infty$. In fact $x^{*}$ attracts all trajectories in the phase plane, so it could globally attracting. There's a completely different notion of stability which relates to the behavior of trajectories for all time, not just as $t \to \infty$. We say that a fixed point $x^{*}$ is Liapunov stable if all trajectories that start sufficiently close to $x^{*}$ remain close to it for all time. Figures 5.1.5a-d, the origin is Liapunov stable. \\ \tab
+
+\includegraphics{fig_513}
+\\ 
+\includegraphics{fig_515}
+
+Figure 5.1.5d shows that a fixed point can be Liapunov stable but not attracting. This situation comes up often enough that there is a special name for it. When a fixed point is Liapunov stable but not attracting, it is called neutrally stable. Nearby trajectories are neither attracted to nor repelled from a neutrally stable point. As a second example, the equilibrium point of the simple harmonic oscillator (Figure 5.1.3) is nuetrally stable. Neutral stability is commonly encountered in mechanical systems in the absence of friction. Conversely, it's possible for a fixed point to be attracting but not Liapunov stable; thus, neither notion of stability implies the other. An example is given by the following vector field on the circle: $\dot{\theta}=1-cos\theta$ (Figure 5.1.6) Here $\theta^{*}=0$ attracts all trajectories as $t \to \infty $ but it is not Liapunov stable: there are trajectories that start infinitesimally close to $\theta^{*}$ but go on a very large excursion beforce returning to $\theta^{*}$ \\
+
+\includegraphics{fig_516}
+\\ 
+
+However, in practice the two types of stability often occur together. If a fixed point is both Liapunov stable and attracting, we'll call it stable or sometimes asymptotically stable. \\ \tab
+Finally, $x^{*}$ is unstable in Figure 5.1.5e, because it is neither attracting nor Liapunov stable. \\ \tab
+A graphical convention: we'll use open dots to denote unstable fixed points, and solid black dots to denote Liapunov stable fixed points. This convention is consistent with that used in previous chapters.
+
+\textbf {Chapter 5.2 Classification of Linear Systems}
+\\ \tab The examples in the last section had the special feature that two of the entries in the matrix A were zero. Now we want to study the general case of an arbitrary 2 x 2 matrix, with the aim of classifying all the possible phase portraits that can occur. \\ \tab
+
+Example 5.1.2 provides a clue about how to proceed. Recall that the x and y axes played a crucial geometric role. They determined the direction of the trajectories as $t \to \pm \infty$. They also contained special straight-line trajectories: a trajectory starting on one of the coordinate axes stayed on that axis forever, and exhibited simple exponentially growth or decay along it. \\ \tab
+
+For the general case, we would like to find the analog of these straight-line trajectories. That is, we seek trajectories of the form 
+
+\includegraphics{bs_eq} \tab (2)
+where $v \neq 0$ is some fixed vector to be determined, and $\lambda$ is a growth rate, also to be determined. If such solutions exist, they correspond to exponential motion along the line spanned by the vector v. \\ \tab
+To find the conditions on v and $\lambda$, we substitute $x(t)=e^{\lambda{t}}v$ into $\dot{x}=Ax$, and obtain $\lambda e^{\lambda{t}}v = e^{\lambda{t}}Av$. Canceling the nonzero scalar factor $e^{\lambda{t}}$ yields:
+\begin{center}
+$Av = \lambda v$ \tab (3)
+\end{center}
+
+which says that the desired straight line solutions exists if v is an eigenvector of A with corresponding eigenvalue $\lambda$. In this case we call the solution (2) an eigensolution. \\ \tab
+Let's recall how to find eigenvalues and eigenvectors. (If your memory needs more refreshing, see any text on linear algebra). In general, the eigenvalues of a matrix A are given by the characteristic equation $det(A-\lambda I)=0$, where I is the identity matrix. For a 2x2 matrix \\ \tab
+{A=$
+\begin{pmatrix}
+a & b \\ 
+c & d
+\end{pmatrix}
+$}
+
+the characteristic equation becomes
+{$det 
+\begin{pmatrix}
+a-\lambda & b \\
+c & d-\lambda
+\end{pmatrix}
+$=0}
+
+Expanding the determinant yields 
+\begin{center}
+$\lambda^{2}-\tau \lambda + \triangle = 0$
+\end{center}
+where
+\\ \tab
+$\tau = trace(A)=a+d, \\
+\triangle = det(A)=ad-bc$ \\
+Then
+\begin{center}
+$\lambda_{1}=\frac{\tau + \sqrt{\tau^{2}-4\triangle}}{2}, \tab \lambda_{2}=\frac{\tau-\sqrt{\tau^{2}-4\triangle}}{2}$ \tab (5)
+\end{center}
+are the solutions of the quadratic equation (4). In other words, the eigenvalues depend only on the trace and determinant of the matrix A. \\ \tab
+The typical situation is for the eigenvalues to be distinct: $\lambda_{1} \neq \lambda_{2}$. In this case a theorem of lienar algebra states that the corresponding eigenvectors $v_{1}$ and $v_{2}$ are linearly independent and hence span the entire plane (Figure 5.2.1) In particular any initial condition $x_{0}$ can be written as a linear combination of eigenvector, say $x_{0}=c_{1}v_{1}+c_{2}v_{2}.$ \\
+
+\includegraphics{fig_521}
+
+This observation allows us to write down the general solution for x(t)-it is simply
+\begin{center}
+$x(t)=c_{1}e^{\lambda_{1}{t}}v_{1} + c_{2}e^{\lambda_{2}t}v_{2}$. \tab (6)
+\end{center}
+Why is this the general solutions to $\dot{x}=Ax$, and hence is itself a solution. Second, it satisfies the initial condition $x(0)=x_{0}$, and so by the existence and uniqueness theorem it is the only solution (See section 6.2 for a general statement of the existence and uniqueness theorem).
+
+\textbf {Classification of fixed points}
+\\ \tab By now you're probably tired of all the examples and ready for a simple classification scheme. Happily, there is one. We can show the type and stability of all the different fixed points on a single diagram (Figure 5.2.8)
+\\
+\includegraphics{fig_528}
+
+The axes are the trace $\tau$ and the determinant $\triangle$ of the matrix A. All of the information in the diagram is implied by the following formulas:
+
+\begin{center}
+$\lambda_{1,2} = \frac{1}{2}(\tau + \sqrt{\tau^{2}-4\triangle}), \tab \triangle = \lambda_{1}\lambda_{2}, \tab \tau = \lambda_{1}+\lambda_{2}$
+\end{center}
+
+The first equation is just (5). The second and third can be obtained by writing the characteristic equation in the form $(\lambda - \lambda_{1})(\lambda-\lambda_{2})= \lambda^{2}-\tau \lambda + \triangle = 0$. \\ \tab
+
+To arrive at Figure 5.2.8, we make the following observations: \\ \tab
+If $\triangle < 0$, the eignevalues are real and have opposite signs; hence the fixed point is a saddle-point. \\ \tab
+If $\triangle > 0$, the eigenvalues are either real and the same sign (nodes), or complex conjugate (spirals and centers). Nodes satisfy $\tau^{2}-4\triangle > 0$ and spirals satisfy $\tau^{2}-4\triangle < 0$. The parabola $\tau^{2}-4\triangle = 0$ is the borderline between nodes and spirals; star nodes and degenerate nodes live on this parabola. The stability of the nodes and spirals is determined by $\tau$. When $\tau < 0$, both eigenvalues have negative real parts, so the fixed point is stable. Unstable spirals and nodes have $\tau > 0$. Nuetrally stable centers live on the borderline $\tau = 0$, where the eigenvalues are purely imaginary. \\ \tab
+
+If $\triangle = 0$, at least one of the eigenvalues is zero. Then the origin is not an isolated fixed point. There is either a whole line of fixed points, as in Figure 5.1.5d or a plane of fixed points, if A=0. \\ \tab
+Figure 5.2.8 shows that saddle points, nodes and spirals are the major types of fixed points; they occur in large open regions of the $(\triangle , \tau)$ plane. Centers, stars, degenerate nodes, and non-isolated fixed points are borderline cases that occur along curves in the $(\triangle , \tau)$ plane. Of these borderline cases, centers are by far the most important. They occur very commonly in frictionless mechanical systems where energy is conserved.
+
+\textbf {Chapter 5.3 Love Affairs} \\
+To arouse your interest in the classification of linear systems, we now discuss simple model for the dynamcis of love affairs (Strogatz 1988). The following story illustrates the idea. \\ \tab
+
+Romeo is in love with Juliet, but in our version of this story, Juliet is a fickle lover. The more Romeo loves her, the more Juliet wants to run away and hide. But when Romeo getss discouraged and backs off, Juliet begins to find him strangely attractive. Romeo, on the other hand, tends to echo her: he warms ip when she loves him, and grows cold when she hates him. \\
+Let
+\begin{center}
+R(t)=Romeo's love/hate for Juliet at time t
+J(t) = Juliet's love/hate for Romeo at time t
+\end{center}
+
+Positive values of R, J signify love, negative values signify hate. Then a model for their star-crossed romance is
+\begin{center}
+$\dot{R}=aJ \tab
+\dot{J}=-bR$
+\end{center}
+
+where the parameters a and b are positive, to be consistent with the story. \\ \tab
+The sad outcome of their affair is, of course, a neverending cycle of love and hate; the governing system has a center at (R,J) = (0,0). At least they manage to achieve simultaneous love one-quarter of the time (Figure 5.3.1) \\
+
+\includegraphics{fig_531}
+
+Now consider the forecast for lvoers governed by the general linear system
+\begin{center}
+$\dot{R}=aR + bJ \tab \dot{J}=cR + dJ$
+\end{center}
+
+where the parameters a,b,c,d may have either sign. A choice of signs specifies the romantic styles. As named by one of my students, the choice $a>0, b>0$ means that Romeo is an "eager beaver"- he gets excited by Juliet's love for him, and is further spurred on by his own affectionate feelings for her. It's entertaining to name the other three romantic styles, and to predict the outcomes for the various pairings. For example, can a "cautious lover" $(a<0, b>0)$ find true lvoe with an eager beaver? These and other pressing questions will be considered in the excercises.
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

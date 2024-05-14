@@ -1,0 +1,206 @@
+\documentclass{article}
+\usepackage{amsmath}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\begin{document}
+
+
+\title {Calculus of Variations Ch 6: Fields, Sufficient Condition for a Strong Extremum}
+
+\author{Charlie Seager}
+
+\maketitle
+
+\textbf {FIELDS. SUFFICIENT CONDITIONS FOR A STRONG
+EXTREMUM Page 131. 31: Consistent Boundary Conditions. General Definition of a Field, 131. 32: The
+Field of a Functional, 137. 33: Hilbert's Invariant Integral, 145. 34: The Weierstrass E-Function. Sufficient
+Conditions for a Strong Extremum, 146. Problems, 150}
+
+\textbf {Section 31 Consistent Boundary Conditions. General Definition of a Field}
+
+\textbf {Definition 1} The boundary conditions
+\begin{center}
+$y'_i = \Psi_i^{(1)}(y_1 ,..., y_n) \tab (i = 1,..., n)$
+\end{center}
+prescribed for $x = x_1$ and the boundary conditions
+\begin{center}
+$y'_i = \Psi_i^{(2)}(y_1,...,y_n) \tab (i = 1,...,n)$
+\end{center}
+prescribed for $x = x_2$ are said to be (mutually) consistent if every solution of the system (1) satisfying the boundary conditions (3) at $x = x_1$ also satisfies the boundary conditions (4) at $x = x_2$ and conversely
+
+\textbf {Definition 2} Suppose the boundary conditions
+\begin{center}
+$y'_i = \Psi_i(x, y_1,...,y_n) \tab (i = 1,...,n)$
+\end{center}
+(where the $\Psi_i$ are continously differentiable functions) are prescribed for every x in the interval [a,b] and suppose they are consistent for every pair of points $x_1, x_2$ in [a,b]. Then the family of mutually consistent boundary conditions (5) is called a field (of directions) for the given system(1).
+
+\textbf {Theorem} The first-order system
+\begin{center}
+$y'_i = \Psi_i(x, y_1 ,..., y_n) \tab (a \leq x \leq b; 1 \leq i \leq n)$
+\end{center}
+is a field for the second-order system
+\begin{center}
+$y"_i = f_i(x, y_i ,..., y_n, y'_1 ,..., y'_n)$
+\end{center}
+if and only if the functions $\Psi_i(x, y_1, ..., y_n)$ satisfy the following system of partial differential equations, called the Hamilton-Jacobi system for the original
+\begin{center}
+$\frac{\partial \Psi_i}{\partial x} + \sum_{k =1}^n \frac{\partial \Psi_i}{\partial y_k} \Psi_k = f_i (x, y_1,..., y_n, \Psi_1,..., \Psi_n)$
+\end{center}
+Thus, every solution of the Hamilton-Jacobi system (8) gives a field for the original system (7).
+
+\textbf {Section 32 The Field of a Functional}
+
+\textbf {Definition 1} Given a functional
+\begin{center}
+$\int_a^b F(x, y, y') dx$
+\end{center}
+with momenta (28), the boundary conditions (30), prescribed for x = a are said to be self adjoint if there exists a function g(x,y) such that 
+\begin{center}
+$p_i[x,y, \Psi(y)]|_{x=a} \equiv g_{yi}(x,y)|_{x=a} \tab (i = 1,...,n)$
+\end{center}
+
+\textbf {Theorem 1} The boundary conditions (30) are self-adjoint if and only if they satisfy the conditions
+\begin{center}
+$\frac{\partial p_i [x, y, \Psi(y)]}{\partial y_k} |_{x=a} = \frac{\partial p_k [x, y, \Psi(y)]}{\partial y_i} |_{x = a} \tab (i, k = 1,...,n)$
+\end{center}
+called the self-adjointness conditions
+
+\textbf {Definition 2} Given a functional
+\begin{center}
+$\int_a^b F(x,y,y') dx$
+\end{center}
+with the system of Euler equations
+\begin{center}
+$F_{yi} - \frac{d}{dx} F_{yi'} = 0 \tab (i = 1,...,n)$
+\end{center}
+we say that the boundary conditions 
+\begin{center}
+$y'_i = \Psi_i^{(1)}(y) \tab (i = 1,...,n)$
+\end{center}
+prescribed for $x = x_1$ and the boundary conditions
+\begin{center}
+$y'_i = \Psi_i^{(2)}(y) \tab (i = 1,...,n)$
+\end{center}
+prescribed for $x = x_2$ are (mutually consistent with respect to the functional (33) if they are consistent with respect to the system (34), i.e. if every extremal satisfying the boundary conditions (35) at $x = x_1$ also satisfies the boundary conditions (36) at $x = x_2$ and conversely
+
+\textbf {Definition 3} The family of boundary conditions
+\begin{center}
+$y'_i = \Psi_i (x,y) \tab (i = 1,...,n)$
+\end{center}
+prescribed for every x in the interval [a,b] is said to be a field of the functional (33) if \\
+1. The conditions (37) are self-adjoint for every x in [a,b]; \\
+2. The conditions (37) are consistent for every pair of points $x_1, x_2$ in [a,b]
+
+\textbf {Theorem 2} A necessary and sufficient condition for the family of boundary conditions (37) to be a field of the functional (33) is that the self-adjointness conditions
+\begin{center}
+$\frac{\partial p_i [x,y, \Psi(x,y)]}{\partial y_k} = \frac{\partial H[x,y, \Psi(x,y)]}{\partial y_i}$
+\end{center}
+and the consistency conditions
+\begin{center}
+$\frac{\partial p_i [x,y, \Psi(x,y)]}{\partial x} = - \frac{\partial H [x,y,\Psi(x,y)]}{\partial y_i}$
+\end{center}
+be satisfied at every point x in [a,b] where
+\begin{center}
+$p_i(x,y,y') = F_{yi;}(x,y,y')$
+\end{center}
+and H is the Hamiltonian corresponding to the functional (33)
+\begin{center}
+$y'_i = \Psi_i(x,y) \tab (i = 1,...,n)$
+\end{center}
+
+\textbf {Theorem 3} The expression 
+\begin{center}
+$\frac{\partial p_i(x,y,y')}{\partial y_k} - \frac{\partial p_k (x,y,y')}{\partial y_i}$
+\end{center}
+has a constant value along each extremal
+
+\textbf {Theorem 4} The boundary conditions (49) defined by the relations (50) are consistent if and only if the function g(x,y) satisfies the Hamilton-Jacobi equation
+\begin{center}
+$\frac{\partial g}{\partial x} + H( x, y_1 ,..., y_n, \frac{\partial g}{\partial y_1} ,..., \frac{\partial g}{\partial y_n} ) = 0$
+\end{center}
+
+\textbf {Definition 4} Let (x,y) be an arbitrary point of R, and suppose that one and only one extremal of the functional (53) leaves c and passes through (x,y), thereby defining a direction
+\begin{center}
+$y'_i = \Psi_i(x,y) \tab (i = 1,...,n)$
+\end{center}
+at every point of R. Then the field of directions (54) is called a central field.
+
+\textbf {Theorem 5} Every central field (54) is a field of the functional (53), i.e. satisfies the consistency and self-adjointness conditions
+
+\textbf {Definition 5} Given an extremal $\gamma$ of the functional (53) suppose there exists a simply connected (open) region R containing $\gamma$ such that \\
+1. A field of the functional (53) covers R, i.e. is defined at every point of R \\
+2. One of the trajectories of the field is $\gamma$ \\
+Then we say that $\gamma$ can be imbedded in a field [of the functional (53)]
+
+\textbf {Theorem 6} Let $\gamma$ be an extremal of the functional (53), with equation 
+\begin{center}
+$ y = y(x) \tab (a \leq x \leq b)$
+\end{center}
+in vector form. Moreover, suppose that
+\begin{center}
+det $||F_{y'_1y'_k}||$
+\end{center}
+is nonvanishing in [a,b] and that no points conjugate to (a, y(a)) lie on $\gamma$. Then $\gamma$ can be imbedded in a field.
+
+\textbf {Section 33 Hilberts Invariant Integral}
+
+\textbf {Section 34 The Weiestrass E-Function. Sufficient Conditions for a Strong Extremum}
+
+\textbf {Definition} By the Weistrass E-Function of the funcional
+\begin{center}
+$J[y] = \int_a^b F(x,y,y') dx \tab y(a) = A \tab y(b) = B$
+\end{center}
+we mean the follwoing function of 3n + 1 variables:
+\begin{center}
+E(x, y, z, w) = F(x, y, w) - F(x,y,z) - $ \sum_{i=1}^n (w_i - z_i) F_{y'i}(x,y,z)$
+\end{center}
+
+\textbf {Theorem 1} Let $\gamma$ be an extremal, and let 
+\begin{center}
+$y'_i = \Psi_i(x,y) \tab (i = 1,...,n)$
+\end{center}
+be a field of the functional
+\begin{center}
+$J[y] = \int_a^b F(x,y,y') dx \tab y(a) = A \tab y(b) = B$
+\end{center}
+Suppose that at every point $(x,y) = (x,y_1,...,y_n)$ of some (open) region contianing $\gamma$ and covered by the field (68), the condition
+\begin{center}
+$E(x,y,\Psi, w) \geq 0$
+\end{center}
+is satisfied for every finite vector $w = (w_1 ,..., w_n)$. Then J[y] has a strong minimum for the extremal $\gamma$
+
+\textbf {Theorem 2 (Weiestrass' necessary condition)} If the functional 
+\begin{center}
+$J[y] = \int_a^b F(x,y,y') dx, \tab y(a) = A \tab y(b) = B$
+\end{center}
+has a strong minimum for the extremal $\gamma$ then
+\begin{center}
+$E(x,y,y',w) \geq 0$
+\end{center}
+along $\gamma$ for every finite w.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

@@ -1,0 +1,331 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{mathrsfs}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\begin{document}
+
+
+\title {Nonlinear Dynamics and Chaos: part 3: Chapter 10 One-Dimensional Maps}
+
+\author{Charlie Seager}
+
+\date{5/1/2024}
+\maketitle
+
+
+
+\textbf {Chapter 10.0 Introduction} \\
+This chapter deals with a new class of dynamical systems in which time is discrete, rather than continuous. These systems are known variously as difference equations, recursion relations, iterated maps, or simply maps. \\ \tab
+For instance, suppose you repeatedly press the cosine button on your calculator starting from some number $x_{0}$. Then the successive readouts are $x_{1}=cosx_{0}, x_{2}=cosx_{1}$, and so on. Set your calculator to radian mode and try it. Can you explain the surprising result that emerges after many iterations? \\ \tab
+
+The rule $x_{n+1}=cosx_{n}$ is an example of a one-dimensional map, so called because the points $x_{n}$ belong to the one-dimensional space of real numbers. The sequence $x_{0},x_{1},x_{2},...,$ is called the orbit starting from $x_{0}$. \\ \tab
+
+Maps arise in various ways: \\ \tab \tab
+
+1. As tools for analyzing differential equations. We have already encountered maps in this role. For instance, Poincare maps allowed us to prove the existence of a periodic solution for the driven pendulum and Josephson junction (section 8.5) and to analyze the stability of periodic solutions in general (Section 8.5). The Lorenz map (section 9.4) provided strong evidence that the Lorenz attractor is truly strange, and is not just a long-period limit cycle. \\ \tab \tab
+
+2. As models of natural phenomena. In some scientific contexts it is natural to regard time as discrete. This is the case in digital electronics, in parts of economics and finance theory, in impulsively driven mechanical systems, and in the study of certain animal populations where successive generations do not overlap. \\ \tab \tab
+
+3. As simple examples of chaos. Maps are interesting to study in their own right, as mathematical laboratories for chaos. Indeed, maps are capable of much wilder behavior than differential equations because the points $x_{n}$ hop along their orbits rather than flow continuously (Figure 10.0.1) \\
+
+\includegraphics{fig_1001} 
+
+\tab The study of maps is still in its infancy, but exciting progress has been made in the last twenty years, thanks to the growing availibility of calculators, then computers, and now computer graphics. Maps are easy and fast to simulate on digital computers where time is inherently discrete. Such computer experiments have revealed new theoretical developments. Most surprisingly, maps have generated a number of successful predictions about the routes to chaos in semiconductors, convecting fluids, heart cells, lasers, and chemical oscillators. \\ \tab
+
+We discuss some of the properties of maps and the techniques for analyzing them in Sections 10.1-10.5. The emphasis is on period-doubling and chaos in the logistic map. Section 10.6 introduces the amazing idea of universality, and sumarizes, experimental tests of the theory. Section 10.7 is an attempt to convey the basic ideas of Feigenbaum's renormalization technique. \\ \tab
+
+As usual, our approach will be intuitive. For rigorous treatments of one-dimensional maps, see Devaney (1989) and Collet and Eckmann (1980). 
+
+\textbf {Chapter 10.1 Fixed Points and Cobwebs} \\
+In this section we develop some tools for analyzing one-dimensional maps of the from $x_{n+1}=f(x_{n})$, where f is a smooth function from the real line to itself. 
+\textbf {A Pedantic Point} \\ \tab
+
+When we say "map" do we mean the function f or the difference equation $x_{n+1}=f(x_{n})$? Following common usage, we'll call both of them maps. If you're disturbed by this, you must be a pure mathematician... or should consider becoming one! 
+
+\textbf {Fixed Points and Linear Stability} \\ \tab
+
+Suppose x* satisfies f(x*)=x*. Then x* is a fixed point, for if $x_{n}=x*$ then $x_{n+1}=f(x_{n})=f(x*)=x*$; hence the orbit remains at x* for all future iterations. \\ \tab
+
+To determine the stability of x*, we consider a nearby orbit $x_{n}=x*+{\mathscr{N}_n}$ and ask whether the orbit is attracted to or repelled from x*. That is, does the deviation $\mathscr{N}_{n}$ grow or decay as n increases? Substitution yields \\ \tab \tab
+$x*+r_{n+1}=x_{n+1}=f(x*+\mathscr{N}_{n})=f(x*)+f'(x*)\mathscr{N}_{n}+O({\mathscr{N}_{n}}^{2})$. \\
+
+But since f(x*)=x*, this equation reduces to \\ \tab \tab
+$\mathscr{N}_{n+1}=f^{'}(x*)\mathscr{N}_{n}+O({\mathscr{N}_{n}}^{2})$. \\ \tab
+
+Suppose we can safely neglect the $O({\mathscr{N}_{n}}^{2})$ terms. Then we obtain the linearized map $\mathscr{N}_{n+1}=f^{'}(x*)\mathscr{N}_{n}$ with eigenvalue or multiplier $\lambda = f^{'}(x*)$. The solution of this linear map can be found explicitly by writing a few terms: $\mathscr{N}_{1}=\lambda \mathscr{N}_{1}, \lambda^{2}\mathscr{N}_{0}$ and so in general $\mathscr{N}_{0} = \lambda^{"}\mathscr{N}_{0}$. If $|\lambda|=|f^{'}(x*)|<1$, then $\mathscr{N}_{n} \to 0$ as $n \to \infty$ and the fixed point x* is linearly stable. Conversely, if $|f^{'}(x*)|>1$ the fixed point is unstable. ALthough these conclusions about local stability are based on linearization, they can be proven to hold for the original nonlinear map. But the linearization tells us nothing about the marginal case $|f^{'}(x*)|=1$; then the neglected $O({\mathscr{N}_{n}}^{2})$ temrs determine the local stability. (All of these results have parallels for differential equations-recall Section 2.4).
+
+\textbf {Chapter 10.2 Logistic Map: Numerics} \\
+
+In a fascinating and influential review article, Robert May (1976) emphasized that even simple nonlinear maps could have very complicated dynamics. The article ends memorably with "an evengelical plea for the introduction of these difference equations into elementary mathematics courses, so that students' intuition may be enriched by seeing the wild things that simple nonlinear equations can do" \\ \tab
+$x_{n+1}=rx_{n}(1-x_{n})$ \tab (1) \\
+
+a discrete time analog of the logistic equation for population growth (Section 2.3). Here $x_{n} \geq 0$ is a dimensionless meaure of the population in the nth generation and $r \geq 0$ is the intrinsic growth rate. As shown in Figure 10.2.1, the graph of (1) is a parabola with a maximum value of r/4 at $x=\frac{1}{2}$. We restrict the control parameter r to the range $0 \leq r \leq 4$ so that (1) maps the interval $0 \leq x \leq 1$ into itself. (The behavior is much less interesting for other values of x and r-see Excercise 10.2.1). \\
+
+\includegraphics{fig_1021}
+
+\textbf {Period-Doubling} \\ \tab
+Suppose we fix r, choose some initial population $x_{0}$, and then use (1) to generate the subsequent $x_{n}$. What happens? \\ \tab
+For small growth rate $r<1$, the population always goes extinct: $x_{n} \to 0$ as $n \to \infty$. This gloomy result can be proven by cobwebbing (Excercise 10.2.2). \\ \tab
+
+For $1 < r < 3$ the population grows and eventually reaches a nonzero steady state (Figure 10.2.2). The results are plotted here as a time series of $x_{n}$ vs n. To make the sequence clearer, we have connected the discrete points $(n, x_{n})$ by line segments, but remember that only the corners of the jagged curves are meaningful. \\
+
+\includegraphics{fig_1022} 
+
+For larger r, say r=3.3, the population builds up again but now oscillates about the former steady state, alternating between a large population in one generation and a smaller population in the next (Figure 10.2.3). This type of oscillation, in which $x_{n}$ repeats every two iterations, is called a period 2 cycle. \\
+
+\includegraphics{fig_1023} 
+
+At still larger r, say r=3.5, the population approaches a cycle that now repeats every four generations; the previous cycle has doubled its period to period-4 (Figure 10.2.4). \\
+
+\includegraphics{fig_1024}
+
+Further period doublings to cycles of period 8, 16, 32,..., occur as r increases. Specifically, let $r_{n}$ denote the value of r where a $2^{n}$-cycle first appears. Then computer experiments reveal that \\ \tab \tab
+$r_{1}=3$ \tab \tab (period 2 is born) \\ \tab \tab
+$r_{2}=3.449...$ \tab \tab 4 \\ \tab \tab
+$r_{3}=3.54409...$ \tab \tab 8 \\ \tab \tab
+$r_{4}=3.5644...$ \tab \tab 16 \\ \tab \tab
+$r_{5}=3.568759...$ \tab \tab 32 \\ \tab \tab
+\vdots \tab \tab \vdots \\ \tab \tab
+$r_{\infty}=3.569946...$ \tab \tab $\infty$ \\
+
+Note that the successive bifurcations come faster and faster. Ultimately the $r_{n}$ converge to a limiting value $r_{\infty}$. The convergence is essentially geometric: in the limit of large n, the distance between successive transitions shrinks by a constant factor \\ \tab \tab
+$\delta = \lim_{n \to \infty} \frac{r_{n}-r_{n-1}}{r_{n+1}-r_{n}}=4.669...$ \\
+We'll have a lot more to say about this number in Section 10.6 
+
+\textbf {Chaos and Periodic Windows} \\ \tab
+According to Gleick (1987, p. 69) May wrote the logistic map on a corridor blackboard as a problem for his graduate students and asked, "What the Christ happens for $r> r_{\infty}$?" The answer turns out to be complicated: For many values of r, the sequence $\{x_{n}\}$ never settles down to a fixed point or a periodic orbit-instead the long-term behavior as aperiodic, as in FIgure 10.2.5. This is a discrete time version of the chaos we encountered earlier in our study of the Lorenz equations (Chapter 9) \\
+
+\includegraphics{fig_1025}
+
+The corresponding cobweb diagram is impressively complex (Figure 10.2.6).
+\\
+\includegraphics{fig_1026}
+\tab
+You might guess that the system would become more and more chaotic as r increases, but in fact the dynamics are more subtle than that. To see the long-term behavior for all values of r at once, we plot the orbit diagram, a magnificent picture that has become an icon of nonlinear dynamics (Figure 10.2.7). FIgure 10.2.7 plots the system's attractor as a function of r. To generate the orbit diagram for yourself, you'll need to write a computer program with two "loops". First, choose a value of r. Then generate an orbit starting from some random initial condition $x_{0}$. Iterate for 300 cycles or so, to allow the system to settle down to its eventual behavior. Once the transients have decayed, plot many points, say $x_{301},...,x_{600}$ above that r. Then move to an adjacent value of r and repeat, eventually sweeping across the whole picture. \\ \tab
+
+Figure 10.2.7 shows the most interesting part of the diagram, in the region $3.4 \leq r \leq 4$. At r=3.4, the attractor is a period 2 cycle, as indicated by the two branches. As r increases, both branches split simulataneously, yielding a period-4 cycle. This splitting is the period-doubling bifurcation mentioned earlier. As cascade of further period-doublings occurs as r increases, yielding period-8, period-16, and so on, until at $r=r_{\infty} \approx 3.57$, the map becomes chaotic and the attractor changes from a finite to an infinite set of points. \\ \tab
+For $r> r_{\infty}$ the orbit diagram reveals an unexpected mixture of order and chaos, with periodic windows interspersed between chaotic clouds of dots. The large window beginning near $r \approx 3.83$ contains a stable period-3 cycle. A blow-up of part of the period 3 window is shown in the lower panel of FIgure 10.2.7. Fantasically, a copy of the orbit diagram reappears in miniature! \\
+
+\includegraphics{fig_1027}
+
+\textbf {Chapter 10.3 Logistic Map: Analysis} \\
+The numerical results of the last section raise many tantalizing questions. Let's try to answer a few of the more straightforward ones.
+
+\textbf {Chapter 10.4 Periodic Windows} \\
+
+One of the most intriguing features of the orbit diagram (Figure 10.2.7) is the occurence of periodic windows for $r>r_{\infty}$. The period 3 window that occurs near 3.8284...$\leq r \leq 3.8415...$ is the most conspicuous. Suddenly against a backdrop fo chaos, a stable 3-cycle appears out of the blue. Our first goal in this section is to understand how this 3-cycle is created. (The same mechanism accounts for the creation of all the other windows, so it suffices to consider this simplest case.) \\ \tab
+
+First, some notation. Let $f(x)=rx(1-x)$ so that the logistic map is $x_{n+1}=f(x_{n})$. Then $x_{n+2}=f(f(x_{n}))$ or more simply, $x_{n+2}=f^{2}(x_{n})$. Similarly, $x_{n+3}=f^{3}(x_{n})$. \\ \tab
+
+The third iterate map $f^{3}(x)$ is the key to understanding the birth of the period 3-cycle. Any point p in a period 3 cycle repeats every three iterates, by definition, so such points satisfy $p=f^{3}(p)$ and are therefore fixed points of the third-iterate map. Unfortunately, since $f^{3}(x)$ is an eighth degree polynomial, we cannot solve for the fixed points explicitly. But a graph provides sufficient insight. Figure 10.4.1 plots $f^{3}(x)$ for r=3.835. \\
+
+\includegraphics{fig_1041}
+
+Intersections between the graph and the diagonal line correspond to solutions of $f^{3}(x)=x$. There are eight solutions, six of interest to us and marked with dots, and two imposters that are not genuine period-3; they are actaully fixed points, or period-1 points for which $f(x*)=x*$. The black dots in Figure 10.4.1 correspond to a stable period-3 cycle; note that the slope of $f^{3}(x)$ is shallow at these points, consistent with the stability of the cycle. In contrast, the slope exceeds 1 at the cycle marked by the open dots; this 3-cycle is therefore unstable. \\ \tab
+
+Now suppose we decrease r toward the chaotic regime. Then the graph in Figure 10.4.1 changes shape-the hills move down and the valleys rise up. The curve therefore pulls away from the diagonal. Figure 10.4.2 shows that when r=3.8, the six marked intersections have vanished. Hence, for some intermediate value between r=3.8 and r=3.835, the graph of $f^{3}(x)$ must have become tangent to the diagonal. At this critical value of r, the stable and unstable period-3 cycles coalesce and annihilate in tangent bifurcation. This transition defines the beginning of the periodic window. \\
+
+\includegraphics{fig_1042}
+
+\tab One can show analytically that the value of r at the tangent bifurcation is $1+\sqrt{8}=3.8284$... (Myrberg 1958). This beatiful result is often mentioned in textbooks and articles-but always without proof. Given the resemblance of this result to the $1+\sqrt{6}$ encountered in Example 10.3.3, I'd always assumed it should be comparably easy to derive, and once assigned it as a routine homework problem. Oops! It tunrs out to be a bear. See Excercise 10.4.10 for hints, and Saha and Strogatz (1994) for Partha Saha's solution, the most elementary one my class could find. Maybe you can do better; if so, let me know! 
+
+\textbf{Intermittency} \\
+For r just below the period-3 window, the system exhibits an interesting kind of chaos. Figure 10.4.3 shows a typical orbit for r=3.8282. \\
+
+\includegraphics{fig_1043}
+
+Part of the orbit looks like a stable 3-cycle, as indicated by the black dots. But this is spooky since the 3-cycle no longer exists! We're seeing the ghost of the 3-cycle. We should not be surprised to see ghosts-they always occur near saddle-node bifurcations (Sections 4.3 and 8.1) and indeed, a tangent bifurcation is just a saddle node bifurcation by another name. But the new wrinkle is just that the orbit returns to the ghostly 3-cycle repeatedly, with intermittent bouts of chaos between visits. Accordingly, this phenomenon is known as intermittency (Pomeau and Manneville 1980). \\ \tab
+Figure 10.4.4 shows the geometry underlying intermittency. \\
+
+\includegraphics{fig_1044}
+
+In Figure 10.4.4a notice the three narrow channels between the diagonal and the graph of $f^{3}(x)$. These chanels were formed in the aftermath of the tangent bifurcation, as the hills and valleys of $f^{3}(x)$ pulled away from the diagonal. Now focus on the channel in the small box of Figure 10.4.4a enlarged in Figure 10.4.4b. The orbit takes many iterations to squeeze through the channel. Hence $f^{3}(x_{n}) \approx x_{n}$ during the passage, and so the orbit looks like a 3-cycle; this explains why we see a ghost. \\ \tab
+Eventually, the orbit escapes from the channel. Then it bounces around chaotically until fate sends it back into a channel at some unpredictable later time and place. \\ \tab
+
+Intermittency is not just a curiosity of the Logistic map. It arises commonly in systems where the transitions from periodic to chaotic behavior takes place by a saddle-node bifurcation of cycles. For instance, Exercise 10.4.8 shows that intermittency can occur in the Lorenz equations. (In fact, it was discovered there; see Pomeau and Mannville 1980). \\ \tab
+
+In experimental systems, intermittency appears as nearly periodic motion interupted by occasional irregular bursts. The time between bursts is statistically disturbed, much like a random variable, even though the system is completely deterministic. As the control parameter is moved farther away from the periodic window, the bursts become more frequent until the system is fully chaotic. This progression is known as the intermittency route to chaos. 
+\\ \tab
+
+Figure 10.4.5 shows an experimental example of the intermittency route to chaos in a laser. \\
+
+\includegraphics{fig_1045}
+
+The intensity of the emitted laser light is plotted as a function of time. In the lowest panel of Figure 10.4.5, the laser is pulsing periodically. A bifurcation to intermittency occurs as the system's control parameter (the tilt of the mirror in the laser cavity) is varied. Moving from bottom to top of Figure 10.4.5, we see that the chaotic bursts occur increasingly often. \\ \tab
+
+For a nice review of intermittency in fluids and chemical reactions, see Berge et al (1984). Those authors also review two other types of intermittency (the kind considered here is Type I intermittency) and give a much more detailed treatment of intermittency in general. 
+
+\textbf {Period-Doubling in the Window} \\ \tab
+
+We commented at the end of Section 10.2 that a copy of the orbit diagram appears in miniature in the period-3 window. The explanation has to do with hills and valleys again. Just after the stable 3-cycle is created in the tangent bifurcation, the slope at the black dots in Figure 10.4.1 is close to +1. As we increase r, the hills rise and the valleys sink. The slope of $f^{3}(x)$ at the black dots decreases steadily from +1 and eventually reaches -1. When this occurs, a flip bifurcation causes each of the black dots to split in two; the 3-cycle doubles its period and becomes a 6-cycle. The same mechanism operates here as in the original period doubling cascade, but now produces orbits of period $3 \cdot 2^{n}$. A similar period-doubling cascade can be found in all of the periodic windows.
+
+\textbf {Chapter 10.5 Liapunov Exponent} \\
+
+We have seen that the logistic map can exhibit aperiodic orbits for certain parameter values, but how do we know that this is really chaos? To be called "chaotic", a system should also show sensitive dependence on initial conditions, in the sense that neighboring orbits seperate exponentially fast, on average. In section 9.3 we quantified sensitive dependence by defining the Liapunov exponent for a chaotic differential equation. Now we extend the definition to one-dimensional maps. \\
+
+Here's the intuition. Given some initial condition $x_{0}$, consider a nearby point $x_{0}+\delta_{0}$, where the initial seperation $\delta_{0}$ is extremelly small. Let $\delta_{n}$ be the seperation after n iterates. If $|\delta_{n}|=|\delta_{0}|e^{n \lambda}$, then $\lambda $ is called the Liapunov exponent. A positive Liapunov exponent is a signature of chaos. \\ \tab
+
+A more precise and computationally useful formula for $\lambda$ can be derived. By taking logarithms and noting that $\delta_{n}=f^{n}(x_{0}+\delta_{0})-f^{n}(x_{0})$, we obtain \\ \tab \tab
+$\lambda \approx \frac{1}{n}ln|\frac{\delta_{n}}{\delta_{0}}|$ \\ \tab \tab
+$= \frac{1}{n}ln|\frac{f^{n}(x_{0}+\delta_{0})-f^{n}(x_{0})}{\delta_{0}}| \\ \tab \tab
+= \frac{1}{n}ln|(f^{n})^{'}(x_{0})|$ \\
+where we've taken the limit $\delta_{0} \to 0$ in the last step. The term inside the logarithm can be expanded by the chain rule: \\ \tab \tab
+
+$\lambda \approx \frac{1}{n}ln|\prod_{i=0}^{n-1}f^{'}(x_{i})| \\ \tab \tab
+= \frac{1}{n}\sum_{i=0}^{n-1}ln|f^{'}(x_{i})|.$ \\
+
+If this expression has a limit as $n \to \infty$, we define that limit to be Liapunov exponent for the orbit starting at $x_{0}$: \\ \tab \tab
+$\lambda = \lim_{n \to \infty} \{ \frac{1}{n} \sum_{i=0}^{n-1} ln|f^{'}(x_{i})|\}$ \\
+
+Note that $\lambda$ depends on $x_{0}$. However, it is the same for all $x_{0}$ in the basin of attraction of a given attractor. For stable fixed points and cycles, $\lambda$ is neegative; for chaotic attractors, $\lambda$ is positive. \\ \tab
+
+The next two examples deals with special cases where $\lambda$ can be found analytically.
+
+\textbf {Chapter 10.6 Universality of Experiments} \\
+This section deals with some of the most astonishing results in all of nonlinear dynamics. The ideas are best introduced by way of an example.
+
+\textbf {Qualitative Universality: The U-sequence} \\ \tab
+Example 10.6.1 illustrates a powerful theorem due to Metropolis et al. (1973). They considered all unimodel maps of the form $x_{n+1}=rf(x_{n})$, where f(x) also satisfies f(0)=f(1)-0. (For the precise conditions, see their original paper.) Metropolis et al. proved that as r is varied, the order in which stable periodic solutions appear is independent of the unimodel map being iterated. That is, the periodic attractors always occur in the same sequence, now called the universal or U-sequence. This amazing result implies that the algebraic form of f(x) is irrelevant: only its overall shape matters. \\ \tab
+Up to period 6, the U-sequence is \\ \tab \tab
+1, 2, 2x2, 6, 5, 3, 2x3, 5, 6, 4, 6, 5, 6 \\
+
+\includegraphics{fig_1062}
+
+The beginning of this sequence is familiar: periods 1, 2, and 2x2 are the first stages in the period-doubling scenario. (The later period-doublings give periods greater than 6, so they are omitted here.) Next, periods 6, 5, 3 correspond to the large windows mentioned in the discussion of Figure 10.6.2. Period 2 x 3 is the first period-doubling of the period-3 cycle. The later cycles 5,6,4,6,5,6 are less familiar; they occur in tiny windows and easy to miss (see Exercise 10.6.5 for their locations in the logistic map). \\ \tab
+The U-sequence has been found in Experiments on the Belousov-Zhabotinsky chemical reaction. Simoyi et al. (1982) studied the reaction in a continuously stirred flow rate is increased. Within the experimental resolution, the periodic states occured in the exact order predicted by the U-sequence. See section 12.4 for more details of these experiments. \\ \tab
+
+The U-sequence is qualititative; it dictates the order, but not the precise parameter values, at which periodic attractors occur. We turn now to Mitchell Feigenbaum's celebrated discovery of quantitative universality in one-dimensional maps. 
+
+\textbf {Quantitative Universality} \\ \tab
+You should read the dramatic story behind this work in Glerick (1987), and also see Feigenbaum (1980; reprinted in Cvitanovic 1989a) for his own reminiscences. The original technical papers are Feigenbaum (1978, 1979)-published only after being rejected by other journals. These papers are fairly heavy reading; see Feigenbaum (1980), Schuster (1989) and Cvitanovic (1989b) for more accessible explotions. \\ \tab
+Here's a capsule history. Around 1975, Feigenbaum begain to study period-doubling in the logistic map. First he developed a complicated (and now forgotten) "generating function theory" to predict $r_{n}$, the value of r where a $2^{n}$-cycle first appears. To check his theory numerically, and not being fluent with large computers, he programmed his handheld calculator to compute the first several $r_{n}$. As the calculator chugged along, Feigenbaum had time to guess where the next bifurcation would occur. He noticed a simple rule: the $r_{n}$ converged geometrically, with the distance between successive transitions shrinking by a constant factor of about 4.669. \\ \tab
+Feigenbaum (1980) recounts what happened next: \\ \tab \tab
+I spent part of a day trying to fit the convergence rate value, 4.669, to the mathematical constants I knew. The task was fruitless, save for the fact that it made the number memorable. \\ \tab \tab
+At this point I was reminded by Paul Stein that period-doubling isn't a unique property of the quadratic map but also occurs, for example, in $x_{n+1}=rsin \pi x_{n}$. However my generating function theory rested heavily on the fact that the nonlinearity was simply quadratic and not transcendental. Accordingly, my interest in the problem waned. \\ \tab \tab
+Perhaps a month later I decided to computed the $r_{n}$'s in the transcendental case numerically. This problem was even slower to compute than the equadratic one. Again, it became apparent that the $r_{n}$'s converged geometrically, and altogether amazingly, the convergence rate was the same 4.669 that I remembered by virtue of my efforts to fit it. \\ \tab \tab
+In fact, the some convergence rate appears no matter what unimodel map is iterated! In this sense, the number \\ \tab \tab
+
+$\delta = \lim_{n \to \infty}\frac{r_{n}-r_{n-1}}{r_{n+1}-r_{n}}=4.669...$ \\
+is universal. It is a new mathematical constant, as basic to period-doubling as $\pi$ is to circles. \\ \tab
+Figure 10.6.3 schematically illustrates the meaning of $\delta$. Let $\triangle_{n}=r_{n}-r_{n-1}$ denote the distance between consecutive bifurcation values. Then $\triangle_{n}/\triangle_{n+1} \to \delta$ as $n \to \infty$. \\ \tab
+There is also universal scaling in the x-direction. It is harder to state precisely because the pitchforks have varying widths, even at the same value of r. (Look back at the orbit diagrams in Figure 10.6.2 to confirm this.) To take account of this nonuniformity, we define a standard x-scale as follows: Let $x_{m}$ denote the maximum of f, and let $d_{n}$ denote the distance from $x_{m}$ to the nearest point in a $2^{n}$-cycle (Figure 10.6.3). \\
+
+\includegraphics{fig_1063}
+
+Then the ration $d_{n}/d_{n+1}$ tends to universal limit as $n \to \infty$: \\ \tab \tab
+
+$\frac{d_{n}}{d_{n+1}} \to \alpha = -2.5029$... \\
+
+independent of the precise form of . Here the negative sign indicates that the nearest point in the $2^{n}$-cycle is alternatively above and below $x_{m}$ as shown in Figure 10.6.3. Thus the $d_{n}$ are alterantively positive and negative.
+
+Feigenbaum went on to develop a beautiful theory that explained why $\alpha$ and $\delta$ are universal (Feigenbaum 1979). He borrowed the idea of renormalization from statistical physics, and thereby found an analogy between $\alpha, \delta$ and the universal exponents observed in experiments on second-order phase transitions in magnets, fluids, and other physical systems (Ma 1976). In section 10.7, we give a brief look at this renormalization theory. 
+
+\textbf {Experimental Tests} \\ \tab
+Since Feigenbaum's work, sequences of period doubling bifurcations have been measured in a variety of experimental systems. For instance, in the convection experiment of Libchaber et al. (1982), a box containing liquid mercury is heated from below. The control parameter is the Rayleigh number R, a dimensionless measure of the externally imposed temperature gradient from bottom to top. For R less than a critical value $R_{c}$, heat is conducted upward while the fluid remains motionless. But for $R>R_{c}$, the motionless state becomes unstable and convection occurs-hot fluid rises on one side, loses its heat at the top, and descends on the other side, setting up a pattern of counterrotating cylindrical rolls (Figure 10.6.4) \\
+
+\includegraphics{fig_1064}
+
+For R, just slightly above $R_{c}$, the rolls are straight and the motion is steady. Furthermore, at any fixed location in space, the temperature is constant. With more heating, another instability sets in. A wave propogates back and forth along each roll, causing the temperature to oscillate at each point. \\ \tab
+In traditional experiments of this sort, one keeps turning up the heat, causing further instabilities to occur until eventually the roll structure is destroyed and the system becomes turbulent. Libchaber et al. (1982) wanted to be able to increase the heat without destabilizing the spatial structure. That's why they chose mercury-then the roll structure could be stabilized by applying a dc magnetic field to the whole system. Mercury has a high electrical conductivity, so there is a strong tendency for the rolls to align with the field, thereby retaining their spatial organization. There are further niceties, in the experimental design, but they need not concern us; see Libchaber et al (1982) or Berge et al (1984). \\ \tab
+Now for the experimental results. Figure 10.6.5 shows that this system undergoes a sequence of period doublings as the Rayleigh number is increased. \\
+
+\includegraphics{fig_1065}
+
+Each time series shows the temperature variations at one point in the fluid. For $R/R_{c}=3.47$, the temperature varies periocially. This may be regarded as the basic period-1 state. When R is increased to $R/R_{c}=3.52$, the successive temperature maxima are no longer equal; the odd peaks are a little higher than before, and the even peaks are a little lower. This is the period-2 state. Further increases in R generate additional period-doublings, as shown in the lower two time series in Figure 10.6.5. \\ \tab
+
+By carefully measuring the values of R at the period-doubling bifurcations, Libchaber et al. (1982) arrived at a value of $\delta = 4.4 \pm 0.1$, in reasonable agreement with the theoretical result $\delta \approx 4.699$. \\ \tab
+
+Table 10.6.1, adapted from Cvitanovic (1989b), summarizes the results from a few experiments on fluid convection and nonlinear electronic circuits. The experimental estimates of $\delta$ are shown along with the errors quoted by the experimentalists; thus 4.3 (8) means $4.3 \pm 0.8$ \\
+
+\includegraphics{tab_1061}
+
+\tab It is important to understand that these measurements are difficult. Since $\delta \approx 5,$ each successive bifurcation requires about a fivefold improvement in the experimenter's ability to measure the external control parameter. Also, experimental noise tends to blur the structure of high-period orbits, so it is hard to tell precisely when a bifurcation has occured. In practice, one cannot measure more than about five period-doublings. Given these difficulties, the agreement between theory and experiment is impressive. \\ \tab
+Period doubling has also been measured in laser, chemical, and acoustic systems, in additional to those listed here, See Cvitanovic (1989b) for references. 
+
+\textbf {What do 1-D maps have to do with science?} \\
+
+\tab The predictive power of Feigenbaum's theory may strike you as mysterious. How can the theory work, given that it includes none of the physics of real systems like convecting fluids or electronic circuits? And real systems often have tremendously many degrees of freedom-how can all that complexity be captured by a one-dimensional map? Finally, a real systems evolve in continous time, so how can a theory based on discrete-time maps work so well? \\ \tab
+
+To work toward the answer, let's begin with a system that is simpler that  a convecting fluid, yet (seemingly) more complicated than a one-dimensional map. The system is a set of three differential equations concocted by Rossler (1976) to exhibit the simplist possible strange attracter. The Rossler system is \\ \tab \tab
+$\dot{x}=-y -z \\ \tab \tab
+\dot{y}=x+ay \\ \tab \tab
+\dot{z}=b+z(x-c)$ \\
+where a,b, and c are parameters. This system contains only one nonlinear term zx, and is even simpler than the Lorenz system (Chapter 9), which has two nonlinearities. \\ \tab 
+Figure 10.6.6 shows two-dimensional projections of the system's attractor for different values of c (with a=b=0.2 held fixed). \\
+
+\includegraphics{fig_1066}
+
+At c=2.5 the attractor is a simple limit cycle. As c is increased to 3.5, the limit cycle goes around twice before closing, and its period is approximately twice that of the original cycle. This is what period-doubling looks like in a continuous-time system! In fact, somewhere between c=2.5 and 3.5, a period-doubling bifurcation of cycles must have occured. (As Figure 10.6.6 suggests, such a bifurcation can occur only in three or higher dimensions, since the limit cycle needs room to avoid crossing itself). Another period-doubling bifurcation creates the four-loop cycle shown at c=4. After an infinite cascade of further period-doublings, one obtains the strange attractor shown at c=5. \\ \tab
+To compare these results to those obtained for one dimensional maps, we use Lorenz's trick for obtaining a map from a flow (Section 9.4). For a given value of c, we record the successive local maxima of x(t) for a trajecotry on the strange attractor. Then we plot $x_{n+1}$ vs $x_{n}$, where $x_{n}$ denotes the nth local maximum. This Lorenz map for c=5 is shown in Figure 10.6.7. The data points fall very nearly on a one-dimensional curve. Note the uncanny resemblence to the logisitc map! \\
+
+\includegraphics{fig_1067}
+
+We can even compute an orbit diagram for the Rossler system. Now we allow all values of c, not just those where the system is chaotic. Above each c, we plot all the local maxima $x_{n}$ on the attractor for that value of c. The number of different maxima tells us the "period" of the attractor. For instance, at c=3.5 the attractor is period-2 (Figure 10.6.6) and hence there are two local maxima of x(t). Both of these points are graphed above c=3.5 in Figure 10.6.8. We proceed in this way for all values of c, thereby sweeping out the orbit diagram. \\
+
+\includegraphics{fig_1068}
+
+This orbit diagram allows us to keep track of the bifurcations in the Rossler system. We see the period-doubling route to chaos and the large period-3 window- all our old friends are here. \\ \tab
+
+Now we can see why certain physical systems are governed by Feigenbaum's universality theory-if the systm's Lorenz map is nearly one-dimensional and unimodel, then the theory applies. This is certainly the case for the Rossler system and probably for Libchaber's convecting mercury. But not all systems have one dimensional Lorenz maps. For the Lorenz map to be almost one-dimensional and unimodel, then the theory applies. This is certainly the case for the Rossler system, and probably for Libchaber's convecting mercury. But not all systems have one-dimensional Lorenz maps. For the Lorenz map to be almost one-dimensional, the strange attractor has to be very flat, i.e., only slightly more than two-dimensional. This requires that the system be highly dissipative; only two or three degrees of freedom are truly active, and the rest follow along slavishly. (Incidentally, that's another reason why Libchaber et al (1982) applied a magnetic field; it increases the damping in the system, and thereby favors a low-dimensional brand of chaos). \\ \tab
+So while the theory works for some mildly chaotic systems, it doesnt apply to fully turbulent fluids or fibrillating hearts, where there are many active degrees of freedom corresponding to complicated behavior in space as well as time. We are still a long way from understanding such systems.
+
+\textbf {Chapter 10.7 Renormalization} \\
+
+In this section we give an intuitive introduction to Feigenbaum's (1979) renormalization theory for period-doubling. For nice expositions at a higher mathematical level than that presented here, see Feigenbaum (1980). Collet and Eckmann (1980), Schuster (1989), Drazin (1992), and Cvitanovic (1989b). \\ \tab
+
+First we introduce some notation. Let f(x,r) denote a unimodel map that undergoes a period-doubling route to chaos as r increases, and suppose that $x_{m}$ is the maximum of f. Let $r_{n}$ denote the value of r at which a $2^{n}$-cycle is born, and let $R_{n}$ denote the value of r at which the $2^{n}$-cycle is superstable. \\ \tab
+Feigenbaum phrased his analysis in temrs of the superstable cycles, so let's practice with them. 
+
+\textbf {Renormalization for Pedestrians} \\ \tab
+
+The following pedagogical calculation is intended to clarify the renormalization process. As a bonus, it gives closed form approximation for a and $\delta$. Our treatment is modified from May and Oster (1980) and Helleman (1980). \\ \tab
+
+Let f(x, $\mu$) be any unimodal map that undergoes a period-doubling route to chaos. Suppose that the variables are defined such that the period 2-cycle is born at x=0 when $\mu=0$. Then for both x and $\mu$ close to 0, the map is approximated by \\ \tab \tab
+
+$x_{n+1}=-(1+\mu)x_{n}+ax^{2}_{n}+...$ \\
+
+since the eigenvalue is -1 at the bifurcation. (We are going to neglect all higher order terms in x and $\mu$; that's why our results will be only approximate). Without loss of generality we can set a=1 by rescaling $x \to x/a$. So locally our map has the normal form \\ \tab \tab
+$x_{n+1}=-(1+\mu)x_{n}+x^{2}_{n}$+... \tab (3) \\ \tab
+Here's the idea: for $\mu > 0$, there exist period-2 points, say p and q. As $\mu$ increases p and q themselves will eventually period-double. When this happens, the dynamics of $f^{2}$ near p will necessarily be approximated by a map with the same algebraic form as (3), since all maps have this form near a period-doubling bifurcation. Our strategy is to calculate the map governing the dynamics of $f^{2}$ near which in turn leads to a prediction of a and $\delta$. \\ \tab
+
+First, we find p and q. By definition of period-2, p is mapped to q. Hence (3) yields \\ \tab \tab
+$p=-(1+\mu)q + q^{2},  \tab q=-(1+\mu)p+p^{2}$ \\
+By subtracting one of these equations from the other, and factoring out p-q, we find that p+q=$\mu$. Then multiplying the equations together and simplifying yields $pq=-\mu$. Hence \\ \tab \tab
+$p=\frac{\mu + \sqrt{\mu^{2}+4\mu}}{2}, \tab q=\frac{\mu - \sqrt{\mu^{2}+4\mu}}{2}$ \\ 
+
+Now shift the origin to p and look at the local dynamics. Let \\ \tab \tab
+$f(x)=-(1+\mu)x+x^{2}$. \\
+Then p is a fixed point of $f^{2}$. Expand $p+\mathscr{N}_{n+1}=f^{2}(p+\mathscr{N}_{n})$ in powers of the small deviation $\mathscr{N}_{n}$. After some algebra (Exercise 10.7.10) and neglecting higher order terms as usual, we get \\ \tab \tab
+$\mathscr{N}_{n+1}=(1-4\mu-\mu^{2})\mathscr{N}_{n}+C\mathscr{N}^{2}_{n}+...$ \tab (4) \\ 
+where \\ \tab \tab 
+$C=4\mu+\mu^{2}-3\sqrt{\mu^{2}+4\mu}$. \tab (5) \\ \tab
+As promised, the $\mathscr{N}$-map (4) has the same algebraic form as the original map (3)! We can renormalize (4) into (3) by rescaling $\mathscr{N}$ and by defining a new $\mu$. (Note: The need for both of these steps was anticipated in the abstract version of renormalization discussion earlier. We have to rescale the state variable $\mathscr{N}$ and shift the bifurcation parameter $\mu$.) \\ \tab 
+
+To rescale $\mathscr{N}$, let $\tilde{x}=C\mathscr{N}_{n}$. Then (4) becomes $\tilde{x}_{n+1}=(1-4\mu-\mu^{2})\tilde{x}_{n}+\tilde{x}^{2}_{n}+...$ \tab (6) \\
+
+This mathces (3) almost perfectly. All that remains is to define a new parameter $\tilde{\mu}$ by $-(1+\tilde{\mu})=(1-4\mu - \mu^{2})$. Then (6) achieves the desired form \\ \tab \tab
+
+$\tilde{x}_{n+1}=-(1+\tilde{\mu})\tilde{x}_{n}+\tilde{x}^{2}_{n}+...$ \tab (7) \\
+where the renormalized parameter $\tilde{\mu}$ is given by \\ \tab \tab
+
+$\tilde{\mu}=\mu^{2}+4\mu-2$ \tab (8) \\
+
+When $\tilde{\mu}=0$ the renormalization map (7) undergoes a flip bifurcation. Equivalently, the 2-cycle for the original map loses stability and creates a 4-cycle. This brings us to the end of the first period-doubling.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

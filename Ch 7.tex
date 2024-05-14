@@ -1,0 +1,129 @@
+\documentclass{article}
+\usepackage{amsmath}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\begin{document}
+
+
+\title {Calculus of Variations Ch 7: Varaitional Problems Involving Multiple Integrals}
+
+\author{Charlie Seager}
+
+\maketitle
+
+\textbf {VARIATIONAL PROBLEMS INVOLVING MULTIPLE
+INTEGRALS Page 152. 35: Variation of a Functional
+Defined on a Fixed Region, 152. 36: Variational Derivation of the Equations of Motion of Continuous Mechanical Systems, 154. 37: Variation of a Functional
+Defined on a Variable Region, 168. 38: Applications to
+Field Theory, 180. Problems, 190. }
+
+\textbf {In this chapter, we discuss a variety of topics pertaining to functionals
+which depend on functions of two or more variables. Such functionals
+arise, for example, in mechanical problems involving systems with infinitely
+many degrees of freedom (strings, membranes, etc.). In our treatment of
+systems consisting of a finite number of particles (see Chapter 4), we derived
+the principle of least action and a general method for obtaining conservation
+laws (Noether's theorem). These methods will now be applied to systems
+with infinitely many degrees of freedom}
+
+\textbf {Section 35 Variation of a FUnctional Defined on a Fixed Region}
+
+\textbf {Section 36 Variational Derivation of the Equations of Motion of Continous Mechanical Systems} As we saw in Sec. 21, the equations of motion of a mechanical system consisting of n particles can be derived from the principle of least action which states that the actual trajectory of the system in phase space minimizes the action functional
+\begin{center}
+$\int_{t_0}^{t_1} (T- U) dt$
+\end{center}
+where T is the kinetic energy and U is the potential energy of the system of particles. We now use this principle, together with our basic formula for the first variation, to derive the equations of motion and the appropriate boundary conditions for some simple mechanical systems with infinitely many degrees of freedom, namely, the vibrating string, membrane and plate.
+\textbf {Section 36.1 The vibrating string} Consider the transverse motion of a string (i.e. a homogenous flexible cord) of legnth l and linear mass density p. Suppose both ends of the string (at x = 0 and x = l) are fastended elastically, which means that if either end is displaced from its equilibrium positiion a restoring force proportional to the displacement appears. This can be achieved for example, by fastening the ends of the string to two rings which are constrained to move along two parallel rods, while the rings themselves are held in their initial positions by two ideal springs. Let the equilibrium position of the string lie placement of the string at the point x and time t from its equilibrium position. Then, at time t, the kinetic energy of the element of string which initially lies between $x_0$ and $x_0 + \Delta x$ is is clearly 
+\begin{center}
+$\frac{1}{2} pu_t^2(x_0, t) \Delta x$
+\end{center}
+
+\textbf {Section 36.2 Least action vs stationary action} The principle of least action is widely used not only in mechanics, but also in other branches of physics, e.g. in electrodynamics and field theory. However, as already noted, in a certain sense the principle is not quite true. For example consider a simple harmonic oscillator, i.e. a particle of mass m oscillating about an equilibrium position under the action of an elastic restoring force. then the textbook covers more examples
+
+\textbf {Section 36.3 The vibrating membrane} Consider the transverse motion of a membrane (i.e. a homogenous flexible sheet) of surface mass density p. Let u(x,y,t) denote the displacement from equilibrium of the point (x,y) of the membrane, at time t. The kinetic energy of the membrane at time t is given by
+\begin{center}
+$T = \frac{1}{2} p \int \int_R u_t^2 (x,y,t) dx dy$
+\end{center}
+where R is the region of the xy-plane occupied by the membrane at rest. The potential energy of the membrane in the position described by the function u(x,y,t) where t is fixed, is just the work required to move the membrane from its equilibrium position u = 0 into the given position u(x,y,t) where t is fixed, is just the work required to move the membrane from its equilibrium position u = 0 into the given position u(x,y,t). This work $U_2$ expended in moving the boundary of the membrane, which we assume to be elastically fastened to its equilibrium position.
+
+\textbf {Section 36.4 The vibrating plate} Finally we use the principle of stationary action to derive the equation of motion and the boundary conditions for the transverse vibrations of a plate (i.e. a homogeneous two-dimensional elastic body) with surface mass density p. As in the case of the vibrating membrane, let u(x,y,t) denote the dispalcement from equilibrium of the point (x,y) of the plate, at time t. Then the kinetic energy of the plate at time t is given by
+\begin{center}
+$T = \frac{1}{2} p \int \int_R u_t^2 (x,y,t) dx dy$
+\end{center}
+where R is the region of the xy-plane occupied by the plate at rest.
+
+\textbf {Chapter 37 Variation of a Functional Defined on a Variable Region}
+
+\textbf {Theorem 1} The variation of the functional
+\begin{center}
+$J[u] = \int_R F(x, y, \nabla u) dx$
+\end{center}
+corresponding to the transformation
+\begin{center}
+$x_i* = \Phi_i(x, u, \nabla u; \epsilon) \sim x_1 + \epsilon \phi_i(x,y, \nabla u)$
+\end{center}
+\begin{center}
+$u* = \Psi(x, u, \nabla u; \epsilon) \sim u + \epsilon \psi(x,u, \nabla u)$
+\end{center}
+(i = 1,...,n) is given by the formula
+\begin{center}
+$\delta J = \epsilon \int_R (F_u - \sum_{i=1}^n \frac{\partial}{\partial x_1} F_{u_{x_{i}}}) \bar{\psi} dx + \epsilon \int_R \sum_{i=1}^n \frac{\partial}{\partial x_i} (F_{u_{x_{i}}} \bar{\psi} + F \varphi_i) dx $
+\end{center}
+where
+\begin{center}
+$\bar{\psi} = \psi - \sum_{i=1}^n u_{x_i} \varphi_i$
+\end{center}
+
+\textbf {Definition} The function (106) is said to be invariant under the transformation (107) if $J[\sigma*] = J[\sigma]$ i.e. if
+\begin{center}
+$\int_{R*} F(x*, u* \nabla* u*) dx* = \int_R F(x,u, \nabla u) dx$
+\end{center}
+
+\textbf {THeorem 2 (Noether)} If the functional
+\begin{center}
+$J[u] = \int_R F(x,u, \nabla u) dx$
+\end{center}
+is invariant under the family of transformations
+\begin{center}
+$x_i* = \Phi_i(x, u, \nabla u; \epsilon) \sim x_i + \epsilon \varphi_i (x, u, \nabla u)$
+\end{center}
+\begin{center}
+$u* = \Psi(x,u, \nabla u; \epsilon) \sim u + \epsilon \psi(x, u, \nabla u)$
+\end{center}
+(i = 1,...,n) for an arbitrary region R, then
+\begin{center}
+$\sum_{i=1}^n \frac{\partial}{\partial x_i} (F_{u_{x_{i}}} \hat{\psi} + F \varphi_i) = 0$
+\end{center}
+on each extremal surface of J[u], where
+\begin{center}
+$\hat{psi} = \psi - \sum_{i=1}^n u_{x_i} \varphi_i$
+\end{center}
+
+\textbf {Section 38 Appliecations to Field Theory}
+
+\textbf {Section 38.2 Conservation laws for fields} Noether's theorem (derived in sec 37.5) affords a general method of deriving conservation laws for fields, i.e. for constructing combinations of field functions, called field invariants, which do not change in time.
+
+\textbf {Section 38.4 Conservation of angular momentum} According to the special thoery of relativity, the action functional of any physical field is invariant under orthochronous Lorentz transformations, i.e. under transformations of four-dimensional space-time which leaves the quadratic form
+\begin{center}
+$-x_0^2 + x_1^2 + x_2^2 + x_3^2$
+\end{center}
+invariant and preserve the time direction.
+
+\textbf {Section 38.5 Electromagnetic fields} Think of Maxwells equations.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
